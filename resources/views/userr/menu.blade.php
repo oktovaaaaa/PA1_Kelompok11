@@ -1,21 +1,9 @@
 @extends('layouts.main')
 
 @include('layouts.navbar')
-<div class="container ">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .mtitle {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 50px;
-        }
-        </style>
-        <div class="container pt-5 my-5">
-            <h2 class="mtitle">Menu</h2>
+<div class="container section-title pt-5 mt-5" data-aos="fade-up">
+    <h2>Jadwal</h2>
+</div>
             @if(isset($menus) && count($menus) > 0)
 
             @if (session('success'))
@@ -45,7 +33,7 @@
 
                             <form action="{{ route('userr.prosesPembayaran') }}" method="POST">
                                 @csrf
-                                <input type="hidden" name="menu_id" value="{{ $menu->id }}"> 
+                                <input type="hidden" name="menu_id" value="{{ $menu->id }}">
                                 <div class="mb-1">
                                     <label for="jumlah" class="form-label" style="font-size: 0.8rem;">Jumlah</label>
                                     <div class="input-group">
@@ -100,7 +88,7 @@
     </div>
     @endauth
     @else
-    <div class="py-3 pt-5 my-5">
+    <div class="py-3 ">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 ">
             @foreach ($menus as $menu)
                 <div class="col" data-menu-id="{{ $menu->id }}">
@@ -120,10 +108,10 @@
         </div>
     </div>
     @endif
-</div>
+</>
 @auth
 @if (auth()->user()->role == 'admin')
-<div class="py-3 pt-5 my-5">
+<div class="py-3 ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 ">
         @foreach ($menus as $menu)
             <div class="col" data-menu-id="{{ $menu->id }}">

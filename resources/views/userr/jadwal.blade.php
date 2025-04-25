@@ -1,19 +1,10 @@
 @extends('layouts.main')
 @include('layouts.navbar')
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f8f9fa;
-    }
-    .mtitle {
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 50px;
-    }
-    </style>
-    <div class="container pt-5 my-5">
-        <h2 class="mtitle">Jadwal</h2>
+<div class="container section-title pt-5 mt-5" data-aos="fade-up">
+    <h2>Jadwal</h2>
+</div>
+
+    <div class="container">
 
     @if(isset($jadwals) && count($jadwals) > 0)
             <br>

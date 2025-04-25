@@ -1,20 +1,8 @@
 @extends('layouts.main')
 @include('layouts.navbar')
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f8f9fa;
-    }
-    .mtitle {
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 50px;
-    }
-    </style>
 
-        <div class="container pt-5 my-5">
-            <h2 class="mtitle">Keranjang</h2>
+<div class="container section-title pt-5 mt-5" data-aos="fade-up">
+    <h2>Keranjang</h2>
 <br>
 @if (session('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">

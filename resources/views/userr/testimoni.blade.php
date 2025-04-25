@@ -1,34 +1,14 @@
 @extends('layouts.main')
 @include('layouts.navbar')
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f8f9fa;
-    }
-    .mtitle {
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 50px;
-    }
-    </style>
 
-        <div class="container pt-5 my-5">
-            <h2 class="mtitle">Testimoni</h2>
-<br>
-
-
-@if (session('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('success') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
+<br><br>
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     @auth
         @if (auth()->user()->role == 'user')
@@ -44,52 +24,85 @@
             </a>
         </div>
     @endif
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
 
-    <div class="row">
-        @foreach ($testimonis as $testimoni)
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="{{ asset('assets/img/profil.jpg') }}" alt="Profile" class="rounded-circle me-3" width="50" height="50"> {{-- kita gas buat fitur barU --}}
-                            <div>
-                                <h5 class="card-title mb-0">{{ $testimoni->nama }}</h5>
-                                <small class="text-muted">{{ $testimoni->created_at->diffForHumans() }}</small>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            @for ($i = 1; $i <= 5; $i++)
-                                @if ($i <= $testimoni->rating)
-                                    <span class="fa fa-star" style="color: gold;"></span>
-                                @else
-                                    <span class="fa fa-star" style="color: #ddd;"></span>
-                                @endif
-                            @endfor
-                        </div>
-                        <p class="card-text">{{ $testimoni->deskripsi }}</p>
-                    </div>
-                    @auth
-                        @if (auth()->user()->role == 'user' && auth()->user()->id == $testimoni->user_id)
-                            <div class="card-footer bg-transparent border-top-0">
-                                <div class="d-flex justify-content-end">
-                                    <a href="{{ route('testimoni.edit', $testimoni->id) }}" class="btn btn-sm btn-outline-primary me-2">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    <form action="{{ route('testimoni.destroy', $testimoni->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-trash"></i> Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        @endif
-                    @endauth
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Testimonials</h2>
+          <p>Apa kata mereka tentang kami?</p>  <!-- Ganti dengan deskripsi yang sesuai -->
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                }
+              }
+            </script>
+            <div class="swiper-wrapper">
+              @foreach ($testimonis as $testimoni)
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <!-- Dropdown Menu -->
+                  @auth
+                    @if (auth()->user()->role == 'user' && auth()->user()->id == $testimoni->user_id)
+                      <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
+                        <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton{{ $testimoni->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton{{ $testimoni->id }}">
+                          <li><a class="dropdown-item" href="{{ route('testimoni.edit', $testimoni->id) }}"><i class="fas fa-edit me-2"></i>Edit</a></li>
+                          <li>
+                            <form action="{{ route('testimoni.destroy', $testimoni->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="dropdown-item"><i class="fas fa-trash me-2"></i>Hapus</button>
+                            </form>
+                          </li>
+                        </ul>
+                      </div>
+                    @endif
+                  @endauth
+
+                  <img src="{{ asset('assets/img/profil.jpg') }}" class="testimonial-img" alt="Foto Profil {{ $testimoni->nama }}">  <!-- Ganti path default jika ada -->
+                  <h3>{{ $testimoni->nama }}</h3>
+                  <h4>Pengguna Layanan</h4>  <!-- Ganti role default jika ada -->
+                  <div class="stars">
+                      @for ($i = 1; $i <= 5; $i++)
+                          @if ($i <= $testimoni->rating)
+                              <i class="bi bi-star-fill"></i>
+                          @else
+                              <i class="bi bi-star"></i>
+                          @endif
+                      @endfor
+                  </div>
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    <span>{{ $testimoni->deskripsi }}</span>
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+
                 </div>
-            </div>
-        @endforeach
-    </div>
-</div>
+              </div><!-- End testimonial item -->
+              @endforeach
 
-@include('layouts.footer')
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+        </div>
+
+      </section><!-- /Testimonials Section -->
+    @include('layouts.footer')

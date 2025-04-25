@@ -1,175 +1,142 @@
 @include('layouts.navbar')
 @extends('layouts.main')
 <style>
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-}
+    /* Tambahkan styling dari work process section */
+    .work-process .steps-item {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+    }
 
-.mtitle {
-    font-size: 2.5rem; /* Ukuran lebih besar untuk judul */
-    font-weight: bold;
-    text-align: center;
-    margin-top: 40px; /* Mengurangi margin atas sedikit */
-    margin-bottom: 30px; /* Menambahkan margin bawah untuk ruang */
-    color: #343a40; /* Warna teks yang lebih gelap */
-}
+    .work-process .steps-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
 
-.card {
-    border: none;
-    border-radius: 15px; /* Sudut membulat */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan halus */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Memastikan gambar tidak melampaui batas */
-}
+    .steps-image {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+    }
 
-.card:hover {
-    transform: translateY(-8px); /* Efek melayang lebih halus */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Bayangan lebih besar saat dihover */
-}
+    .steps-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
 
-.card-img-container {
-    height: 220px; /* Tinggi yang tetap untuk gambar */
-    overflow: hidden; /* Memotong gambar yang terlalu besar */
-    border-radius: 15px 15px 0 0; /* Pembulatan sudut atas */
-}
+    .steps-item:hover .steps-image img {
+        transform: scale(1.05);
+    }
 
-.card-img-top {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Memastikan gambar mengisi wadah tanpa distorsi */
-    transition: transform 0.3s ease; /* Transisi halus saat dihover */
-}
+    .steps-content {
+        padding: 1.5rem;
+        position: relative;
+    }
 
-.card:hover .card-img-top {
-    transform: scale(1.05); /* Efek zoom halus saat dihover */
-}
+    .steps-number {
+        position: absolute;
+        top: -20px;
+        right: 20px;
+        background: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.card-body {
-    padding: 1.5rem; /* Padding lebih besar */
-    text-align: center;
-}
-
-.card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: #343a40;
-}
-
-.card-text {
-    font-size: 1rem;
-    color: #6c757d;
-    margin-bottom: 0; /* Menghapus margin bawah default */
-}
-
-/* Styling Modal */
-.modal-content {
-    border-radius: 15px;
-}
-
-.modal-header {
-    border-bottom: none;
-}
-
-.modal-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.modal-body {
-    padding: 2rem;
-}
-
-.modal-footer {
-    border-top: none;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-}
-
-/* Carousel Styling */
-.carousel-control-prev,
-.carousel-control-next {
-    width: auto; /* Lebar otomatis agar tidak terlalu lebar */
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.3); /* Latar belakang ikon yang lebih jelas */
-    border-radius: 50%; /* Bentuk lingkaran */
-    padding: 10px; /* Padding agar ikon lebih besar */
-}
+    /* Pertahankan styling modal yang ada */
+    .modal-content { border-radius: 15px; }
+    .modal-header { border-bottom: none; }
+    .modal-title { font-size: 1.5rem; font-weight: bold; }
 </style>
 
-<div class="container pt-5 my-5">
-    <h2 class="mtitle">Galeri DEL Cafe</h2>
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-inner pt-4">
-            @if(isset($galeris) && count($galeris) > 0)
-                @php
-                $galerisPerSlide = 3;
-                $galeriChunks = array_chunk($galeris->all(), $galerisPerSlide);
-                @endphp
+<section id="gallery" class="gallery section pt-5 mt-5">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Galeri DEL Cafe</h2>
+        <p>Koleksi moment terbaik di DEL Cafe</p>
+    </div>
 
-                @foreach ($galeriChunks as $key => $galeriChunk)
-                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <div class="d-flex flex-wrap justify-content-center gap-4">
-                            @foreach ($galeriChunk as $galeri)
-                                <div class="card col-lg-4" style="width: 22rem;" data-bs-toggle="modal" data-bs-target="#galeriModal{{ $galeri->id }}">
-                                    <div class="card-img-container">
-                                        <img src="{{ url('storage/images/' . $galeri->foto) }}" class="card-img-top" alt="{{ $galeri->nama }}">
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $galeri->nama }}</h5>
-                                        <p class="card-text">{{ $galeri->deskripsi }}</p>
-                                    </div>
-                                </div>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner">
+                @if(isset($galeris) && count($galeris) > 0)
+                    @php
+                        $galerisPerSlide = 3;
+                        $galeriChunks = array_chunk($galeris->all(), $galerisPerSlide);
+                    @endphp
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="galeriModal{{ $galeri->id }}" tabindex="-1" aria-labelledby="galeriModalLabel{{ $galeri->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="galeriModalLabel{{ $galeri->id }}">{{ $galeri->nama }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    @foreach ($galeriChunks as $key => $galeriChunk)
+                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                            <div class="row gy-5">
+                                @foreach ($galeriChunk as $index => $galeri)
+                                    <div class="col-lg-4"
+                                         data-aos="fade-up"
+                                         data-aos-delay="{{ 100 + ($index * 100) }}"
+                                         data-bs-toggle="modal"
+                                         data-bs-target="#galeriModal{{ $galeri->id }}">
+                                        <div class="steps-item">
+                                            <div class="steps-image">
+                                                <img src="{{ url('storage/images/' . $galeri->foto) }}"
+                                                     alt="{{ $galeri->nama }}"
+                                                     loading="lazy">
                                             </div>
-                                            <div class="modal-body">
-                                                <img src="{{ url('storage/images/' . $galeri->foto) }}" class="img-fluid w-100" alt="{{ $galeri->nama }}" style="border-radius: 10%;">
-                                                <p class="mt-3">{{ $galeri->deskripsi }}</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            <div class="steps-content">
+                                                <div class="steps-number">{{ sprintf('%02d', $index + 1) }}</div>
+                                                <h3>{{ $galeri->nama }}</h3>
+                                                <p>{{ $galeri->deskripsi }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="carousel-item active">
+                        <p class="text-center fs-4">Galeri tidak tersedia</p>
                     </div>
-                @endforeach
-            @else
-                <div class="carousel-item active">
-                    <p class="text-center fs-4">galeri tidak tersedia</p>
-                </div>
-            @endif
-        </div>
+                @endif
+            </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+            <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Modals tetap sama seperti sebelumnya -->
+@foreach ($galeris as $galeri)
+<div class="modal fade" id="galeriModal{{ $galeri->id }}" tabindex="-1" aria-labelledby="galeriModalLabel{{ $galeri->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="galeriModalLabel{{ $galeri->id }}">{{ $galeri->nama }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="{{ url('storage/images/' . $galeri->foto) }}" class="img-fluid w-100" alt="{{ $galeri->nama }}">
+                <p class="mt-3">{{ $galeri->deskripsi }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
     </div>
 </div>
+@endforeach
+
 @include('layouts.footer')

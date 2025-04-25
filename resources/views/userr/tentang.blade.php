@@ -41,18 +41,14 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
 }
-.mtitle {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 50px;
-}
+
 </style>
 
 
-    <div class="container pt-5 my-5">
-        <h2 class="mtitle">Tentang DEL Cafe</h2>
-        <br><br>
+<div class="container section-title pt-5 mt-5" data-aos="fade-up">
+    <h2>Tentang</h2>
+    <div class="container pt-5">
+        </div>
 
     <div class="row">
         @if (isset($tentangs) && count($tentangs) > 0)

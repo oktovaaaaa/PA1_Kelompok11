@@ -1,49 +1,137 @@
 @extends('layouts.main')
-    @include('layouts.navbar')
+@include('layouts.navbar')
 
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .mtitle {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 50px;
-        }
-        </style>
-        <div class="container pt-5 my-5">
-            <h2 class="mtitle">Pengumuman</h2>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+    }
 
-            @if(isset($pengumumans) && count($pengumumans) > 0)
-    <div class="container pt-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                @foreach ($pengumumans as $pengumuman)
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $pengumuman->judul }}</h5>
-                            <p class="card-text">{{ $pengumuman->teks }}</p>
-                            @if ($pengumuman->tautan)
-                                <a href="{{ $pengumuman->tautan }}" target="_blank" style="color: blue; text-decoration: underline;">
-                                    Klik di sini
-                                </a>
-                            @endif
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    Dibuat pada {{ date('d-m-Y', strtotime($pengumuman->tanggal)) }}
-                                </small>
-                            </p>
-                        </div>
-                    </div>
-                @endforeach
-                @else
-                <p class="text-center fs-4 pt-5">Pengumuman tidak tersedia</p>
-            @endif
-            </div>
+    /* Styling FAQ Structure */
+    .content h3 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .content h3 span {
+        color: #6c757d;
+    }
+
+    .content h3 strong {
+        color: #343a40;
+        display: block;
+        margin-top: 0.5rem;
+    }
+
+    .faq-container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-item {
+        border-bottom: 1px solid #eee;
+        padding: 1.5rem;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .faq-item:last-child {
+        border-bottom: none;
+    }
+
+    .faq-item h3 {
+        font-size: 1.1rem;
+        margin: 0;
+        padding-right: 40px;
+    }
+
+    .faq-item h3 span {
+        color: #007bff;
+        margin-right: 10px;
+    }
+
+    .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .faq-active .faq-content {
+        max-height: 500px;
+        padding-top: 1rem;
+    }
+
+    .faq-toggle {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .faq-active .faq-toggle {
+        transform: rotate(90deg);
+    }
+
+    .text-muted {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        display: block;
+    }
+
+    .tautan-link {
+        color: #007bff;
+        text-decoration: underline;
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+</style>
+
+<div class="container pt-5 my-5" data-aos="fade-up">
+    <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Jadwal</h2>
         </div>
+        <p>
+            Temukan update terbaru dan informasi penting seputar aktivitas kami
+        </p>
     </div>
 
-    @include('layouts.footer')
+    @if(isset($pengumumans) && count($pengumumans) > 0)
+    <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+        @foreach ($pengumumans as $index => $pengumuman)
+        <div class="faq-item {{ $loop->first ? 'faq-active' : '' }}">
+            <h3><span>{{ sprintf('%02d', $index + 1) }}</span>{{ $pengumuman->judul }}</h3>
+            <div class="faq-content">
+                <p>{{ $pengumuman->teks }}</p>
+                @if ($pengumuman->tautan)
+                <a href="{{ $pengumuman->tautan }}" target="_blank" class="tautan-link">
+                    Klik di sini untuk informasi selengkapnya
+                </a>
+                @endif
+                <small class="text-muted">
+                    Dipublikasikan pada {{ date('d-m-Y', strtotime($pengumuman->tanggal)) }}
+                </small>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+        </div>
+        @endforeach
+    </div>
+    @else
+    <div class="text-center fs-4 pt-5" data-aos="fade-up">
+        <p>Tidak ada pengumuman saat ini</p>
+    </div>
+    @endif
+</div>
 
+<script>
+    // Add toggle functionality
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('faq-active');
+        });
+    });
+</script>
+
+@include('layouts.footer')
