@@ -3,9 +3,10 @@
 @include('layouts.navbar')
 
 
-<div class="container section-title pt-5 mt-5" data-aos="fade-up">
-    <h2>Menu</h2>
-</div>
+    <div class="container section-title pt-5 mt-5" data-aos="fade-up">
+
+        <h2>Menu</h2>
+    </div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-11 mt-4">

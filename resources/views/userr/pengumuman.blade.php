@@ -93,6 +93,7 @@
 <div class="container pt-5 my-5" data-aos="fade-up">
     <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
         <div class="container section-title" data-aos="fade-up">
+            <br>
             <h2>Jadwal</h2>
         </div>
         <p>

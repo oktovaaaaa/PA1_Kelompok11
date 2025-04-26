@@ -7,6 +7,7 @@
 
 
     <div class="container section-title pt-5" data-aos="fade-up">
+        <br>
         <h2>Tentang</h2>
     </div>
 

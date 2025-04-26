@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title', 'DelCafe - Login')
+
 
 <section class="d-flex align-items-center justify-content-center" style="background-color: #37517e; min-height: 100vh;">
     <div class="container">

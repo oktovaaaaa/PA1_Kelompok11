@@ -62,6 +62,7 @@
 
 <section id="gallery" class="gallery section pt-5 mt-5">
     <div class="container section-title" data-aos="fade-up">
+        <br>
         <h2>Galeri DEL Cafe</h2>
         <p>Koleksi moment terbaik di DEL Cafe</p>
     </div>

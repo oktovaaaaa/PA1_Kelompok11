@@ -5,6 +5,7 @@
 
 <section id="contact" class="contact section bg-light pt-5 my-5">
     <div class="container section-title" data-aos="fade-up">
+        <br>
         <h2>Kontak</h2>
         <p>Hubungi Kami Disini</p>
     </div>

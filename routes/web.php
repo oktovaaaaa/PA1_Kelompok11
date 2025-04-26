@@ -23,8 +23,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RiwayatadminController;
 
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -153,6 +151,14 @@ Route::get('/admin/riwayat-pesanan', [RiwayatadminController::class, 'index'])->
     Route::post('/logout',[AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile/remove-picture', [ProfileController::class, 'removePicture'])->name('profile.remove_picture'); 
 });
 
 require __DIR__.'/auth.php';
