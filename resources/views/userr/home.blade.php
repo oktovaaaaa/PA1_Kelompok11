@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title', 'DelCafe - Beranda')
+
 @include('layouts.navbar')
 <body class="index-page">
   <main class="main">

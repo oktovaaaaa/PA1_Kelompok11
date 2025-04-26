@@ -1,4 +1,6 @@
 @include('layouts.navbar')
+@section('title', 'DelCafe - Galeri')
+
 @extends('layouts.main')
 <style>
     /* Tambahkan styling dari work process section */

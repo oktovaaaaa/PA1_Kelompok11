@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title', 'DelCafe - Pengumuman')
+
 @include('layouts.navbar')
 
 <style>

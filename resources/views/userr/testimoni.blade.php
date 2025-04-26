@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title', 'DelCafe - Testimoni')
+
 @include('layouts.navbar')
 
 
@@ -11,18 +13,21 @@
     @endif
 
     @auth
-        @if (auth()->user()->role == 'user')
-            <a href="{{ route('testimoni.create') }}" class="btn btn-primary mb-5 ">
-                <i class="fas fa-plus"></i> Tambah Testimoni
-            </a>
-        @endauth
+    @if (auth()->user()->role == 'user')
+    <div class="text-center mt-5"> 
+        <a href="{{ route('testimoni.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Tambah Testimoni
+        </a>
+    </div>
+@endauth
     @else
-        <div class="alert alert-info ">
-            <p>Login terlebih dahulu jika ingin menambahkan ulasan.</p>
-            <a href="{{ route('login') }}" class="btn btn-primary">
-                <i class="fas fa-sign-in-alt"></i> Login
-            </a>
-        </div>
+    <div class="alert alert-info text-center pt-5 ">
+        <p>Login terlebih dahulu jika ingin menambahkan ulasan.</p>
+        <a href="{{ route('login') }}" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+    </div>
+
     @endif
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials section">

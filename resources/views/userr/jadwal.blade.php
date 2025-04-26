@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title', 'DelCafe - Jadwal')
+
 @include('layouts.navbar')
 <div class="container section-title pt-5 mt-5" data-aos="fade-up">
     <h2>Jadwal</h2>

@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title', 'DelCafe - Kontak')
+
 @include('layouts.navbar')
 
 <section id="contact" class="contact section bg-light pt-5 my-5">
