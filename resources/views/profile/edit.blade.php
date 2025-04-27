@@ -1,14 +1,13 @@
 @extends('layouts.main')
 @section('title', 'DelCafe - Profile')
 
-@section('content')
 <section class="vh-100 d-flex align-items-center justify-content-center" style="background-color: #37517e;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-10">
                 <div class="card" id="card-login">
                     <div class="card-body p-4 text-black">
-                        <h2 class="section-title">Edit Profil</h2>
+                        <h5 class="section-title">Edit Profil</h5>
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -55,14 +54,9 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="profile_picture" class="form-label">Foto Profil</label>
-                                        <div class="d-flex align-items-center"> <!-- Flex container untuk foto dan tombol -->
+                                        <div class="d-flex align-items-center">
                                             @if($user->profile_picture)
                                                 <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Foto Profil" class="img-thumbnail me-2" width="100">
-                                                <form method="POST" action="{{ route('profile.remove_picture') }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus foto profil Anda?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus Foto Profil</button>
-                                                </form>
                                             @else
                                                 <p>Tidak ada foto profil.</p>
                                             @endif
@@ -75,11 +69,20 @@
                                 </div>
                             </div>
 
-                            <div class="button-container"> <!-- Container untuk tombol -->
+                            <div class="button-container">
                                 <a href="{{ route('home') }}" class="btn btn-secondary btn-custom">Kembali</a>
                                 <button type="submit" class="btn btn-dark btn-custom">Update Profil</button>
                             </div>
                         </form>
+
+                        @if($user->profile_picture)
+                        <!-- Form Hapus Foto Profil (di luar form update) -->
+                        <form method="POST" action="{{ route('profile.remove_picture') }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus foto profil Anda?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-custom">Hapus Foto Profil</button>
+                        </form>
+                        @endif
 
                         <!-- Form Hapus Akun -->
                         <form method="POST" action="{{ route('profile.destroy') }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun Anda?')">
@@ -98,7 +101,7 @@
 <style>
     #card-login {
         border-radius: 1rem;
-        max-width: 900px; /* Sesuaikan lebar card sesuai kebutuhan */
+        max-width: 900px;
         margin: auto;
     }
 
@@ -118,17 +121,17 @@
         align-items: center;
     }
 
-    .button-container { /* Style container untuk tombol */
+    .button-container {
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* Agar tombol berada di sisi kiri */
+        align-items: flex-start;
     }
 
-    .btn-custom { /* Style tombol agar memiliki lebar yang sama */
-        width: 150px; /* Sesuaikan lebar tombol */
-        margin-bottom: 5px; /* Berikan jarak antar tombol */
-        border-radius: 0.5rem; /* Radius border sesuai gambar */
-        padding: 0.75rem 1.25rem; /* Padding tombol agar lebih besar */
-        text-align: center; /* Teks rata tengah */
+    .btn-custom {
+        width: 150px;
+        margin-bottom: 5px;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        text-align: center;
     }
 </style>

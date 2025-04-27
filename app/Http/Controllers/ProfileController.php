@@ -62,10 +62,10 @@ class ProfileController extends Controller
             $user->profile_picture = null;
             $user->save();
 
-            return redirect()->route('profile.edit')->with('success', 'Foto profil berhasil dihapus.');
+            return redirect()->route('profile.edit')->with('success', 'Foto profil berhasil dihapus.'); // Redirect dengan pesan sukses
         }
 
-        return redirect()->route('profile.edit')->with('error', 'Tidak ada foto profil untuk dihapus.');
+        return redirect()->route('profile.edit')->with('error', 'Tidak ada foto profil untuk dihapus.'); // Redirect dengan pesan kesalahan
     }
 
     public function destroy(Request $request)
