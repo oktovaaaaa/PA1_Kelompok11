@@ -108,7 +108,12 @@
         });
 
         message += `\nTotal: Rp ${totalBelanja}\n`;
-        message += "Mohon segera diproses. Terima kasih!";
+
+        // Ambil nama pengguna dari data yang tersedia (misalnya, dari variabel yang sudah ada di view)
+        const namaPengguna = "{{ Auth::user()->name }}"; // Pastikan Auth sudah di-import
+
+        message += `Atas nama: ${namaPengguna}\n`;
+        message += "Bukti pembayaran akan saya kirimkan. Terima kasih!";
 
         // Nomor WhatsApp tujuan (ganti dengan nomor Anda)
         const phoneNumber = "62881080811110";

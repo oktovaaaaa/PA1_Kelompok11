@@ -1,3 +1,7 @@
+@php
+use Illuminate\Support\Facades\Auth;
+@endphp
+
 @extends('layouts.main')
 @section('title', 'DelCafe - Menu')
 @include('layouts.navbar')
@@ -167,6 +171,9 @@
 
 @include('layouts.footer')
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Tambahkan jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Fungsi untuk update total harga
@@ -281,11 +288,16 @@
         const namaMenu = card.querySelector('.card-title').innerText;
         const hargaMenu = card.querySelector('.card-text.fw-bold.text-primary').innerText;
 
-        let message = `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x ${hargaMenu})\nMohon segera diproses. Terima kasih!`;
+        // Ambil nama pengguna dari data yang tersedia (misalnya, dari variabel yang sudah ada di view)
+        const namaPengguna = "{{ Auth::user()->name }}"; // Pastikan Auth sudah di-import
+
+        let message = `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x ${hargaMenu})\nAtas nama: ${namaPengguna}\nBukti pembayaran akan saya kirimkan. Terima kasih!`;
 
         const phoneNumber = "62881080811110";
         const encodedMessage = encodeURIComponent(message);
         const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+        console.log("WhatsApp URL:", whatsappURL); // Tambahkan ini
 
         window.open(whatsappURL, '_blank');
 
@@ -318,3 +330,5 @@
         $('#confirmOrderModal').modal('hide');
     }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Tambahkan jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
