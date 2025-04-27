@@ -82,11 +82,14 @@
                                 @endif
                             @endauth
 
-                            @if($testimoni->user && $testimoni->user->profile_picture)
-                                <img src="{{ asset('storage/' . $testimoni->user->profile_picture) }}" class="testimonial-img" alt="Foto Profil {{ $testimoni->nama }}">
-                            @else
-                                <img src="{{ asset('assets/img/profil.jpg') }}" class="testimonial-img" alt="Foto Profil {{ $testimoni->nama }}">
-                            @endif
+                            <div style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%; margin: 0 auto;">
+                                @if($testimoni->user && $testimoni->user->profile_picture)
+                                    <img src="{{ asset('storage/' . $testimoni->user->profile_picture) }}" class="testimonial-img" alt="Foto Profil {{ $testimoni->nama }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('assets/img/profil.jpg') }}" class="testimonial-img" alt="Foto Profil {{ $testimoni->nama }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                @endif
+                            </div>
+
                             <h3>{{ $testimoni->nama }}</h3>
                             <h4>Pengguna Layanan</h4>
                             <div class="stars">
@@ -104,9 +107,9 @@
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
                         </div>
-                    </div><!-- End testimonial item -->
+                    </div>
                 @endforeach
-
+            </div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
