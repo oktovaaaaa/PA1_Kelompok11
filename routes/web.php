@@ -58,7 +58,8 @@ Route::middleware(['auth', 'user.role'])->group(function () {
     Route::post('/menu/proses-pembayaran', [UserController::class, 'prosesPembayaran'])->name('userr.prosesPembayaran'); // Route untuk card menu
     Route::get('/riwayat-pesanan', [UserController::class, 'lihatRiwayatPesanan'])->name('userr.riwayatPesanan');
     Route::delete('/riwayat-pesanan/{id}/hapus', [UserController::class, 'hapusRiwayatPesanan'])->name('userr.hapusRiwayatPesanan');
-});
+    Route::post('/proses-pembayaran-wa', [UserController::class, 'prosesPembayaranKeranjangWA'])->name('userr.prosesPembayaranKeranjangWA');
+});Route::post('/proses-pembayaran-menu', [UserController::class, 'prosesPembayaranMenu'])->name('userr.prosesPembayaranMenu');
 
 
 
@@ -147,6 +148,8 @@ Route::delete('pengumuman/{pengumuman}', [PengumumanController::class, 'destroy'
 // Pesanan
 
 Route::get('/admin/riwayat-pesanan', [RiwayatadminController::class, 'index'])->name('riwayat.tampilan');
+Route::post('/admin/pesanan/{id}/approve-reject', [RiwayatadminController::class, 'approveRejectPesanan'])->name('admin.approveRejectPesanan');
+
 
     Route::post('/logout',[AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
@@ -158,7 +161,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::delete('/profile/remove-picture', [ProfileController::class, 'removePicture'])->name('profile.remove_picture'); 
+    Route::delete('/profile/remove-picture', [ProfileController::class, 'removePicture'])->name('profile.remove_picture');
 });
 
 require __DIR__.'/auth.php';

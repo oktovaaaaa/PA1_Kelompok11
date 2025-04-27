@@ -107,7 +107,7 @@
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
                         </div>
-                    </div>
+                    </div> 
                 @endforeach
             </div>
             </div>

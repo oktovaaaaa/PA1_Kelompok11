@@ -52,14 +52,12 @@
                                 </td>
                                 <td class="text-right">Rp {{ number_format($pesanan->total_harga, 0, ',', '.') }}</td>
                                 <td>
-                                    @if($pesanan->status == 'pending')
-                                        <span class="badge badge text-dark">{{ ucfirst($pesanan->status) }}</span>
-                                    @elseif($pesanan->status == 'diproses')
-                                        <span class="badge badge-info">{{ ucfirst($pesanan->status) }}</span>
-                                    @elseif($pesanan->status == 'selesai')
-                                        <span class="badge badge-success">{{ ucfirst($pesanan->status) }}</span>
+                                    @if($pesanan->status == 'menunggu')
+                                        <span class="badge bg-warning text-dark">{{ ucfirst($pesanan->status) }}</span>
+                                    @elseif($pesanan->status == 'berhasil')
+                                        <span class="badge bg-success">{{ ucfirst($pesanan->status) }}</span>
                                     @elseif($pesanan->status == 'ditolak')
-                                        <span class="badge badge-danger">{{ ucfirst($pesanan->status) }}</span>
+                                        <span class="badge bg-danger">{{ ucfirst($pesanan->status) }}</span>
                                     @else
                                         {{ ucfirst($pesanan->status) }}
                                     @endif
@@ -86,6 +84,6 @@
                         <i class="fa fa-arrow-left"></i> Pesan sekarang !
                     </a>
                 </div>
-    </div>
+       </div>
 
-    @include('layouts.footer')
+       @include('layouts.footer')

@@ -25,4 +25,23 @@ class RiwayatadminController extends Controller
 
         return view('riwayat.tampilan', compact('semuaRiwayatPesanan'));
     }
+
+    public function approveRejectPesanan(Request $request, $id)
+    {
+        $request->validate([
+            'action' => 'required|in:berhasil,ditolak',
+        ]);
+
+        $pesanan = Pesanan::findOrFail($id);
+
+        if ($pesanan->status != 'menunggu') {
+            return redirect()->back()->with('error', 'Pesanan ini tidak dapat diubah statusnya.');
+        }
+
+        $action = $request->input('action');
+        $pesanan->status = $action;
+        $pesanan->save();
+
+        return redirect()->back()->with('success', 'Status pesanan berhasil diubah menjadi ' . $action);
+    }
 }

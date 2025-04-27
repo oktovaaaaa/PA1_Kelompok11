@@ -61,7 +61,7 @@ class UserController extends Controller
         $keranjangItem->delete();
         return redirect()->route('userr.keranjang')->with('success', 'Item berhasil dihapus dari keranjang.');
     }
-    public function prosesPembayaran(Request $request)
+    public function prosesPembayaranMenu(Request $request)
     {
         // Validasi request
         $request->validate([
@@ -93,10 +93,10 @@ class UserController extends Controller
             'user_id' => Auth::id(),
             'daftar_menu' => json_encode($daftarMenu), // Simpan daftar menu sebagai JSON
             'total_harga' => $totalHarga,
-            'status' => 'pending',
+            'status' => 'menunggu', // Status awal adalah 'menunggu'
         ]);
 
-        return redirect()->route('userr.riwayatPesanan')->with('success', 'Pesanan berhasil dibuat! Silakan lakukan pembayaran.');
+        return response()->json(['success' => true, 'message' => 'Pesanan berhasil dibuat!']);
     }
     public function prosesPembayaranKeranjang()
     {
@@ -151,5 +151,43 @@ class UserController extends Controller
 
         $pesanan->delete();
         return redirect()->route('userr.riwayatPesanan')->with('success', 'Pesanan berhasil dihapus.');
+    }
+
+    public function prosesPembayaranKeranjangWA(Request $request)
+    {
+        // Validasi request
+        $request->validate([
+            'keranjangItems' => 'required|array',
+            'totalBelanja' => 'required|numeric',
+        ]);
+
+        $keranjangItems = $request->input('keranjangItems');
+        $totalHarga = $request->input('totalBelanja');
+
+        // Simpan data pesanan ke tabel 'pesanans'
+        $daftarMenu = [];
+        foreach ($keranjangItems as $item) {
+            $menu = Menu::findOrFail($item['menu_id']);
+            $hargaSatuan = str_replace(['Rp', '.'], '', $menu->harga);
+            $hargaSatuan = (int)preg_replace('/[^0-9]/', '', $hargaSatuan);
+
+            $daftarMenu[] = [
+                'nama' => $menu->nama,
+                'jumlah' => $item['jumlah'],
+                'harga_satuan' => $hargaSatuan,
+            ];
+        }
+
+        Pesanan::create([
+            'user_id' => Auth::id(),
+            'daftar_menu' => json_encode($daftarMenu), // Simpan daftar menu sebagai JSON
+            'total_harga' => $totalHarga,
+            'status' => 'menunggu', // Status awal adalah 'menunggu'
+        ]);
+
+        // Kosongkan keranjang setelah pesanan dibuat
+        Keranjang::where('user_id', Auth::id())->delete();
+
+        return response()->json(['success' => true, 'message' => 'Pesanan berhasil dibuat dan keranjang dikosongkan!']);
     }
 }
