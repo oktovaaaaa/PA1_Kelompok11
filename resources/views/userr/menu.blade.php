@@ -146,7 +146,6 @@ use Illuminate\Support\Facades\Auth;
     @endif
 @endauth
 
-<!-- Modal Konfirmasi Pesanan -->
 <div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -174,6 +173,8 @@ use Illuminate\Support\Facades\Auth;
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Tambahkan jQuery -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+@auth
+@if (auth()->user()->role == 'user' && auth()->user()->id)
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Fungsi untuk update total harga
@@ -288,8 +289,8 @@ use Illuminate\Support\Facades\Auth;
         const namaMenu = card.querySelector('.card-title').innerText;
         const hargaMenu = card.querySelector('.card-text.fw-bold.text-primary').innerText;
 
-        // Ambil nama pengguna dari data yang tersedia (misalnya, dari variabel yang sudah ada di view)
-        const namaPengguna = "{{ Auth::user()->name }}"; // Pastikan Auth sudah di-import
+
+        const namaPengguna = "{{ Auth::user()->name }}";
 
         let message = `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x ${hargaMenu})\nAtas nama: ${namaPengguna}\nBukti pembayaran akan saya kirimkan. Terima kasih!`;
 
@@ -330,5 +331,7 @@ use Illuminate\Support\Facades\Auth;
         $('#confirmOrderModal').modal('hide');
     }
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Tambahkan jQuery -->
+@endif
+@endauth
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
