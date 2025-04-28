@@ -2,38 +2,48 @@
 @section('title', 'DelCafe - Jadwal')
 
 @include('layouts.navbar')
-<div class="container section-title pt-5 mt-5" data-aos="fade-up">
-    <br>
-    <h2>Jadwal</h2>
-</div>
 
-    <div class="container">
+<div class="container  pt-3  mt-5" data-aos="fade-up">
+    <div class="text-center mb-3">
+        <div class="container section-title pt-5 mt-5" data-aos="fade-up">
+            <h2>Jadwal</h2>
+        </div>
 
-    @if(isset($jadwals) && count($jadwals) > 0)
-            <br>
-        <table class="table table-bordered table-hover">
-            <thead class="table-success">
-                <tr>
-                    <th scope="col" class="text-center">Hari</th>
-                    <th scope="col" class="text-center">Waktu Mulai</th>
-                    <th scope="col" class="text-center">Waktu Selesai</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($jadwals as $jadwal)
-                    <tr>
-                        <td class="text-center">{{ $jadwal->hari }}</td>
-                        <td class="text-center">{{ $jadwal->waktu_mulai }}</td>
-                        <td class="text-center">{{ $jadwal->waktu_selesai }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @else
-        <p class="text-center fs-4 pt-5">Jadwal tidak tersedia</p>
-    @endif
     </div>
 
+    <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
+        @if(isset($jadwals) && count($jadwals) > 0)
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th scope="col" class="py-3 text-center"><i class="fas fa-calendar-day me-2"></i>Hari</th>
+                            <th scope="col" class="py-3 text-center"><i class="fas fa-clock me-2"></i>Waktu Mulai</th>
+                            <th scope="col" class="py-3 text-center"><i class="fas fa-stopwatch me-2"></i>Waktu Selesai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($jadwals as $jadwal)
+                        <tr class="align-middle">
+                            <td class="text-center fw-medium">{{ $jadwal->hari }}</td>
+                            <td class="text-center"><span class="badge bg-success bg-opacity-10 text-success py-2 px-3">{{ $jadwal->waktu_mulai }}</span></td>
+                            <td class="text-center"><span class="badge bg-danger bg-opacity-10 text-danger py-2 px-3">{{ $jadwal->waktu_selesai }}</span></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @else
+            <div class="text-center py-5">
+                <div class="py-5">
+                    <i class="fas fa-calendar-times fa-3x text-secondary mb-4"></i>
+                    <h5 class="fw-medium text-secondary">Jadwal belum tersedia</h5>
+                    <p class="text-muted">Silahkan kembali lagi nanti</p>
+                </div>
+            </div>
+        @endif
+    </div>
+</div>
 
 @include('layouts.footer')
 </div>
