@@ -30,7 +30,7 @@
 
     @if (isset($kontaks) && $kontaks->isEmpty())
 <div class="alert alert-info mt-4">
-    Tidak ada testimoni yang ditemukan "{{ request('search') }}".
+    Tidak ada pesan yang ditemukan "{{ request('search') }}".
 </div>
 @endif
 
@@ -39,7 +39,7 @@
             <h2 class="text-center">Pesan Masuk</h2>
             <br>
             <table class="table table-bordered table-hover">
-                <thead class="table-dark">
+                <thead class="table-succes">
                     <tr>
                         <th scope="col" class="text-center" style="width: 10%;">Nama</th>
                         <th scope="col" class="text-center" style="width: 15%;">Email</th>
