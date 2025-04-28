@@ -39,7 +39,7 @@
             <h2 class="text-center">Pesan Masuk</h2>
             <br>
             <table class="table table-bordered table-hover">
-                <thead class="table-succes">
+                <thead class="table-dark">
                     <tr>
                         <th scope="col" class="text-center" style="width: 10%;">Nama</th>
                         <th scope="col" class="text-center" style="width: 15%;">Email</th>
