@@ -13,10 +13,10 @@
     </div>
 
     <div class="mt-4">
-        <form action="{{-- {{ route('menus.index') }} --}}" method="GET" class="d-flex">
-            <input type="text" name="search" class="form-control me-2" placeholder="Cari menu..."
-                value="{{-- {{ request('search') }} --}}">
-            <button type="submit" class="btn btn-outline-primary">Cari</button>
+        <form action="{{-- {{ route('menus.index') }} --}}" method="GET" class="d-flex justify-content-center">
+            <input type="text" name="search" class="form-control me-2" style="max-width: 200px" placeholder="Cari menu..."
+                value="{{ request('search') }}">
+            <button type="submit" class="btn btn-outline-primary btn-sm">Cari</button>
         </form>
     </div>
     <br><br><br>
@@ -34,14 +34,12 @@
         </div>
     @endif
 
-    <!-- Daftar Menu -->
     <div class="container mt-4">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @if (isset($menus) && count($menus) > 0)
                 @foreach ($menus as $menu)
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="col">
                         <div class="card h-100 shadow-sm rounded-4 overflow-hidden">
-                            <!-- Gambar dengan aspect ratio 1:1 -->
                             <div class="ratio ratio-1x1">
                                 <img src="{{ url('storage/images/' . $menu->foto) }}"
                                     class="card-img-top img-fluid rounded-top-4" alt="Menu Image"
@@ -61,15 +59,14 @@
                 <div class="col-lg-12">
                     <div class="text-center py-5">
                         <div class="py-5">
-                            <i class="fas fa-calendar-times fa-3x text-secondary mb-4"></i>
-                            <h5 class="fw-medium text-secondary">Belum ada menu tersedia</h5>
+                            <i class="fas fa-utensils fa-3x text-secondary mb-4"></i>
+                            <h5 class="fw-medium text-secondary">Belum ada menu yang tersedia</h5>
                             <p class="text-muted">Klik tombol "Tambah" untuk membuat menu baru</p>
                         </div>
                     </div>
                 </div>
             @endif
         </div>
-        <!-- Pagination -->
         @if (isset($menus) && $menus->hasPages())
             <div class="mt-5 d-flex justify-content-center">
                 {{ $menus->links() }}
