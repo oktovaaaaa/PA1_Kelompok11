@@ -94,11 +94,11 @@
     <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
         <div class="container section-title" data-aos="fade-up">
             <br>
-            <h2>Jadwal</h2>
+            <h2>Pengumuman</h2>
+            <p>
+                Temukan informasi terbaru    penting seputar aktivitas kami
+            </p>
         </div>
-        <p>
-            Temukan update terbaru dan informasi penting seputar aktivitas kami
-        </p>
     </div>
 
     @if(isset($pengumumans) && count($pengumumans) > 0)

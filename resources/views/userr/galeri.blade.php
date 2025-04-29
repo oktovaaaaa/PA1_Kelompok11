@@ -64,10 +64,10 @@
     <div class="container section-title" data-aos="fade-up">
         <br>
         <h2>Galeri DEL Cafe</h2>
-        <p>Koleksi moment terbaik di DEL Cafe</p>
+        <p>Koleksi terbaik di DEL Cafe</p>
     </div>
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+<div class="container" data-aos="fade-up" data-aos-delay="100">
         <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
                 @if(isset($galeris) && count($galeris) > 0)

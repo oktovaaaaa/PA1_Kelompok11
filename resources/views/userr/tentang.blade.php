@@ -26,14 +26,14 @@
                     @endforeach
                 @else
                     <div class="col-12">
-                        <p class="text-center">Tentang tidak tersedia</p>
+                        <p class="text-center fs-4">Tentang tidak tersedia</p>
                     </div>
                 @endif
             </div>
 
             <!-- Kolom kanan (3) -->
             <div class="col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                <!-- Taruh info lain atau form CRUD di sini -->
+
                 <p>Informasi lainnya bisa ditaruh di sini.</p>
             </div>
         </div>
