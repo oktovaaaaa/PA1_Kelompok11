@@ -23,8 +23,7 @@
         @endif
 
         <!-- Content Section -->
-        <div class="card shadow-sm border-0">
-            <div class="card-body p-4">
+
                 @if (isset($jadwals) && count($jadwals) > 0)
                     <div class="table-responsive">
                         <table class="table table-hover align-middle">
@@ -62,9 +61,6 @@
                         </div>
                     </div>
                 @endif
-            </div>
-        </div>
-    </div>
 
     <style>
         .admin-logo {
