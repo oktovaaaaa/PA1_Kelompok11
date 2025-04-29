@@ -44,9 +44,9 @@
 
 
         @if (isset($menus) && count($menus) > 0)
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-5">
-                @foreach ($menus as $menu)
-                    <div class="col">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4 mt-5">
+                            @foreach ($menus as $menu)
+                    <div class="col-lg-2 col-md-6 col-sm-12">
                         <div class="card h-100 shadow-sm rounded-4 overflow-hidden">
                             <div class="ratio ratio-1x1">
                                 <img src="{{ url('storage/images/' . $menu->foto) }}"
