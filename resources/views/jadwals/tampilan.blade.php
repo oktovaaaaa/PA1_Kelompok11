@@ -14,6 +14,7 @@
                 </a>
             </div>
         </div>
+        <br>
 
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">

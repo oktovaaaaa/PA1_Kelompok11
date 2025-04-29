@@ -1,42 +1,39 @@
 @extends('layouts.mainadmin')
 
 @section('contents')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <div class="d-flex justify-content-center align-items-center vh-15">
         <img src="{{ asset('galeri.png') }}" class="img-fluid" style="width:200px">
     </div>
 
-    <div class="d-flex pt-5">
-        <div class="d-flex justify-content-between align-items-center w-100">
-            <h2 class="fw-semibold fs-4">List galeri</h2>
-            <a href="{{ route('galeris.create') }}" class="btn btn-primary btn-sm px-3 py-1">Tambah</a>
+    <div class="container pt-5 my-5 text-center">
+        <h1>Daftar Galeri</h1>
+
+        <div class="mt-4">
+            <form action="{{-- {{ route('galeris.index') }} --}}" method="GET" class="d-flex justify-content-center">
+                <input type="text" name="search" class="form-control me-2" style="max-width: 300px;"
+                    placeholder="Cari galeri..." value="{{ request('search') }}">
+                <button type="submit" class="btn btn-outline-primary btn-sm">Cari</button>
+            </form>
         </div>
-    </div>
-    <br><br><br>
+        <br>
 
-    <div class="mt-4">
-        <form action="{{-- {{ route('galeris.index') }} --}}" method="GET" class="d-flex">
-            <input type="text" name="search" class="form-control me-2" placeholder="Cari galeri..."
-                value="{{ request('search') }}">
-            <button type="submit" class="btn btn-outline-primary">Cari</button>
-        </form>
-    </div>
-    <br><br><br>
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+        @if (isset($galeris) && $galeris->isEmpty() && request('search'))
+            <div class="alert alert-info mt-4 d-flex justify-content-center">
+                Tidak ada galeri yang ditemukan "{{ request('search') }}".
+            </div>
+        @endif
 
-    @if (isset($galeris) && $galeris->isEmpty() && request('search'))
-        <div class="alert alert-info mt-4 d-flex justify-content-center">
-            Tidak ada galeri yang ditemukan "{{ request('search') }}".
-        </div>
-    @endif
-
-
-    <div class="container mt-4">
         @if (isset($galeris) && count($galeris) > 0)
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6 g-4">
                 @foreach ($galeris as $galeri)
@@ -56,9 +53,11 @@
                     </div>
                 @endforeach
             </div>
-            <div class="mt-5 d-flex justify-content-center">
-                {{ $galeris->links() }}
-            </div>
+            @if($galeris->hasPages())
+                <div class="mt-5 d-flex justify-content-center">
+                    {{ $galeris->links() }}
+                </div>
+            @endif
         @else
             <div class="text-center py-5">
                 <div class="py-5">
