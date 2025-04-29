@@ -123,7 +123,7 @@
     </div>
     @else
     <div class="text-center fs-4 pt-5" data-aos="fade-up">
-        <p>Tidak ada pengumuman saat ini</p>
+        <p>Pengumuman tidak tersedia</p>
     </div>
     @endif
 </div>

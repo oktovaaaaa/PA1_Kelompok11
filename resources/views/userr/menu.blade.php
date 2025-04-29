@@ -186,7 +186,7 @@
         @endauth
     @else
         <div class="container">
-            <p class="text-center fs-4">Menu tidak tersedia.</p>
+            <p class="text-center fs-4">Menu tidak tersedia</p>
         </div>
     @endif
 
