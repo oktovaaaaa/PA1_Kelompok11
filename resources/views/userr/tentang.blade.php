@@ -25,8 +25,8 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="col-12 d-flex justify-content-center align-items-center">  <!-- Tambahkan class ini -->
-                        <p class="fs-4 text-center">Tentang tidak tersedia</p>
+                    <div class="col-12">
+                        <p class="text-center fs-4">Tentang tidak tersedia</p>
                     </div>
                 @endif
             </div>

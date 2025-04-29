@@ -22,39 +22,47 @@
     </div>
     <br><br><br>
 
-
     @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"
-            aria-label="Close"></button>
-    </div>
-@endif
+        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">  <!-- Pusatkan alert -->
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-    @if (isset($tentangs) && $tentangs->isEmpty())
-        <div class="alert alert-info mt-4">
+    @if (isset($tentangs) && $tentangs->isEmpty() && request('search')) <!-- Tampilkan hanya jika pencarian tidak ditemukan -->
+        <div class="alert alert-info mt-4 d-flex justify-content-center">  <!-- Pusatkan pesan -->
             Tidak ada tentang yang ditemukan "{{ request('search') }}".
         </div>
     @endif
 
     <div class="container mt-4">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @foreach ($tentangs as $tentang)
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold">{{ $tentang->judul }}</h5>
-                            <p class="card-text flex-grow-1 text-secondary">{{ $tentang->deskripsi }}</p>
-                            <p class="text-muted fw-bold fs-6 mb-3">{{ $tentang->tanggal->format('d-m-Y') }}</p>
-                            <a href="{{ route('tentangs.edit', $tentang) }}"
-                                class="btn btn-outline-primary w-100 mt-auto">Edit</a>
+        @if (isset($tentangs) && count($tentangs) > 0)
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                @foreach ($tentangs as $tentang)
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold">{{ $tentang->judul }}</h5>
+                                <p class="card-text flex-grow-1 text-secondary">{{ $tentang->deskripsi }}</p>
+                                <p class="text-muted fw-bold fs-6 mb-3">{{ $tentang->tanggal->format('d-m-Y') }}</p>
+                                <a href="{{ route('tentangs.edit', $tentang) }}"
+                                    class="btn btn-outline-primary w-100 mt-auto">Edit</a>
+                            </div>
                         </div>
                     </div>
+                @endforeach
+            </div>
+            <div class="mt-5 d-flex justify-content-center">
+                {{ $tentangs->links() }}
+            </div>
+        @else
+            <div class="text-center py-5">
+                <div class="py-5">
+                    <i class="fas fa-file-alt fa-3x text-secondary mb-4"></i>  <!-- Ganti ikon -->
+                    <h5 class="fw-medium text-secondary">Belum ada data tentang yang tersedia</h5>
+                    <p class="text-muted">Klik tombol "Tambah" untuk membuat data tentang baru</p>
                 </div>
-            @endforeach
-        </div>
-        <div class="mt-5 d-flex justify-content-center">
-            {{ $tentangs->links() }}
-        </div>
+            </div>
+        @endif
     </div>
 @endsection
