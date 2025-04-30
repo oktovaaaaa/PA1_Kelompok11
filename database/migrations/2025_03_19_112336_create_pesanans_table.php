@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->text('daftar_menu'); // Menyimpan daftar menu yang dipesan (JSON)
-            $table->integer('total_harga'); // Total harga pesanan
+            $table->text('daftar_menu');
+            $table->integer('total_harga'); 
             $table->string('status'); // Status pesanan (misalnya: 'pending', 'dibayar', 'selesai')
             $table->timestamps();
 
