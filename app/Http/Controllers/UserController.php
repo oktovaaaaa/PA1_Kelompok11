@@ -190,10 +190,9 @@ class UserController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Pesanan berhasil dibuat dan keranjang dikosongkan!']);
     }
-}
 
 
-public function destroy(pesanan $pesanan)
+    public function destroy(pesanan $pesanan)
 {
     // if ($pesanan->foto !== "noimage.png") {
     //     Storage::disk('local')->delete('public/' . $pesanan->foto);
@@ -208,4 +207,4 @@ public function destroy(pesanan $pesanan)
     return redirect()->route('pesanans.tampilan')->with('success', 'Pesanan berhasil dihapus !');
 }
 
-
+}
