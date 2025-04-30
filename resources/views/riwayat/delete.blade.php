@@ -16,7 +16,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <form method="post" action="{{ route('pesanans.destroy', $pesanan) }}">  {{-- mungkin karena ada id dari yang lain atau foreign key --}}
+                <form method="post" action="{{ route('pesanans.destroy', $pesanan) }}"> 
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Hapus pesan</button>
