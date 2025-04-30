@@ -19,7 +19,7 @@
                 <form method="post" action="{{ route('pesanans.destroy', $pesanan) }}">  {{-- mungkin karena ada id dari yang lain atau foreign key --}}
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Hapus pesan</button> {{-- jangan lupa tambahkan table dari user --}}
+                    <button type="submit" class="btn btn-danger">Hapus pesan</button>
                 </form>
             </div>
         </div>
