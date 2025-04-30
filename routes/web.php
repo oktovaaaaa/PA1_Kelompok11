@@ -149,7 +149,7 @@ Route::delete('pengumuman/{pengumuman}', [PengumumanController::class, 'destroy'
 
 Route::get('/admin/riwayat-pesanan', [RiwayatadminController::class, 'index'])->name('riwayat.tampilan');
 Route::post('/admin/pesanan/{id}/approve-reject', [RiwayatadminController::class, 'approveRejectPesanan'])->name('admin.approveRejectPesanan');
-Route::delete('Pesanan/{Pesanan}', [UserController::class, 'destroy'])->name('Pesanans.destroy');
+Route::delete('Pesanan/{Pesanan}', [UserController::class, 'destroy'])->name('pesanans.destroy');
 
 
 
