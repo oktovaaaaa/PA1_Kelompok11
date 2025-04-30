@@ -193,18 +193,10 @@ class UserController extends Controller
 
 
     public function destroy(pesanan $pesanan)
-{
-    // if ($pesanan->foto !== "noimage.png") {
-    //     Storage::disk('local')->delete('public/' . $pesanan->foto);
-    // }
-    if ($pesanan->foto !== "noimage.png" && Storage::disk('public')->exists('images/' . $pesanan->foto)) {
-        Storage::disk('public')->delete('images/' . $pesanan->foto);
-    }
-
-
+    {
     $pesanan->delete();
 
-    return redirect()->route('pesanans.tampilan')->with('success', 'Pesanan berhasil dihapus !');
-}
+    return redirect()->route('riwayat.tampilan')->with('success','pesanan berhasil dihapus !');
+    }
 
 }
