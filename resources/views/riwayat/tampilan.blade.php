@@ -82,7 +82,7 @@
                                             <button type="submit" class="btn btn-danger btn-sm">Reject</button>
                                         </form>
                                     @else
-                                        -
+                                    @include('pesanans.delete')
                                     @endif
                                 </td>
                             </tr>
