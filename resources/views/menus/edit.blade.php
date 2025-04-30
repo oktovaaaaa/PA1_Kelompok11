@@ -61,14 +61,14 @@
                 const hargaInput = document.getElementById("harga");
 
                 hargaInput.addEventListener("input", function () {
-                    let value = this.value.replace(/\./g, ""); // Hapus titik lama
+                    let value = this.value.replace(/\./g, "");
                     if (!isNaN(value) && value !== "") {
-                        this.value = new Intl.NumberFormat("id-ID").format(value); // Format angka dengan titik
+                        this.value = new Intl.NumberFormat("id-ID").format(value);
                     }
                 });
 
                 hargaInput.form.addEventListener("submit", function () {
-                    hargaInput.value = hargaInput.value.replace(/\./g, ""); // Hapus titik sebelum submit
+                    hargaInput.value = hargaInput.value.replace(/\./g, ""); 
                 });
             });
             </script>
