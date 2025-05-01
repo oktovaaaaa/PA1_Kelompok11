@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
-    <div class="d-flex justify-content-center align-items-center vh-15">
-        <img src="{{ asset('galeri.png') }}" class="img-fluid" style="width:200px" alt="Logo Galeri">
-    </div>
+
 
     <div class="d-flex justify-content-center align-items-center vh-10">
         <h2 class="fw-semibold fs-4 text-center">Edit Galeri</h2>

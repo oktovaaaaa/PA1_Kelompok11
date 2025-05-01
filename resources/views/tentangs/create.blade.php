@@ -1,8 +1,6 @@
 @extends('layouts.main')
 
-<div class="d-flex justify-content-center align-items-center vh-15">
-    <img src="{{asset('tentang.png')}}" class="img-fluid" style="width:200px">
-</div>
+
 <br>
 <div class="d-flex justify-content-center align-items-center vh-10">
     <h2 class="fw-semibold fs-4 text-center">Tambah Tentang</h2>

@@ -29,18 +29,11 @@
                 Tidak ada menu yang ditemukan "{{ request('search') }}".
             </div>
         @endif
+        <br>
 
-        <div class="d-flex pt-5 justify-content-between align-items-center w-100">
-            @auth
-                @if (auth()->user()->role == 'user')
-                    <a href="{{ route('userr.testimoni.create') }}" class="btn btn-primary mb-3">Tambah Menu</a>
-                @else
-                    <a href="{{ route('menus.create') }}" class="btn btn-primary btn-sm px-3 py-1">Tambah</a>
-                @endif
-            @else
-                <a href="{{ route('menus.create') }}" class="btn btn-primary btn-sm px-3 py-1">Tambah</a>
-            @endauth
-        </div>
+        <a href="{{ route('menus.create') }}" class="btn btn-primary btn-sm px-3 py-1 pt">
+            <i class="fas fa-plus-circle me-2"></i>Tambah Menu
+        </a>
 
 
         @if (isset($menus) && count($menus) > 0)

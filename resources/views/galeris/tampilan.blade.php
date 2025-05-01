@@ -5,9 +5,7 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <div class="d-flex justify-content-center align-items-center vh-15">
-        <img src="{{ asset('galeri.png') }}" class="img-fluid" style="width:200px">
-    </div>
+
 
     <div class="container pt-5 my-5 text-center">
         <h1>Daftar Galeri</h1>
@@ -33,11 +31,15 @@
                 Tidak ada galeri yang ditemukan "{{ request('search') }}".
             </div>
         @endif
+        <br>
+        <a href="{{ route('galeris.create') }}" class="btn btn-primary btn-sm px-3 py-1">
+            <i class="fas fa-plus-circle me-2"></i>Tambah Galeri
+        </a>
 
         @if (isset($galeris) && count($galeris) > 0)
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6 g-4">
                 @foreach ($galeris as $galeri)
-                    <div class="col">
+                    <div class="col pt-5">
                         <div class="card h-100 shadow-sm rounded-4 overflow-hidden">
                             <div class="ratio ratio-1x1">
                                 <img src="{{ asset('storage/images/' . $galeri->foto) }}"

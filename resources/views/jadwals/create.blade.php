@@ -1,10 +1,6 @@
 @extends('layouts.main')
 
 
-<div class="d-flex justify-content-center align-items-center vh-15">
-    <img src="{{asset('jadwal.png')}}" class="img-fluid" style="width:200px">
-</div>
-
 <div class="d-flex justify-content-center align-items-center vh-10">
     <h2 class="fw-semibold fs-4 text-center">Tambah jadwal</h2>
 </div>

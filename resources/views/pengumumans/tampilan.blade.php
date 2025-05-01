@@ -5,9 +5,6 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <div class="d-flex justify-content-center align-items-center vh-15">
-        <img src="{{ asset('pengumuman.png') }}" class="img-fluid" style="width:200px">
-    </div>
 
     <div class="container pt-5 my-5 text-center">
         <h1>Daftar Pengumuman</h1>
@@ -33,6 +30,11 @@
                 Tidak ada pengumuman yang ditemukan "{{ request('search') }}".
             </div>
         @endif
+        <br>
+
+        <a href="{{ route('pengumumans.create') }}" class="btn btn-primary btn-sm px-3 py-1">
+            <i class="fas fa-plus-circle me-2"></i>Tambah Pengumuman
+        </a>
 
 
         @if (isset($pengumumans) && count($pengumumans) > 0)

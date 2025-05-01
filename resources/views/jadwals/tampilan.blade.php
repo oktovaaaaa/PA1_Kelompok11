@@ -7,24 +7,25 @@
     <div class="container pt-5 my-5 text-center">
         <h1>Daftar Jadwal</h1>
 
-        <div class="d-flex pt-5">
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <a href="{{ route('jadwals.create') }}" class="btn btn-primary btn-sm px-3 py-1">
-                    <i class="fas fa-plus-circle me-2"></i>Tambah Jadwal
-                </a>
-            </div>
-        </div>
-        <br>
 
         @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
+        <br>
+        {{-- <div class="d-flex pt-5">
+            <div class="d-flex justify-content-between align-items-center w-100"> --}}
+                <a href="{{ route('jadwals.create') }}" class="btn btn-primary btn-sm px-3 py-1 ">
+                    <i class="fas fa-plus-circle me-2"></i>Tambah Jadwal
+                </a>
+            {{-- </div>
+        </div> --}}
+        <br>
 
         @if (isset($jadwals) && count($jadwals) > 0)
-            <div class="table-responsive">
+            <div class="table-responsive pt-5">
                 <table class="table table-hover align-middle">
                     <thead class="table-dark">
                         <tr>

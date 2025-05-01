@@ -5,9 +5,7 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <div class="d-flex justify-content-center align-items-center vh-15">
-        <img src="{{ asset('tentang.png') }}" class="img-fluid" style="width:200px">
-    </div>
+
 
     <div class="container pt-5 my-5 text-center">
         <h1>Daftar Pesan</h1>

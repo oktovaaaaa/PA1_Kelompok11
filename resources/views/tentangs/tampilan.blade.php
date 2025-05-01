@@ -5,21 +5,20 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <div class="d-flex justify-content-center align-items-center vh-15">
-        <img src="{{ asset('tentang.png') }}" class="img-fluid" style="width:200px">
-    </div>
+
 
     <div class="container pt-5 my-5 text-center">
         <h1>Daftar Tentang</h1>
 
         <div class="mt-4">
-            <form action="{{-- {{ route('tentangs.index') }} --}}" method="GET" class="d-flex justify-content-center">
+            <form action="" method="GET" class="d-flex justify-content-center">
                 <input type="text" name="search" class="form-control me-2" style="max-width: 300px;"
                     placeholder="Cari tentang..." value="{{ request('search') }}">
                 <button type="submit" class="btn btn-outline-primary btn-sm">Cari</button>
             </form>
         </div>
         <br>
+
 
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
@@ -33,6 +32,10 @@
                 Tidak ada tentang yang ditemukan "{{ request('search') }}".
             </div>
         @endif
+        <br>
+        <a href="{{ route('tentangs.create') }}" class="btn btn-primary btn-sm px-3 py-1">
+            <i class="fas fa-plus-circle me-2"></i>Tambah Tentang
+        </a>
 
         @if (isset($tentangs) && count($tentangs) > 0)
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
