@@ -192,15 +192,19 @@ class UserController extends Controller
     }
 
 
-    public function destroy(Pesanan $pesanan) // Type Hinting
+    public function destroy(Pesanan $pesanan)
     {
-        //Pastikan hanya user yang punya pesanan yang bisa menghapus (Optional - Tapi Sangat Disarankan)
-        //if ($pesanan->user_id != Auth::id()) {
-        //    return redirect()->route('userr.riwayatPesanan')->with('error', 'Anda tidak memiliki izin untuk menghapus pesanan ini.');
-        //}
+        // Tidak perlu validasi user_id karena ini adalah aksi admin
+        // if ($pesanan->user_id != Auth::id()) {
+        //     return redirect()->route('userr.riwayatPesanan')->with('error', 'Anda tidak memiliki izin untuk menghapus pesanan ini.');
+        // }
+
         $pesanan->delete();
 
-        return redirect()->route('riwayat.tampilan')->with('success','pesanan berhasil dihapus !');
+        // Ambil ulang data riwayat pesanan setelah menghapus
+        $semuaRiwayatPesanan = Pesanan::all(); // Atau gunakan query yang sesuai
+
+        return redirect()->route('riwayat.tampilan')->with('success', 'Pesanan berhasil dihapus!')->with('semuaRiwayatPesanan', $semuaRiwayatPesanan);
     }
 }
 //  tidak hanya tabel dari pesanan yang dihapus karena memiliki foreign key
