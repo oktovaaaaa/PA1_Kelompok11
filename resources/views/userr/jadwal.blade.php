@@ -3,7 +3,7 @@
 @include('layouts.navbar')
 
 <div class="container">
-    <div class="container pt-3 mt-5" data-aos="fade-up">
+    <div class="container pt-2 mt-5" data-aos="fade-up">
         <div class="text-center mb-3">
             <div class="container section-title pt-5 mt-5" data-aos="fade-up">
                 <h2>Jadwal</h2>

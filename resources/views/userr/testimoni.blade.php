@@ -30,12 +30,11 @@
     </div>
 @endauth
 
-<!-- Testimonials Section -->
 <section id="testimonials" class="testimonials section">
 
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
+        <h2>Testimoni</h2>
         <p>Apa kata mereka tentang kami?</p> <!-- Ganti dengan deskripsi yang sesuai -->
     </div><!-- End Section Title -->
 
@@ -107,7 +106,7 @@
                                 <i class="bi bi-quote quote-icon-right"></i>
                             </p>
                         </div>
-                    </div> 
+                    </div>
                 @endforeach
             </div>
             </div>

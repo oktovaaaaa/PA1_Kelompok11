@@ -6,6 +6,8 @@
 @section('title', 'DelCafe - Menu')
 @include('layouts.navbar')
 
+
+<br>
 <div class="container section-title pt-5 mt-5" data-aos="fade-up">
     <h2>Menu</h2>
 </div>

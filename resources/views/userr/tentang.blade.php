@@ -38,6 +38,6 @@
             </div>
         </div>
     </div>
-</section><!-- /About Section -->
+</section>
 
 @include('layouts.footer')
