@@ -191,13 +191,4 @@ class UserController extends Controller
         return response()->json(['success' => true, 'message' => 'Pesanan berhasil dibuat dan keranjang dikosongkan!']);
     }
 
-
-    public function destroy(Pesanan $pesanan)
-    {
-    $pesanan->delete();
-
-    return redirect()->route('riwayat.tampilan')->with('success','pesanan berhasil dihapus !');
-    }
-
 }
-//  tidak hanya tabel dari pesanan yang dihapus karena memiliki foreign key
