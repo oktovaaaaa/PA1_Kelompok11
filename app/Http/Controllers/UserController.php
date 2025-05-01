@@ -180,9 +180,9 @@ class UserController extends Controller
 
         Pesanan::create([
             'user_id' => Auth::id(),
-            'daftar_menu' => json_encode($daftarMenu), 
+            'daftar_menu' => json_encode($daftarMenu),
             'total_harga' => $totalHarga,
-            'status' => 'menunggu', // Status awal adalah 'menunggu'
+            'status' => 'menunggu', 
         ]);
 
         // Kosongkan keranjang setelah pesanan dibuat
