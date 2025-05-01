@@ -81,8 +81,7 @@
                                             <input type="hidden" name="action" value="ditolak">
                                             <button type="submit" class="btn btn-danger btn-sm">Reject</button>
                                         </form>
-                                    @else
-                                    @include('riwayat.delete')
+                                    
                                     @endif
                                 </td>
                             </tr>
