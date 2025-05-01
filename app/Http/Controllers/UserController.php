@@ -192,7 +192,7 @@ class UserController extends Controller
     }
 
 
-    public function destroy(pesanan $pesanan)
+    public function destroy(Request $request)
     {
     $pesanan->delete();
 
@@ -200,4 +200,4 @@ class UserController extends Controller
     }
 
 }
- tidak hanya tabel dari pesanan yang dihapus karena memiliki 
+//  tidak hanya tabel dari pesanan yang dihapus karena memiliki foreign key
