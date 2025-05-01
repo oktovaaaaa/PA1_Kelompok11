@@ -63,23 +63,19 @@ class UserController extends Controller
     }
     public function prosesPembayaranMenu(Request $request)
     {
-        // Validasi request
         $request->validate([
             'menu_id' => 'required|exists:menus,id',
             'jumlah' => 'required|integer|min:1',
         ]);
 
-        // Ambil data dari request
         $menuId = $request->input('menu_id');
         $jumlah = $request->input('jumlah');
 
-        // Ambil data menu dari database
         $menu = Menu::findOrFail($menuId);
         $hargaSatuan = str_replace(['Rp', '.'], '', $menu->harga);
         $hargaSatuan = (int)preg_replace('/[^0-9]/', '', $hargaSatuan);
         $totalHarga = $hargaSatuan * $jumlah;
 
-        // Buat daftar menu yang dipesan
         $daftarMenu = [
             [
                 'nama' => $menu->nama,
@@ -88,26 +84,21 @@ class UserController extends Controller
             ]
         ];
 
-        // Simpan data pesanan ke tabel 'pesanans'
         Pesanan::create([
             'user_id' => Auth::id(),
-            'daftar_menu' => json_encode($daftarMenu), // Simpan daftar menu sebagai JSON
+            'daftar_menu' => json_encode($daftarMenu),
             'total_harga' => $totalHarga,
-            'status' => 'menunggu', // Status awal adalah 'menunggu'
+            'status' => 'menunggu',
         ]);
 
         return response()->json(['success' => true, 'message' => 'Pesanan berhasil dibuat!']);
     }
     public function prosesPembayaranKeranjang()
     {
-        // Logika untuk memproses pembayaran menggunakan Midtrans
-        // (Kode Midtrans akan ditambahkan di bawah)
 
-        // Setelah pembayaran berhasil:
         $keranjangItems = Keranjang::where('user_id', Auth::id())->get();
         $totalHarga = $keranjangItems->sum('total_harga');
 
-        // Menyimpan data pesanan ke tabel 'pesanans'
         $daftarMenu = [];
         foreach ($keranjangItems as $item) {
             //Ambil harga satuan dari database Menu
@@ -118,18 +109,18 @@ class UserController extends Controller
             $daftarMenu[] = [
                 'nama' => $item->menu->nama,
                 'jumlah' => $item->jumlah,
-                'harga_satuan' => $hargaSatuan, // Harga satuan yang sudah dikonversi
+                'harga_satuan' => $hargaSatuan,
             ];
         }
 
         Pesanan::create([
             'user_id' => Auth::id(),
-            'daftar_menu' => json_encode($daftarMenu), // Simpan daftar menu sebagai JSON
+            'daftar_menu' => json_encode($daftarMenu),
             'total_harga' => $totalHarga,
-            'status' => 'pending', // Atau 'dibayar', tergantung alur Midtrans
+            'status' => 'pending',
         ]);
 
-        // Kosongkan keranjang setelah pesanan dibuat
+
         Keranjang::where('user_id', Auth::id())->delete();
 
         return redirect()->route('userr.riwayatPesanan')->with('success', 'Pesanan berhasil dibuat! Silakan lakukan pembayaran.');
@@ -164,7 +155,7 @@ class UserController extends Controller
         $keranjangItems = $request->input('keranjangItems');
         $totalHarga = $request->input('totalBelanja');
 
-        // Simpan data pesanan ke tabel 'pesanans'
+
         $daftarMenu = [];
         foreach ($keranjangItems as $item) {
             $menu = Menu::findOrFail($item['menu_id']);
@@ -182,7 +173,7 @@ class UserController extends Controller
             'user_id' => Auth::id(),
             'daftar_menu' => json_encode($daftarMenu),
             'total_harga' => $totalHarga,
-            'status' => 'menunggu', 
+            'status' => 'menunggu',
         ]);
 
         // Kosongkan keranjang setelah pesanan dibuat
