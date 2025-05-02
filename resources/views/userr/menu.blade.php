@@ -16,7 +16,7 @@
 @if (isset($menus) && count($menus) > 0)
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-11 mt-4">
+            <div class="col-lg-3 mt-4">
                 <form action="" method="GET" class="d-flex">
                     <input type="text" name="search" class="form-control me-2" placeholder="Cari menu..."
                         value="">
@@ -187,6 +187,7 @@
         </div>
         @endauth
     @else
+    
         <div class="container">
             <p class="text-center fs-4">Menu tidak tersedia</p>
         </div>
