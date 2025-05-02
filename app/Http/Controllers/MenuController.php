@@ -64,7 +64,6 @@ class MenuController extends Controller
             'harga' => 'required|numeric',
         ]);
 
-        // dd(str_replace(".", "", $request->harga));
 
         $menu->nama = $request->nama;
         $menu->harga = str_replace(".", "", $request->harga);
