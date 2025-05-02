@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pesanan;
-use App\Models\User; // Import model User
+use App\Models\User; 
 
 class RiwayatadminController extends Controller
 {
