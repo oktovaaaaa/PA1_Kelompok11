@@ -72,7 +72,6 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        // Hapus foto profil jika ada
         if ($user->profile_picture) {
             Storage::disk('public')->delete($user->profile_picture);
         }
