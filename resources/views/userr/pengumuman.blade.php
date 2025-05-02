@@ -95,13 +95,18 @@
         <div class="container section-title" data-aos="fade-up">
             <br>
             <h2>Pengumuman</h2>
-            <p>
-                Temukan informasi terbaru    penting seputar aktivitas kami
-            </p>
         </div>
     </div>
 
     @if(isset($pengumumans) && count($pengumumans) > 0)
+    <div class="container pt-5 my-5" data-aos="fade-up">
+        <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
+            <div class="container section-title" data-aos="fade-up">
+    <p>
+        Temukan informasi terbaru    penting seputar aktivitas kami
+    </p>
+</div>
+</div>
     <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
         @foreach ($pengumumans as $index => $pengumuman)
         <div class="faq-item {{ $loop->first ? 'faq-active' : '' }}">
