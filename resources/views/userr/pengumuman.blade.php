@@ -17,6 +17,7 @@
 
     .content h3 span {
         color: #6c757d;
+        margin-right: 10px;
     }
 
     .content h3 strong {
@@ -51,7 +52,6 @@
 
     .faq-item h3 span {
         color: #007bff;
-        margin-right: 10px;
     }
 
     .faq-content {
@@ -87,6 +87,14 @@
         text-decoration: underline;
         display: inline-block;
         margin-top: 0.5rem;
+    }
+
+    /* Tambahkan style ini */
+    .empty-announcement-container {
+        min-height: 50vh; /* Atau sesuaikan dengan kebutuhan Anda */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
 
@@ -127,14 +135,20 @@
         @endforeach
     </div>
     @else
-    <div class="text-center fs-4 pt-5" data-aos="fade-up">
-        <p>Pengumuman tidak tersedia</p>
+    <div class="container pt-5 my-5 empty-announcement-container" data-aos="fade-up">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="text-center">
+                <i class="fas fa-bullhorn fa-3x text-secondary mb-4"></i>
+                <h5 class="fw-medium text-secondary">Belum ada pengumuman yang tersedia</h5>
+                <p class="text-muted">Klik tombol Tambah untuk membuat pengumuman baru</p>
+            </div>
+        </div>
     </div>
     @endif
 </div>
 
 <script>
-    // Add toggle functionality
+
     document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', () => {
             item.classList.toggle('faq-active');

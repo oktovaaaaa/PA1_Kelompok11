@@ -73,8 +73,11 @@
                 @if(auth()->user()->role == 'user')
                     <a href="{{ route('profile.edit') }}" class="d-flex align-items-center me-3 text-decoration-none text-dark">
                         @if(auth()->user()->profile_picture)
-                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Foto Profil" class="rounded-circle me-2" width="30" height="30" style="object-fit: cover;">
-                        @else
+                        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                        alt="Foto Profil"
+                        class="rounded-circle me-2"
+                        style="width: 30px; height: 30px; object-fit: cover; aspect-ratio: 1 / 1;">
+                                           @else
                             <img src="{{ asset('assets/img/profil.jpg') }}" alt="Foto Profil Default" class="rounded-circle me-2" width="30" height="30" style="object-fit: cover;">
                         @endif
                         <span>{{ auth()->user()->name }}</span>

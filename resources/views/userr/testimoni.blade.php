@@ -35,7 +35,7 @@
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <h2>Testimoni</h2>
-        <p>Apa kata mereka tentang kami?</p> <!-- Ganti dengan deskripsi yang sesuai -->
+        <p>Apa kata mereka tentang kami?</p>
     </div><!-- End Section Title -->
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -57,6 +57,7 @@
             }
             </script>
             <div class="swiper-wrapper">
+                @if(isset($testimonis) && count($testimonis) > 0)
                 @foreach ($testimonis as $testimoni)
                     <div class="swiper-slide">
                         <div class="testimonial-item">
@@ -107,14 +108,23 @@
                             </p>
                         </div>
                     </div>
+                </div>
                 @endforeach
-            </div>
-            </div>
             <div class="swiper-pagination"></div>
         </div>
 
     </div>
 
-</section><!-- /Testimonials Section -->
+    @else
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 300px;">
+        <div class="text-center py-5">
+            <i class="fas fa-comments fa-3x text-secondary mb-4"></i>
+            <h5 class="fw-medium text-secondary">Belum ada testimoni tersedia</h5>
+            <p class="text-muted">Jadilah yang pertama memberikan pendapat tentang layanan kami</p>
+        </div>
+    </div>
+    @endif
+
+</section>
 
 @include('layouts.footer')

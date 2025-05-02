@@ -5,8 +5,6 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
     <div class="container pt-5 my-5 text-center">
         <h1>Daftar Tentang</h1>
 
@@ -18,7 +16,6 @@
             </form>
         </div>
         <br>
-
 
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
@@ -53,14 +50,14 @@
                     </div>
                 @endforeach
             </div>
-            @if($tentangs->hasPages())
+            @if ($tentangs->hasPages())
                 <div class="mt-5 d-flex justify-content-center">
                     {{ $tentangs->links() }}
                 </div>
-             @endif
+            @endif
         @else
-            <div class="text-center py-5">
-                <div class="py-5">
+            <div class="d-flex justify-content-center align-items-center" style="min-height: 300px;">
+                <div class="text-center">
                     <i class="fas fa-file-alt fa-3x text-secondary mb-4"></i>
                     <h5 class="fw-medium text-secondary">Belum ada data tentang yang tersedia</h5>
                     <p class="text-muted">Klik tombol "Tambah" untuk membuat data tentang baru</p>

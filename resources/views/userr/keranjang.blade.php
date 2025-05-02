@@ -62,10 +62,13 @@
             <a href="{{ route('userr.menu') }}" class="btn btn-outline-secondary">Kembali ke Menu</a>
         </div>
     @else
-        <div class="text-center py-5">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 400px;">
+        <div class="text-center">
+            <i class="fas fa-shopping-cart fa-3x text-secondary mb-4"></i>
             <h3 class="text-muted">Keranjang Anda masih kosong.</h3>
             <a href="{{ route('userr.menu') }}" class="btn btn-secondary mt-3">Mulai Belanja</a>
         </div>
+    </div>
     @endif
 
 </div>
@@ -104,7 +107,7 @@
         let message = "Halo, saya ingin memesan:\n";
 
         keranjangItems.forEach(item => {
-            message += `- ${item.menu.nama} (${item.jumlah} x Rp ${item.menu.harga}) = Rp ${item.total_harga}\n`;
+            message += `- ${item.menu.nama} (${item.jumlah} x Rp ${item->menu->harga}) = Rp ${item->total_harga}\n`;
         });
 
         message += `\nTotal: Rp ${totalBelanja}\n`;

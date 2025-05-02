@@ -61,6 +61,7 @@
                 </div>
             @endif
         @else
+        
             <div class="text-center py-5">
                 <div class="py-5">
                     <i class="fas fa-utensils fa-3x text-secondary mb-4"></i>

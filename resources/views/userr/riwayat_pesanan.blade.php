@@ -77,13 +77,16 @@
                 </table>
             </div>
         @else
-        <p class="text-center fs-4 pt-5">Tidak ada riwayat pemesanan</p>
-                @endif
-                <div class="text-center">
-                    <a href="{{ route('userr.menu') }}" class="btn btn-secondary mt-3">
-                        <i class="fa fa-arrow-left"></i> Pesan sekarang !
-                    </a>
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 400px;">
+            <div class="text-center">
+                <i class="fas fa-history fa-3x text-secondary mb-4"></i>
+                <p class="text-muted">Tidak ada riwayat pemesanan</p>
+                <a href="{{ route('userr.menu') }}" class="btn btn-secondary mt-3">
+                    <i class="fa fa-arrow-left"></i> Pesan sekarang !
+                </a>
+            </div>
+        </div>
+        @endif
                 </div>
-       </div>
 
        @include('layouts.footer')

@@ -198,9 +198,16 @@
             </div>
         </div>
     </div>
-        <div class="container">
-            <p class="text-center fs-4">Menu tidak tersedia</p>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <div class="text-center py-5 pt-5">
+        <div class="py-5">
+            <i class="fas fa-utensils fa-3x text-secondary mb-4"></i>
+            <h5 class="fw-medium text-secondary">Belum ada menu yang tersedia</h5>
+            <p class="text-muted">Klik tombol "Tambah" untuk membuat menu baru</p>
         </div>
+    </div>
+
     @endif
 
     <div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel"

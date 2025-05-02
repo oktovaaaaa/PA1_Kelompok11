@@ -25,9 +25,13 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="col-12">
-                        <p class="text-center fs-4">Tentang tidak tersedia</p>
+                <div class="text-center py-5">
+                    <div class="py-5">
+                        <i class="fas fa-file-alt fa-3x text-secondary mb-4"></i>
+                        <h5 class="fw-medium text-secondary">Belum ada data tentang yang tersedia</h5>
+                        <p class="text-muted">Klik tombol "Tambah" untuk membuat data tentang baru</p>
                     </div>
+                </div>
                 @endif
             </div>
 

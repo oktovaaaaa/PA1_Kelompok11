@@ -64,13 +64,17 @@
     <div class="container section-title" data-aos="fade-up">
         <br>
         <h2>Galeri DEL Cafe</h2>
-        <p>Koleksi terbaik di DEL Cafe</p>
     </div>
 
 <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner">
                 @if(isset($galeris) && count($galeris) > 0)
+                <div class="text-center">
+                    <p>Koleksi terbaik di DEL Cafe</p>
+                </div>
+                <br>
+
                     @php
                         $galerisPerSlide = 3;
                         $galeriChunks = array_chunk($galeris->all(), $galerisPerSlide);
@@ -103,9 +107,13 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="carousel-item active">
-                        <p class="text-center fs-4">Galeri tidak tersedia</p>
+                <div class="text-center py-5 pt-5">
+                    <div class="py-5">
+                        <i class="fas fa-images fa-3x text-secondary mb-4"></i>
+                        <h5 class="fw-medium text-secondary">Belum ada galeri yang tersedia</h5>
+                        <p class="text-muted">Klik tombol "Tambah" untuk membuat galeri baru</p>
                     </div>
+                </div>
                 @endif
             </div>
 
