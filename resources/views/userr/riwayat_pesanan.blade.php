@@ -90,4 +90,3 @@
                 </div>
 
        @include('layouts.footer')
-       oopp
