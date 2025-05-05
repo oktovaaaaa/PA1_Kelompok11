@@ -18,10 +18,9 @@ class Menu extends Model
         'foto'
 
     ];
-    // Accessor: Menampilkan harga dengan titik
     public function getHargaAttribute($value)
     {
         return number_format($value, 0, ',', '.');
     }
-    
+
 }
