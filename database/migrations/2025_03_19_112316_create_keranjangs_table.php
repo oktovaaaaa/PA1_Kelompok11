@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('menu_id');
-            $table->integer('jumlah'); // Jumlah menu yang dipesan
-            $table->integer('total_harga'); // Harga total untuk item ini
+            $table->integer('jumlah');
+            $table->integer('total_harga'); 
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
