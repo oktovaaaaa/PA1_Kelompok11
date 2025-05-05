@@ -8,11 +8,11 @@ use App\Models\Testimoni;
 
 class AdminTestimoniController extends Controller
 {
-    public function index(Request $request) // Menerima objek Request
+    public function index(Request $request)
     {
-        $search = $request->input('search'); // Ambil nilai 'search' dari query string
+        $search = $request->input('search');
 
-        $query = Testimoni::query(); // Mulai query builder
+        $query = Testimoni::query(); 
 
         if ($search) {
             $query->where('nama', 'LIKE', '%' . $search . '%') // Cari di kolom 'nama'
