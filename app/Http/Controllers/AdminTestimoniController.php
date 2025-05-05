@@ -12,15 +12,15 @@ class AdminTestimoniController extends Controller
     {
         $search = $request->input('search');
 
-        $query = Testimoni::query(); 
+        $query = Testimoni::query();
 
         if ($search) {
-            $query->where('nama', 'LIKE', '%' . $search . '%') // Cari di kolom 'nama'
-                  ->orWhere('deskripsi', 'LIKE', '%' . $search . '%'); // Cari juga di kolom 'deskripsi'
+            $query->where('nama', 'LIKE', '%' . $search . '%')
+                  ->orWhere('deskripsi', 'LIKE', '%' . $search . '%');
         }
 
-        $testimonis = $query->get(); // Eksekusi query dan ambil hasilnya
-        // atau jika ingin pagination
+        $testimonis = $query->get();
+        
         // $testimonis = $query->paginate(10);
 
         return view('testimonis.tampilan', compact('testimonis', 'search')); // Kirim $testimonis dan $search ke view
