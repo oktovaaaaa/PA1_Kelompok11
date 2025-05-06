@@ -126,16 +126,14 @@
         // Buat URL WhatsApp
         const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-        // Buka URL di tab baru
         window.open(whatsappURL, '_blank');
 
         try {
-            // Kirim permintaan AJAX ke server untuk memproses pesanan
             const response = await fetch('{{ route('userr.prosesPembayaranKeranjangWA') }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Tambahkan CSRF token
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 body: JSON.stringify({
                     keranjangItems: keranjangItems,
@@ -146,11 +144,9 @@
             const data = await response.json();
 
             if (data.success) {
-                // Pesan berhasil diproses dan keranjang dikosongkan
-                alert(data.message); // Tampilkan pesan sukses
-                window.location.href = '{{ route('userr.riwayatPesanan') }}'; // Redirect ke riwayat pesanan
+                alert(data.message);
+                window.location.href = '{{ route('userr.riwayatPesanan') }}';
             } else {
-                // Terjadi kesalahan
                 alert(data.message);
             }
         } catch (error) {
@@ -159,7 +155,6 @@
         }
 
 
-        // Tutup modal setelah mengirim
         $('#confirmOrderModal').modal('hide');
     }
 </script>
