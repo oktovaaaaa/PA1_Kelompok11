@@ -237,179 +237,179 @@
 
     @include('layouts.footer')
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Tambahkan jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     @auth
         @if (auth()->user()->role == 'user' && auth()->user()->id)
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Fungsi untuk update total harga
-                    function updateTotalHarga(menuId) {
-                        const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                function updateTotalHarga(menuId) {
+                    const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
 
-                        const hargaAwal = card.querySelector('.card-text.fw-bold.text-primary').innerText;
-                        const hargaSatuan = parseFloat(hargaAwal.replace(/[^0-9]/g, ''));
+                    const hargaAwal = card.querySelector('.card-text.fw-bold.text-primary').innerText;
+                    const hargaSatuan = parseFloat(hargaAwal.replace(/[^0-9]/g, ''));
 
-                        const jumlahCard = parseInt(card.querySelector(`#jumlahCard${menuId}`).value);
-                        const totalHargaCard = hargaSatuan * jumlahCard;
+                    const jumlahCard = parseInt(card.querySelector(`#jumlahCard${menuId}`).value);
+                    const totalHargaCard = hargaSatuan * jumlahCard;
 
-                        card.querySelector(`#totalHarga${menuId}`).innerText = 'Rp ' + totalHargaCard.toLocaleString(
-                            'id-ID');
+                    card.querySelector(`#totalHarga${menuId}`).innerText = 'Rp ' + totalHargaCard.toLocaleString(
+                        'id-ID');
 
-                        const modalBody = document.querySelector(`#menuModal${menuId} .modal-body`);
-                        const hargaAwalModal = modalBody.dataset.harga;
+                    const modalBody = document.querySelector(`#menuModal${menuId} .modal-body`);
+                    const hargaAwalModal = modalBody.dataset.harga;
 
-                        const jumlahModal = parseInt(modalBody.querySelector(`#jumlahModal${menuId}`).value);
-                        const totalHargaModal = hargaSatuan * jumlahModal;
+                    const jumlahModal = parseInt(modalBody.querySelector(`#jumlahModal${menuId}`).value);
+                    const totalHargaModal = hargaSatuan * jumlahModal;
 
-                        modalBody.querySelector(`#totalHargaModal${menuId}`).innerText = 'Rp ' + totalHargaModal
-                            .toLocaleString('id-ID');
-                    }
+                    modalBody.querySelector(`#totalHargaModal${menuId}`).innerText = 'Rp ' + totalHargaModal
+                        .toLocaleString('id-ID');
+                }
 
-                    document.querySelectorAll('.tambahCard').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const menuId = this.dataset.menuId;
-                            let jumlahInputCard = document.querySelector(
-                                `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
-                            let jumlahInputModal = document.querySelector(
-                                `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
+                document.querySelectorAll('.tambahCard').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const menuId = this.dataset.menuId;
+                        let jumlahInputCard = document.querySelector(
+                            `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
+                        let jumlahInputModal = document.querySelector(
+                            `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
 
-                            jumlahInputCard.value = parseInt(jumlahInputCard.value) + 1;
-                            jumlahInputModal.value = parseInt(jumlahInputModal.value) + 1;
+                        jumlahInputCard.value = parseInt(jumlahInputCard.value) + 1;
+                        jumlahInputModal.value = parseInt(jumlahInputModal.value) + 1;
 
-                            updateTotalHarga(menuId);
-                        });
-                    });
-
-                    document.querySelectorAll('.kurangCard').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const menuId = this.dataset.menuId;
-
-                            let jumlahInputCard = document.querySelector(
-                                `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
-                            let jumlahInputModal = document.querySelector(
-                                `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
-
-                            let currentValue = parseInt(jumlahInputCard.value);
-                            if (currentValue > 1) {
-                                jumlahInputCard.value = currentValue - 1;
-                                jumlahInputModal.value = currentValue - 1;
-                                updateTotalHarga(menuId);
-                            }
-                        });
-                    });
-
-                    document.querySelectorAll('.tambahModal').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const menuId = this.dataset.menuId;
-                            let jumlahInputCard = document.querySelector(
-                                `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
-                            let jumlahInputModal = document.querySelector(
-                                `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
-
-                            jumlahInputCard.value = parseInt(jumlahInputCard.value) + 1;
-                            jumlahInputModal.value = parseInt(jumlahInputModal.value) + 1;
-                            updateTotalHarga(menuId);
-                        });
-                    });
-
-                    document.querySelectorAll('.kurangModal').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const menuId = this.dataset.menuId;
-                            let jumlahInputCard = document.querySelector(
-                                `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
-                            let jumlahInputModal = document.querySelector(
-                                `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
-                            let currentValue = parseInt(jumlahInputModal.value);
-                            if (currentValue > 1) {
-                                jumlahInputCard.value = currentValue - 1;
-                                jumlahInputModal.value = currentValue - 1;
-                                updateTotalHarga(menuId);
-                            }
-                        });
-                    });
-
-                    const menuModals = document.querySelectorAll('.modal');
-                    menuModals.forEach(modal => {
-                        modal.addEventListener('shown.bs.modal', function() {
-                            const menuId = this.id.replace('menuModal', '');
-                            updateTotalHarga(menuId);
-                        });
-                    });
-
-                    // Event listener untuk tombol Pesan
-                    document.querySelectorAll('.pesanMenuBtn').forEach(button => {
-                        button.addEventListener('click', function() {
-                            const menuId = this.dataset.menuId;
-                            const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
-                            const namaMenu = card.querySelector('.card-title').innerText;
-                            const jumlahMenu = card.querySelector(`#jumlahCard${menuId}`).value;
-                            const totalHarga = card.querySelector(`#totalHarga${menuId}`).innerText;
-
-                            document.querySelector('#namaMenuModal').innerText = namaMenu;
-                            document.querySelector('#jumlahMenuModal').innerText = jumlahMenu;
-                            document.querySelector('#totalHargaModal').innerText = totalHarga;
-
-                            // Simpan data menu yang akan dipesan ke dalam modal
-                            document.querySelector('#confirmOrderModal').dataset.menuId = menuId;
-                            document.querySelector('#confirmOrderModal').dataset.jumlahMenu = jumlahMenu;
-                        });
+                        updateTotalHarga(menuId);
                     });
                 });
 
-                async function sendOrderToWhatsApp() {
-                    const confirmOrderModal = document.querySelector('#confirmOrderModal');
-                    const menuId = confirmOrderModal.dataset.menuId;
-                    const jumlahMenu = confirmOrderModal.dataset.jumlahMenu;
-                    const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
-                    const namaMenu = card.querySelector('.card-title').innerText;
-                    const hargaMenu = card.querySelector('.card-text.fw-bold.text-primary').innerText;
+                document.querySelectorAll('.kurangCard').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const menuId = this.dataset.menuId;
 
+                        let jumlahInputCard = document.querySelector(
+                            `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
+                        let jumlahInputModal = document.querySelector(
+                            `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
 
-                    const namaPengguna = "{{ Auth::user()->name }}";
-
-                    let message =
-                        `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x ${hargaMenu})\nAtas nama: ${namaPengguna}\nBukti pembayaran akan saya kirimkan. Terima kasih!`;
-
-                    const phoneNumber = "62881080811110";
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-                    console.log("WhatsApp URL:", whatsappURL); // Tambahkan ini
-
-                    window.open(whatsappURL, '_blank');
-
-                    try {
-                        const response = await fetch('{{ route('userr.prosesPembayaranMenu') }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            body: JSON.stringify({
-                                menu_id: menuId,
-                                jumlah: jumlahMenu
-                            })
-                        });
-
-                        const data = await response.json();
-
-                        if (data.success) {
-                            alert(data.message);
-                            window.location.href = '{{ route('userr.riwayatPesanan') }}';
-                        } else {
-                            alert(data.message);
+                        let currentValue = parseInt(jumlahInputCard.value);
+                        if (currentValue > 1) {
+                            jumlahInputCard.value = currentValue - 1;
+                            jumlahInputModal.value = currentValue - 1;
+                            updateTotalHarga(menuId);
                         }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('Terjadi kesalahan saat memproses pesanan.');
-                    }
+                    });
+                });
 
-                    $('#confirmOrderModal').modal('hide');
+                document.querySelectorAll('.tambahModal').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const menuId = this.dataset.menuId;
+                        let jumlahInputCard = document.querySelector(
+                            `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
+                        let jumlahInputModal = document.querySelector(
+                            `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
+
+                        jumlahInputCard.value = parseInt(jumlahInputCard.value) + 1;
+                        jumlahInputModal.value = parseInt(jumlahInputModal.value) + 1;
+                        updateTotalHarga(menuId);
+                    });
+                });
+
+                document.querySelectorAll('.kurangModal').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const menuId = this.dataset.menuId;
+                        let jumlahInputCard = document.querySelector(
+                            `.col[data-menu-id="${menuId}"] #jumlahCard${menuId}`);
+                        let jumlahInputModal = document.querySelector(
+                            `#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
+                        let currentValue = parseInt(jumlahInputModal.value);
+                        if (currentValue > 1) {
+                            jumlahInputCard.value = currentValue - 1;
+                            jumlahInputModal.value = currentValue - 1;
+                            updateTotalHarga(menuId);
+                        }
+                    });
+                });
+
+                const menuModals = document.querySelectorAll('.modal');
+                menuModals.forEach(modal => {
+                    modal.addEventListener('shown.bs.modal', function() {
+                        const menuId = this.id.replace('menuModal', '');
+                        updateTotalHarga(menuId);
+                    });
+                });
+
+                // Event listener untuk tombol Pesan
+                document.querySelectorAll('.pesanMenuBtn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const menuId = this.dataset.menuId;
+                        const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
+                        const namaMenu = card.querySelector('.card-title').innerText;
+                        const jumlahMenu = card.querySelector(`#jumlahCard${menuId}`).value;
+                        const totalHarga = card.querySelector(`#totalHarga${menuId}`).innerText;
+
+                        document.querySelector('#namaMenuModal').innerText = namaMenu;
+                        document.querySelector('#jumlahMenuModal').innerText = jumlahMenu;
+                        document.querySelector('#totalHargaModal').innerText = totalHarga;
+
+                        // Simpan data menu yang akan dipesan ke dalam modal
+                        document.querySelector('#confirmOrderModal').dataset.menuId = menuId;
+                        document.querySelector('#confirmOrderModal').dataset.jumlahMenu = jumlahMenu;
+                    });
+                });
+            });
+
+            async function sendOrderToWhatsApp() {
+                const confirmOrderModal = document.querySelector('#confirmOrderModal');
+                const menuId = confirmOrderModal.dataset.menuId;
+                const jumlahMenu = confirmOrderModal.dataset.jumlahMenu;
+                const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
+                const namaMenu = card.querySelector('.card-title').innerText;
+                const hargaMenu = card.querySelector('.card-text.fw-bold.text-primary').innerText;
+                const totalHarga = card.querySelector(`#totalHarga${menuId}`).innerText; // Ambil total harga dari card
+
+
+                const namaPengguna = "{{ Auth::user()->name }}";
+
+                let message =
+                    `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x ${hargaMenu})\nTotal : ${totalHarga}\nAtas nama: ${namaPengguna}\nBukti pembayaran akan saya kirimkan. Terima kasih!`;
+
+                const phoneNumber = "62881080811110";
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+                console.log("WhatsApp URL:", whatsappURL); // Tambahkan ini
+
+                window.open(whatsappURL, '_blank');
+
+                try {
+                    const response = await fetch('{{ route('userr.prosesPembayaranMenu') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            menu_id: menuId,
+                            jumlah: jumlahMenu
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        alert(data.message);
+                        window.location.href = '{{ route('userr.riwayatPesanan') }}';
+                    } else {
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat memproses pesanan.');
                 }
-            </script>
-        @endif
+
+                $('#confirmOrderModal').modal('hide');
+            }
+        </script>
+                @endif
     @endauth
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

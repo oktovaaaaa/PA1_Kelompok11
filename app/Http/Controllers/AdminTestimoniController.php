@@ -20,10 +20,9 @@ class AdminTestimoniController extends Controller
         }
 
         $testimonis = $query->get();
-        
-        // $testimonis = $query->paginate(10);
 
-        return view('testimonis.tampilan', compact('testimonis', 'search')); // Kirim $testimonis dan $search ke view
+
+        return view('testimonis.tampilan', compact('testimonis', 'search')); 
     }
 
     public function destroy(Testimoni $testimoni)

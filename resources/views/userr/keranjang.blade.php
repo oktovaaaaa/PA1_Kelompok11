@@ -96,7 +96,6 @@
 </div>
 
 @include('layouts.footer')
-
 <script>
     async function sendOrderToWhatsApp() {
         // Ambil data keranjang dari PHP ke JavaScript
@@ -107,10 +106,10 @@
         let message = "Halo, saya ingin memesan:\n";
 
         keranjangItems.forEach(item => {
-            message += `- ${item.menu.nama} (${item.jumlah} x Rp ${item->menu->harga}) = Rp ${item->total_harga}\n`;
+            message += `- ${item.menu.nama} (${item.jumlah} x Rp ${item.menu.harga}) = Rp ${item.total_harga.toLocaleString('id-ID')}\n`;
         });
 
-        message += `\nTotal: Rp ${totalBelanja}\n`;
+        message += `\nTotal: Rp ${totalBelanja.toLocaleString('id-ID')}\n`;
 
         // Ambil nama pengguna dari data yang tersedia (misalnya, dari variabel yang sudah ada di view)
         const namaPengguna = "{{ Auth::user()->name }}"; // Pastikan Auth sudah di-import
