@@ -54,260 +54,87 @@
                         </div>
                     </div>
                 </div>
-                @guest
 
-                    <div class="col-lg-7">
-                        <div class="card border-0 shadow-sm">
-                            <div class="card-body p-4">
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
 
-                                <!-- Alert untuk notifikasi -->
-                                @if (session('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        {{ session('success') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
+                            <!-- Alert untuk notifikasi -->
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
 
-                                @if (session('error'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{ session('error') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
+                            @if (session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
 
-                                @if ($errors->any())
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <ul class="mb-0">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
 
-                                <form action="{{ route('kontakuserr') }}" method="post" class="needs-validation" novalidate
-                                    data-aos="fade-up" data-aos-delay="200">
-                                    @csrf
-                                    <div class="row g-3">
-                                        <div class="col-md-6">
-                                            <label for="nama" class="form-label">Nama</label>
-                                            <input type="text" name="nama" class="form-control" id="nama"
-                                                value="{{ old('nama') }}" required>
-                                            <div class="invalid-feedback">
-                                                Harap isi nama Anda.
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" name="email" id="email"
-                                                value="{{ old('email') }}" required>
-                                            <div class="invalid-feedback">
-                                                Harap isi email yang valid.
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label for="subjek" class="form-label">Subjek</label>
-                                            <input type="text" class="form-control" name="subjek" id="subjek"
-                                                value="{{ old('subjek') }}" required>
-                                            <div class="invalid-feedback">
-                                                Harap isi subjek pesan.
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 pt-3">
-                                            <label for="pesan" class="form-label">Pesan</label>
-                                            <textarea class="form-control" name="pesan" rows="5" id="pesan" required>{{ old('pesan') }}</textarea>
-                                            <div class="invalid-feedback">
-                                                Harap isi pesan Anda.
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 text-center pt-5 my-5">
-                                            <button type="submit" class="btn rounded-pill py-2 px-4"
-                                                style="background-color: #87CEEB; color: white; border: none;">Kirim
-                                                Pesan</button>
+                            <form action="{{ route('kontakuserr') }}" method="post" class="needs-validation"
+                                novalidate data-aos="fade-up" data-aos-delay="200">
+                                @csrf
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="nama" class="form-label">Nama</label>
+                                        <input type="text" name="nama" class="form-control" id="nama"
+                                            value="{{ old('nama') }}" placeholder="Nama Lengkap (Wajib)" required>
+                                        <div class="invalid-feedback">
+                                            Harap isi nama Anda.
                                         </div>
                                     </div>
-                                </form>
-                            @endguest
-                            @auth
-                                @if (auth()->user()->role == 'user')
 
-                                    <div class="col-lg-7">
-                                        <div class="card border-0 shadow-sm">
-                                            <div class="card-body p-4">
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" id="email"
+                                            value="{{ old('email') }}" placeholder="nama@gmail.com (Tidak Wajib)">
+                                        <div class="invalid-feedback">
+                                            Harap isi email yang valid.
+                                        </div>
+                                    </div>
 
-                                                <!-- Alert untuk notifikasi -->
-                                                @if (session('success'))
-                                                    <div class="alert alert-success alert-dismissible fade show"
-                                                        role="alert">
-                                                        {{ session('success') }}
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                @endif
+                                    <div class="col-12">
+                                        <label for="subjek" class="form-label">Subjek</label>
+                                        <input type="text" class="form-control" name="subjek" id="subjek"
+                                            value="{{ old('subjek') }}" placeholder="Subjek Pesan (Wajib)" required>
+                                        <div class="invalid-feedback">
+                                            Harap isi subjek pesan.
+                                        </div>
+                                    </div>
 
-                                                @if (session('error'))
-                                                    <div class="alert alert-danger alert-dismissible fade show"
-                                                        role="alert">
-                                                        {{ session('error') }}
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                @endif
+                                    <div class="col-12 pt-3">
+                                        <label for="pesan" class="form-label">Pesan</label>
+                                        <textarea class="form-control" name="pesan" rows="5" id="pesan" placeholder="Tulis pesan Anda disini (Wajib)"
+                                            required>{{ old('pesan') }}</textarea>
+                                        <div class="invalid-feedback">
+                                            Harap isi pesan Anda.
+                                        </div>
+                                    </div>
 
-                                                @if ($errors->any())
-                                                    <div class="alert alert-danger alert-dismissible fade show"
-                                                        role="alert">
-                                                        <ul class="mb-0">
-                                                            @foreach ($errors->all() as $error)
-                                                                <li>{{ $error }}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                @endif
-
-                                                <form action="{{ route('kontakuserr') }}" method="post"
-                                                    class="needs-validation" novalidate data-aos="fade-up"
-                                                    data-aos-delay="200">
-                                                    @csrf
-                                                    <div class="row g-3">
-                                                        <div class="col-md-6">
-                                                            <label for="nama" class="form-label">Nama</label>
-                                                            <input type="text" name="nama" class="form-control"
-                                                                id="nama" value="{{ old('nama') }}" required>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi nama Anda.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <label for="email" class="form-label">Email</label>
-                                                            <input type="email" class="form-control" name="email"
-                                                                id="email" value="{{ old('email') }}" required>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi email yang valid.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-12">
-                                                            <label for="subjek" class="form-label">Subjek</label>
-                                                            <input type="text" class="form-control" name="subjek"
-                                                                id="subjek" value="{{ old('subjek') }}" required>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi subjek pesan.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-12 pt-3">
-                                                            <label for="pesan" class="form-label">Pesan</label>
-                                                            <textarea class="form-control" name="pesan" rows="5" id="pesan" required>{{ old('pesan') }}</textarea>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi pesan Anda.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-12 text-center pt-5 my-5">
-                                                            <button type="submit" class="btn rounded-pill py-2 px-4"
-                                                                style="background-color: #87CEEB; color: white; border: none;">Kirim
-                                                                Pesan</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                @endif
-                            @endauth
-                            @auth
-                                @if (auth()->user()->role == 'admin')
-
-                                    <div class="col-lg-7">
-                                        <div class="card border-0 shadow-sm">
-                                            <div class="card-body p-4">
-
-                                                <!-- Alert untuk notifikasi -->
-                                                @if (session('success'))
-                                                    <div class="alert alert-success alert-dismissible fade show"
-                                                        role="alert">
-                                                        {{ session('success') }}
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                @endif
-
-                                                @if (session('error'))
-                                                    <div class="alert alert-danger alert-dismissible fade show"
-                                                        role="alert">
-                                                        {{ session('error') }}
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                @endif
-
-                                                @if ($errors->any())
-                                                    <div class="alert alert-danger alert-dismissible fade show"
-                                                        role="alert">
-                                                        <ul class="mb-0">
-                                                            @foreach ($errors->all() as $error)
-                                                                <li>{{ $error }}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                @endif
-
-                                                <form action="{{ route('kontakuserr') }}" method="post"
-                                                    class="needs-validation" novalidate data-aos="fade-up"
-                                                    data-aos-delay="200">
-                                                    @csrf
-                                                    <div class="row g-3">
-                                                        <div class="col-md-6">
-                                                            <label for="nama" class="form-label">Nama</label>
-                                                            <input type="text" name="nama" class="form-control"
-                                                                id="nama" value="{{ old('nama') }}" required>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi nama Anda.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <label for="email" class="form-label">Email</label>
-                                                            <input type="email" class="form-control" name="email"
-                                                                id="email" value="{{ old('email') }}" required>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi email yang valid.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-12">
-                                                            <label for="subjek" class="form-label">Subjek</label>
-                                                            <input type="text" class="form-control" name="subjek"
-                                                                id="subjek" value="{{ old('subjek') }}" required>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi subjek pesan.
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-12 pt-3">
-                                                            <label for="pesan" class="form-label">Pesan</label>
-                                                            <textarea class="form-control" name="pesan" rows="5" id="pesan" required>{{ old('pesan') }}</textarea>
-                                                            <div class="invalid-feedback">
-                                                                Harap isi pesan Anda.
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </form>
-                                @endif
-                            @endauth
+                                    <div class="col-12 text-center pt-5 my-5">
+                                        <button type="submit" class="btn rounded-pill py-2 px-4"
+                                            style="background-color: #87CEEB; color: white; border: none;">Kirim
+                                            Pesan</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
