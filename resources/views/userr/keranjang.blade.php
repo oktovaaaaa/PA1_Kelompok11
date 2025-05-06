@@ -112,18 +112,15 @@
         message += `\nTotal: Rp ${totalBelanja.toLocaleString('id-ID')}\n`;
 
         // Ambil nama pengguna dari data yang tersedia (misalnya, dari variabel yang sudah ada di view)
-        const namaPengguna = "{{ Auth::user()->name }}"; // Pastikan Auth sudah di-import
+        const namaPengguna = "{{ Auth::user()->name }}"; 
 
         message += `Atas nama: ${namaPengguna}\n`;
         message += "Bukti pembayaran akan saya kirimkan. Terima kasih!";
 
-        // Nomor WhatsApp tujuan (ganti dengan nomor Anda)
         const phoneNumber = "62881080811110";
 
-        // Encode pesan agar aman dalam URL
         const encodedMessage = encodeURIComponent(message);
 
-        // Buat URL WhatsApp
         const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
         window.open(whatsappURL, '_blank');
