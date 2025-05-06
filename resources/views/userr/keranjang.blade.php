@@ -73,7 +73,6 @@
 
 </div>
 
-<!-- Modal Konfirmasi Pesanan -->
 <div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -88,7 +87,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <!-- Tombol Kirim ke WhatsApp -->
                 <button type="button" class="btn btn-primary" onclick="sendOrderToWhatsApp()">Kirim ke WhatsApp</button>
             </div>
         </div>
@@ -98,11 +96,9 @@
 @include('layouts.footer')
 <script>
     async function sendOrderToWhatsApp() {
-        // Ambil data keranjang dari PHP ke JavaScript
         var keranjangItems = @json($keranjangItems);
         var totalBelanja = {{ $keranjangItems->sum('total_harga') }};
 
-        // Format pesan WhatsApp
         let message = "Halo, saya ingin memesan:\n";
 
         keranjangItems.forEach(item => {
@@ -111,8 +107,7 @@
 
         message += `\nTotal: Rp ${totalBelanja.toLocaleString('id-ID')}\n`;
 
-        // Ambil nama pengguna dari data yang tersedia (misalnya, dari variabel yang sudah ada di view)
-        const namaPengguna = "{{ Auth::user()->name }}"; 
+        const namaPengguna = "{{ Auth::user()->name }}";
 
         message += `Atas nama: ${namaPengguna}\n`;
         message += "Bukti pembayaran akan saya kirimkan. Terima kasih!";
