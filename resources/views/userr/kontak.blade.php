@@ -144,4 +144,3 @@
 
 @include('layouts.footer')
 
-p[[p]]
