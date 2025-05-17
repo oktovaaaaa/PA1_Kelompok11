@@ -400,7 +400,6 @@
     const totalHarga = card.querySelector(`#totalHarga${menuId}`).innerText; // Ambil total harga dari card
     const namaPengguna = "{{ Auth::user()->name }}";
 
-    // Hilangkan "Rp" dan karakter non-angka dari hargaMenu
     const hargaMenuBersih = hargaMenu.replace(/[^0-9]/g, '');
 
     let message = `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x Rp ${parseInt(hargaMenuBersih).toLocaleString('id-ID')})\nTotal : ${totalHarga}\nAtas nama: ${namaPengguna}\nBukti pembayaran akan saya kirimkan. Terima kasih!`;
@@ -409,7 +408,7 @@
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    console.log("WhatsApp URL:", whatsappURL); // Tambahkan ini
+    console.log("WhatsApp URL:", whatsappURL); 
 
     window.open(whatsappURL, '_blank');
 
