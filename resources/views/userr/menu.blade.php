@@ -209,33 +209,66 @@
     </div>
 
     @endif
+@auth
 
+    <!-- Order Confirmation Modal -->
     <div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmOrderModalLabel">Konfirmasi Pesanan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="confirmOrderModalLabel">
+                        <i class="fas fa-check-circle me-2"></i> Konfirmasi Pesanan
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah Anda yakin ingin memesan menu ini?</p>
-                    <img src="{{ asset('assets/images/delivery.png') }}" alt="Ilustrasi Pengiriman"
-                        class="img-fluid mb-3">
-                    <p>Menu: <span id="namaMenuModal"></span></p>
-                    <p>Jumlah: <span id="jumlahMenuModal"></span></p>
-                    <p>Total Harga: <span id="totalHargaModal"></span></p>
+                    <div class="text-center mb-4">
+                        <img src="{{ asset('assets/img/barcode.jpeg') }}"
+                             class="img-fluid animated w-50 mx-auto d-block"
+                             alt="">
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i> Pastikan data pesanan dan nomor WhatsApp Anda benar.<br><b>Scan dengan Qris untuk melakukan pembayaran</b>
+                    </div>
+
+                    <div class="border rounded p-3 mb-3">
+                        <h6 class="fw-bold mb-3">Detail Pesanan:</h6>
+                        <ul class="list-unstyled mb-0">
+                            <li class="d-flex justify-content-between py-1">
+                                <span>Menu: <span id="namaMenuModal"></span></span>
+                                <span>Jumlah: <span id="jumlahMenuModal"></span></span>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total:</span>
+                            <span class="text-primary"><span id="totalHargaModal"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="customerName" value="{{ Auth::user()->name }}"
+                               readonly>
+                        <label for="customerName">Atas Nama</label>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" onclick="sendOrderToWhatsApp()">Kirim ke
-                        WhatsApp</button>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i> Batal
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="sendOrderToWhatsApp()">
+                        <i class="fab fa-whatsapp me-2"></i> Lanjutkan ke WhatsApp
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     @include('layouts.footer')
+@endauth
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -357,59 +390,60 @@
                 });
             });
 
-            async function sendOrderToWhatsApp() {
-                const confirmOrderModal = document.querySelector('#confirmOrderModal');
-                const menuId = confirmOrderModal.dataset.menuId;
-                const jumlahMenu = confirmOrderModal.dataset.jumlahMenu;
-                const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
-                const namaMenu = card.querySelector('.card-title').innerText;
-                const hargaMenu = card.querySelector('.card-text.fw-bold.text-primary').innerText;
-                const totalHarga = card.querySelector(`#totalHarga${menuId}`).innerText; // Ambil total harga dari card
+           async function sendOrderToWhatsApp() {
+    const confirmOrderModal = document.querySelector('#confirmOrderModal');
+    const menuId = confirmOrderModal.dataset.menuId;
+    const jumlahMenu = confirmOrderModal.dataset.jumlahMenu;
+    const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
+    const namaMenu = card.querySelector('.card-title').innerText;
+    const hargaMenu = card.querySelector('.card-text.fw-bold.text-primary').innerText;
+    const totalHarga = card.querySelector(`#totalHarga${menuId}`).innerText; // Ambil total harga dari card
+    const namaPengguna = "{{ Auth::user()->name }}";
 
+    // Hilangkan "Rp" dan karakter non-angka dari hargaMenu
+    const hargaMenuBersih = hargaMenu.replace(/[^0-9]/g, '');
 
-                const namaPengguna = "{{ Auth::user()->name }}";
+    let message = `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x Rp ${parseInt(hargaMenuBersih).toLocaleString('id-ID')})\nTotal : ${totalHarga}\nAtas nama: ${namaPengguna}\nBukti pembayaran akan saya kirimkan. Terima kasih!`;
 
-                let message =
-                    `Halo, saya ingin memesan:\n- ${namaMenu} (${jumlahMenu} x ${hargaMenu})\nTotal : ${totalHarga}\nAtas nama: ${namaPengguna}\nBukti pembayaran akan saya kirimkan. Terima kasih!`;
+    const phoneNumber = "6287844043032";
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-                const phoneNumber = "62881080811110";
-                const encodedMessage = encodeURIComponent(message);
-                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    console.log("WhatsApp URL:", whatsappURL); // Tambahkan ini
 
-                console.log("WhatsApp URL:", whatsappURL); // Tambahkan ini
+    window.open(whatsappURL, '_blank');
 
-                window.open(whatsappURL, '_blank');
+    try {
+        const response = await fetch('{{ route('userr.prosesPembayaranMenu') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                menu_id: menuId,
+                jumlah: jumlahMenu
+            })
+        });
 
-                try {
-                    const response = await fetch('{{ route('userr.prosesPembayaranMenu') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            menu_id: menuId,
-                            jumlah: jumlahMenu
-                        })
-                    });
+        const data = await response.json();
 
-                    const data = await response.json();
+        if (data.success) {
+            alert(data.message);
+            window.location.href = '{{ route('userr.riwayatPesanan') }}';
+        } else {
+            alert(data.message);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat memproses pesanan.');
+    }
 
-                    if (data.success) {
-                        alert(data.message);
-                        window.location.href = '{{ route('userr.riwayatPesanan') }}';
-                    } else {
-                        alert(data.message);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat memproses pesanan.');
-                }
-
-                $('#confirmOrderModal').modal('hide');
-            }
+    $('#confirmOrderModal').modal('hide');
+}
         </script>
                 @endif
     @endauth
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+

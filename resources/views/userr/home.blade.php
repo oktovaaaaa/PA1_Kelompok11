@@ -2,12 +2,45 @@
 @section('title', 'DelCafe - Beranda')
 
 @include('layouts.navbar')
+<style>
+.call-to-action {
+  position: relative;
+  padding: 80px 0;
+  color: white;
+  overflow: hidden;
+}
+
+.call-to-action .cta-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.call-to-action .cta-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4); /* biar teksnya tetap terlihat jelas */
+}
+
+.call-to-action .container {
+  position: relative;
+  z-index: 2;
+}
+
+
+</style>
+
+
 <body class="index-page">
   <main class="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
-
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
@@ -23,14 +56,11 @@
           </div>
         </div>
       </div>
-
     </section><!-- /Hero Section -->
 
     <!-- Clients Section -->
     <section id="clients" class="clients section light-background">
-
       <div class="container" data-aos="zoom-in">
-
         <div class="swiper init-swiper">
           <script type="application/json" class="swiper-config">
             {
@@ -70,36 +100,29 @@
             }
           </script>
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/yayasandel.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/itdel.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/himatif.PNG" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/delcafe.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/toba.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/laravel.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/aistdio.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="assets/img/sponsor/logokt.PNG" class="img-fluid" alt=""></div>
           </div>
         </div>
-
       </div>
-
     </section><!-- /Clients Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
-
-      <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
       </div><!-- End Section Title -->
 
       <div class="container">
-
         <div class="row gy-4">
-
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
             {{-- <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p> --}}
             <ul>
               {{-- <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
@@ -107,24 +130,20 @@
               <li><i class="bi bi-check2-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo</span></li> --}}
             </ul>
           </div>
-
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             {{-- <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p> --}}
             {{-- <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a> --}}
           </div>
-
         </div>
-
       </div>
+    </section>
 
-
-    <!-- DONT CLEAR THIS PAGES-->
+    <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
-
-      <img src="assets/img/delcafe.jpg" alt="">
-
-      <div class="container">
-
+      <div class="cta-background">
+        <img src="assets/img/delcafe.jpg" alt="DelCafe">
+      </div>
+      <div class="container position-relative">
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-xl-9 text-center text-xl-start">
             <h3>Galeri</h3>
@@ -134,12 +153,9 @@
             <a class="cta-btn align-middle" href="{{route('userr.galeri')}}">Galeri DelCafe</a>
           </div>
         </div>
-
       </div>
-
     </section><!-- /Call To Action Section -->
-
-
 
   </main>
   @include('layouts.footer')
+</body>
