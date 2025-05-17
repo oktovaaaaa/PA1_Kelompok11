@@ -53,7 +53,6 @@ class UserController extends Controller
     {
         $keranjangItem = Keranjang::findOrFail($id);
 
-        // Pastikan hanya user yang punya item yang bisa menghapus
         if ($keranjangItem->user_id != Auth::id()) {
             return redirect()->route('userr.keranjang')->with('error', 'Anda tidak memiliki izin untuk menghapus item ini.');
         }
@@ -135,7 +134,6 @@ class UserController extends Controller
     {
         $pesanan = Pesanan::findOrFail($id);
 
-        // Pastikan hanya user yang punya pesanan yang bisa menghapus
         if ($pesanan->user_id != Auth::id()) {
             return redirect()->route('userr.riwayatPesanan')->with('error', 'Anda tidak memiliki izin untuk menghapus pesanan ini.');
         }
