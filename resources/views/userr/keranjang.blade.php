@@ -107,24 +107,24 @@
                             <i class="fas fa-wallet me-2"></i> Bayar Sekarang
                         </button>
                     </div>
-                @else
-                    <div class="text-center py-5 my-5">
-                        <div class="empty-cart-icon mb-4">
-                            <i class="fas fa-shopping-cart fa-5x text-muted opacity-25"></i>
-                            <div class="empty-cart-overlay">
-                                <i class="fas fa-ban fa-3x text-danger"></i>
+                    @else
+                        <div class="text-center py-5 my-5">
+                            <div class="empty-cart-icon mb-4">
+                                <i class="fas fa-shopping-cart fa-5x text-muted opacity-25"></i>
+                                <div class="empty-cart-overlay">
+                                    <i class="fas fa-ban fa-3x text-danger"></i>
+                                </div>
                             </div>
+                            <h3 class="text-muted mb-3">Keranjang Anda kosong</h3>
+                            <p class="text-muted mb-4">Mulai belanja dan temukan menu favorit Anda</p>
+                            <a href="{{ route('userr.menu') }}" class="btn btn-primary btn-lg px-4">
+                                <i class="fas fa-utensils me-2"></i> Lihat Menu
+                            </a>
                         </div>
-                        <h3 class="text-muted mb-3">Keranjang Anda kosong</h3>
-                        <p class="text-muted mb-4">Mulai belanja dan temukan menu favorit Anda</p>
-                        <a href="{{ route('userr.menu') }}" class="btn btn-primary btn-lg px-4">
-                            <i class="fas fa-utensils me-2"></i> Lihat Menu
-                        </a>
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
-    </div>
 
     <div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel"
         aria-hidden="true">
