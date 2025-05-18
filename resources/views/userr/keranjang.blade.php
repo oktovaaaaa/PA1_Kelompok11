@@ -299,4 +299,3 @@
         $('#confirmOrderModal').modal('hide');
     }
 </script>
-pp
