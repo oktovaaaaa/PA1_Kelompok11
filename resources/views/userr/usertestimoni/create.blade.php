@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 <div class="d-flex justify-content-center align-items-center vh-15">
-    <img src="{{ asset('menu.png') }}" class="img-fluid" style="width:200px">
 </div>
 <br>
 <div class="d-flex justify-content-center align-items-center vh-10">
