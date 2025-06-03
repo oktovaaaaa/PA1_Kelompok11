@@ -43,7 +43,7 @@
 
 
 
-                <button type="submit" class="btn btn-dark w-100">Submit</button>
+                <button type="submit" class="btn btn-dark w-100">Simpan</button>
             </form>
         </div>
 

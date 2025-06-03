@@ -55,14 +55,14 @@
 
 <style>
     #rating option {
-        font-size: 1.2em; /* Ukuran font bintang */
+        font-size: 1.2em;
     }
 
     #rating option:hover {
-        background-color: #f0f0f0; /* Warna latar belakang saat di-hover */
+        background-color: #f0f0f0;
     }
 
     #rating option:checked {
-        color: gold; /* Warna teks saat dipilih */
+        color: gold; 
     }
 </style>

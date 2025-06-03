@@ -36,7 +36,7 @@
                     <!-- Input hidden untuk rating -->
                     <input type="hidden" name="rating" id="rating" value="{{ $testimoni->rating }}">
 
-                    <button type="submit" class="btn btn-dark w-100">Update</button>
+                    <button type="submit" class="btn btn-dark w-100">Simpan</button>
                     <a href="{{ route('testimoni.index') }}" class="btn btn-secondary w-100 mt-2">Batal</a>
                 </form>
             </div>
