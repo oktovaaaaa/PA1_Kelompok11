@@ -111,7 +111,7 @@
                             </button>
                         </div>
 
-                    </div> 
+                    </div>
                 </div>
             </div>
         @else
@@ -310,6 +310,7 @@
         $('#confirmOrderModal').modal('hide');
     }
 </script>
+
 
 
 
