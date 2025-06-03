@@ -210,7 +210,6 @@
     @endif
 @auth
 
-    <!-- Order Confirmation Modal -->
     <div class="modal fade" id="confirmOrderModal" tabindex="-1" aria-labelledby="confirmOrderModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
