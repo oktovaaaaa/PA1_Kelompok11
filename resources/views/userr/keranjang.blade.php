@@ -111,11 +111,10 @@
                             </button>
                         </div>
 
-                    </div> {{-- SELESAI: Tutup card-body di sini --}}
-                </div> {{-- SELESAI: Tutup card di sini --}}
-            </div> {{-- SELESAI: Tutup div mb-4 (ATAU KELAS LAIN) di sini --}}
+                    </div> 
+                </div>
+            </div>
         @else
-            {{-- Konten keranjang kosong dipindahkan ke luar struktur card --}}
             <div class="text-center py-5 my-5">
                 <div class="empty-cart-icon mb-4">
                     <i class="fas fa-shopping-cart fa-5x text-muted opacity-25"></i>
@@ -131,7 +130,6 @@
             </div>
         @endif
 
-        {{-- Tag penutup </div> dari elemen layout luar yang membungkus @if... @else --}}
     </div>
 </div>
 </div>
@@ -187,7 +185,6 @@
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     <i class="fas fa-times me-2"></i> Batal
                 </button>
-                {{-- Pastikan fungsi sendOrderToWhatsApp() sudah didefinisikan di JavaScript Anda --}}
                 <button type="button" class="btn btn-primary" onclick="sendOrderToWhatsApp()">
                     <i class="fab fa-whatsapp me-2"></i> Lanjutkan ke WhatsApp
                 </button>
@@ -196,7 +193,6 @@
     </div>
 </div>
 
-{{-- Tag penutup </div> terakhir yang ada di kode Anda, letakkan di sini --}}
 </div>
 
 @include('layouts.footer')

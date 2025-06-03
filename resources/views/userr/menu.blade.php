@@ -204,7 +204,6 @@
         <div class="py-5">
             <i class="fas fa-utensils fa-3x text-secondary mb-4"></i>
             <h5 class="fw-medium text-secondary">Belum ada menu yang tersedia</h5>
-            <p class="text-muted">Klik tombol "Tambah" untuk membuat menu baru</p>
         </div>
     </div>
 
@@ -408,7 +407,7 @@
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    console.log("WhatsApp URL:", whatsappURL); 
+    console.log("WhatsApp URL:", whatsappURL);
 
     window.open(whatsappURL, '_blank');
 

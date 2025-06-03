@@ -140,8 +140,7 @@
             <div class="text-center">
                 <i class="fas fa-bullhorn fa-3x text-secondary mb-4"></i>
                 <h5 class="fw-medium text-secondary">Belum ada pengumuman yang tersedia</h5>
-                <p class="text-muted">Klik tombol Tambah untuk membuat pengumuman baru</p>
-            </div>
+         </div>
         </div>
     </div>
     @endif

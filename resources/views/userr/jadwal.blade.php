@@ -40,7 +40,6 @@
             <div class="py-5">
                 <i class="fas fa-calendar-times fa-3x text-secondary mb-4"></i>
                 <h5 class="fw-medium text-secondary">Belum ada jadwal tersedia</h5>
-                <p class="text-muted">Klik tombol "Tambah Jadwal" untuk membuat baru</p>
             </div>
         </div>        @endif
     </div>

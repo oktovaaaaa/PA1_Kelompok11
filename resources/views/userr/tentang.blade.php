@@ -29,16 +29,14 @@
                     <div class="py-5">
                         <i class="fas fa-file-alt fa-3x text-secondary mb-4"></i>
                         <h5 class="fw-medium text-secondary">Belum ada data tentang yang tersedia</h5>
-                        <p class="text-muted">Klik tombol "Tambah" untuk membuat data tentang baru</p>
                     </div>
                 </div>
                 @endif
             </div>
 
-            <!-- Kolom kanan (3) -->
             <div class="col-lg-3" data-aos="fade-up" data-aos-delay="200">
 
-                <p>Informasi lainnya bisa ditaruh di sini.</p>
+                <p>Informasi lainnya.</p>
             </div>
         </div>
     </div>
