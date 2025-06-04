@@ -57,7 +57,7 @@
                                                 </span>
                                             </td>
                                             <td class="text-end pe-4">
-                                                Rp {{ number_format($item->menu->harga, 0, ',', '.') }}
+                                                RP {{($item->menu->harga)}}
                                             </td>
                                             <td class="text-end pe-4 fw-bold">
                                                 Rp {{ number_format($item->total_harga, 0, ',', '.') }}

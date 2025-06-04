@@ -13,7 +13,7 @@ class JadwalController extends Controller
 
 
         $jadwals = Jadwal::all();
-        return view('jadwals.tampilan', compact('jadwals'));
+        return view('jadwals.tampilan', compact(var_name: 'jadwals'));
     }
 
     public function create()
