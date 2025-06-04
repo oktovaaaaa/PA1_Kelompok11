@@ -65,4 +65,4 @@ class JadwalController extends Controller
     }
 
 }
-p
+
