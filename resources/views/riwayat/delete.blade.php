@@ -1,4 +1,3 @@
-<!-- Tombol Pemanggil Modal -->
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
     Hapus pesan
 </button>
@@ -16,7 +15,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <form method="post" action="{{ route('pesanans.destroy', $pesanan->id) }}">
+<form method="post" action="{{ route('riwayatadmin.destroy', $pesanan->id) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Hapus pesan</button>

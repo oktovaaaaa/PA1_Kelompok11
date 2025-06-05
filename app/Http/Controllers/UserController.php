@@ -144,7 +144,6 @@ class UserController extends Controller
 
     public function prosesPembayaranKeranjangWA(Request $request)
     {
-        // Validasi request
         $request->validate([
             'keranjangItems' => 'required|array',
             'totalBelanja' => 'required|numeric',
@@ -174,7 +173,6 @@ class UserController extends Controller
             'status' => 'menunggu',
         ]);
 
-        // Kosongkan keranjang setelah pesanan dibuat
         Keranjang::where('user_id', Auth::id())->delete();
 
         return response()->json(['success' => true, 'message' => 'Pesanan berhasil dibuat dan keranjang dikosongkan!']);

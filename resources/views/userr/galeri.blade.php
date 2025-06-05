@@ -71,7 +71,6 @@
             <div class="carousel-inner">
                 @if(isset($galeris) && count($galeris) > 0)
                 <div class="text-center">
-                    <p>Koleksi terbaik di DEL Cafe</p>
                 </div>
                 <br>
 
@@ -128,7 +127,6 @@
     </div>
 </section>
 
-<!-- Modals tetap sama seperti sebelumnya -->
 @foreach ($galeris as $galeri)
 <div class="modal fade" id="galeriModal{{ $galeri->id }}" tabindex="-1" aria-labelledby="galeriModalLabel{{ $galeri->id }}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

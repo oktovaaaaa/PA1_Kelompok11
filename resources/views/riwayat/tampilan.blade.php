@@ -70,19 +70,21 @@
                                 </td>
                                 <td>{{ $pesanan->created_at }}</td>
                                 <td>
-                                    @if($pesanan->status == 'menunggu')
-                                        <form action="{{ route('admin.approveRejectPesanan', $pesanan->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            <input type="hidden" name="action" value="berhasil">
-                                            <button type="submit" class="btn btn-success btn-sm">Approve</button>
-                                        </form>
-                                        <form action="{{ route('admin.approveRejectPesanan', $pesanan->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            <input type="hidden" name="action" value="ditolak">
-                                            <button type="submit" class="btn btn-danger btn-sm">Reject</button>
-                                        </form>
-                                    
-                                    @endif
+@if($pesanan->status == 'menunggu')
+    <form action="{{ route('admin.approveRejectPesanan', $pesanan->id) }}" method="POST" class="d-inline">
+        @csrf
+        <input type="hidden" name="action" value="berhasil">
+        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+    </form>
+    <form action="{{ route('admin.approveRejectPesanan', $pesanan->id) }}" method="POST" class="d-inline">
+        @csrf
+        <input type="hidden" name="action" value="ditolak">
+        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+    </form>
+@elseif($pesanan->status == 'berhasil' || $pesanan->status == 'ditolak')
+    @include('riwayat.delete')
+@endif
+
                                 </td>
                             </tr>
                         @endforeach

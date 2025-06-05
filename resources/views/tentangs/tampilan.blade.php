@@ -33,6 +33,7 @@
         <a href="{{ route('tentangs.create') }}" class="btn btn-primary btn-sm px-3 py-1">
             <i class="fas fa-plus-circle me-2"></i>Tambah Tentang
         </a>
+        <br><br>
 
         @if (isset($tentangs) && count($tentangs) > 0)
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">

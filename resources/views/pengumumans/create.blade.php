@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="tautan" class="form-label">tautan</label>
-                    <input id="tautan" class="form-control" type="text" name="tautan" value="{{ old('tautan') }}"/>
+                    <label for="Tautan" class="form-label">Tautan</label>
+                    <input id="Tautan" class="form-control" type="text" name="Tautan" value="{{ old('tautan') }}"/>
                 </div>
 
                 <div class="mb-3">

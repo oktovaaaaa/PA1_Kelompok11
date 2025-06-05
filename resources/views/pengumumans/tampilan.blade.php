@@ -35,6 +35,8 @@
         <a href="{{ route('pengumumans.create') }}" class="btn btn-primary btn-sm px-3 py-1">
             <i class="fas fa-plus-circle me-2"></i>Tambah Pengumuman
         </a>
+        <br>
+        <br>
 
 
         @if (isset($pengumumans) && count($pengumumans) > 0)

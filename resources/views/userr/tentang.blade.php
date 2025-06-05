@@ -35,8 +35,8 @@
             </div>
 
             <div class="col-lg-3" data-aos="fade-up" data-aos-delay="200">
-
-                <p>Informasi lainnya.</p>
+<h5 class="fw-bold">Fasilitas Kampus</h5>
+                <p>Fasilitas Akademik Kelas Dunia: Laboratorium-Ruang Kelas-Internet-Asrama-Kantin-Sarana Olahraga-UKM-Layanan Karir, Layanan Sistem Informasi Akademik (Campus Information System), klinik Del, ruang belajar kolaborasi</p>
             </div>
         </div>
     </div>

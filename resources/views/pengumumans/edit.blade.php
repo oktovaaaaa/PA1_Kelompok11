@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="judul" class="form-label">Judul</label>
-                    <input id="judul" class="form-control" type="text" name="tautan" value="{{ $pengumuman->tautan }}"/>
+                    <label for="Tautan" class="form-label">Tautan</label>
+                    <input id="Tautan" class="form-control" type="text" name="tautan" value="{{ $pengumuman->tautan }}"/>
                 </div>
 
                 <div class="mb-3">

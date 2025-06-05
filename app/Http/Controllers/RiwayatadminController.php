@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pesanan;
-use App\Models\User; 
+use App\Models\User;
 
 class RiwayatadminController extends Controller
 {
@@ -44,4 +44,13 @@ class RiwayatadminController extends Controller
 
         return redirect()->back()->with('success', 'Status pesanan berhasil diubah menjadi ' . $action);
     }
+
+    public function destroy($id)
+    {
+        $pesanan = Pesanan::findOrFail($id);
+        $pesanan->delete();
+
+        return redirect()->back()->with('success', 'Riwayat berhasil dihapus.');
+    }
+
 }
