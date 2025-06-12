@@ -5,10 +5,8 @@
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
     <div class="container pt-5 my-5 text-center">
-        <h1>Daftar Pesan</h1>
+        <h1>Daftar Pesan Masuk</h1>
 
         <div class="mt-4">
             <form action="{{ route('kontaks.tampilan') }}" method="GET" class="d-flex justify-content-center">
@@ -34,24 +32,24 @@
 
         @if (isset($kontaks) && count($kontaks) > 0)
             <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
+                <table class="table table-striped pt-5 my-5">
+                    <thead>
                         <tr>
-                            <th scope="col" class="text-center" style="width: 10%;">Nama</th>
-                            <th scope="col" class="text-center" style="width: 15%;">Email</th>
-                            <th scope="col" class="text-center" style="width: 15%;">Subjek</th>
-                            <th scope="col" class="text-center" style="width: 50%;">Pesan</th>
-                            <th scope="col" class="text-center" style="width: 10%;"></th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Subjek</th>
+                            <th>Pesan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($kontaks as $kontak)
                             <tr>
-                                <td class="text-center">{{ $kontak->nama }}</td>
-                                <td class="text-center">{{ $kontak->email }}</td>
-                                <td class="text-center">{{ $kontak->subjek }}</td>
+                                <td>{{ $kontak->nama }}</td>
+                                <td>{{ $kontak->email }}</td>
+                                <td>{{ $kontak->subjek }}</td>
                                 <td>{{ $kontak->pesan }}</td>
-                                <td class="text-center">
+                                <td>
                                     @include('kontaks.delete')
                                 </td>
                             </tr>

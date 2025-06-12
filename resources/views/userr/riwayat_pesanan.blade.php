@@ -4,7 +4,7 @@
 
     <div class="container section-title pt-5 mt-5" data-aos="fade-up">
         <br>
-        <h2>Riwayat</h2>
+        <h2>Riwayat Pesanan</h2>
     <br>
     @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">

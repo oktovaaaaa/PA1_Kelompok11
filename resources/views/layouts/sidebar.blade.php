@@ -8,7 +8,7 @@
     <aside id="sidebar">
         <div class="d-flex">
             <button class="toggle-btn" type="button">
-                <i class="bi bi-grid"></i> <!-- Ikon grid dari Bootstrap Icons -->
+                <i class="bi bi-grid"></i>
             </button>
             <div class="sidebar-logo">
                 <a href="#">DelCafe</a>
@@ -17,25 +17,25 @@
         <ul class="sidebar-nav">
             <li class="sidebar-item">
                 <a href="{{route('menus.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-menu-up"></i>  <!-- Ikon menu makanan -->
+                    <i class="bi bi-menu-up"></i>
                     <span>Menu Makanan</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="{{route('jadwals.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-clock"></i> <!-- Ikon jadwal/jam -->
+                    <i class="bi bi-clock"></i>
                     <span>Jadwal</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="{{route('tentangs.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-info-circle"></i> <!-- Ikon about -->
+                    <i class="bi bi-info-circle"></i>
                     <span>Tentang</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="{{route('galeris.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-images"></i> <!-- Ikon galeri -->
+                    <i class="bi bi-images"></i>
                     <span>Galeri</span>
                 </a>
             </li>
@@ -55,7 +55,7 @@
             <li class="sidebar-item">
                 <a href="{{route('kontaks.tampilan')}}" class="sidebar-link">
                     <i class="bi bi-bell"></i>
-                    <span>Notifikasi Pesan</span>
+                    <span>Pesan masuk</span>
                 </a>
                 <li class="sidebar-item">
                     <a href="{{route('riwayat.tampilan')}}" class="sidebar-link">

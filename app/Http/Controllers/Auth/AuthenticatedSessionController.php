@@ -31,8 +31,8 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        if ($user->role === 'admin') { 
-            return redirect()->route('menus.tampilan');
+        if ($user->role === 'admin') {
+            return redirect()->route('riwayat.tampilan');
         } else {
             return redirect()->intended(RouteServiceProvider::HOME);
         }
