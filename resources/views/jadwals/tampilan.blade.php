@@ -1,4 +1,5 @@
 @extends('layouts.mainadmin')
+
 @section('contents')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
@@ -7,21 +8,19 @@
     <div class="container pt-5 my-5 text-center">
         <h1>Daftar Jadwal</h1>
 
-
         @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
+
         <br>
-        {{-- <div class="d-flex pt-5">
-            <div class="d-flex justify-content-between align-items-center w-100"> --}}
-                <a href="{{ route('jadwals.create') }}" class="btn btn-primary btn-sm px-3 py-1 ">
-                    <i class="fas fa-plus-circle me-2"></i>Tambah Jadwal
-                </a>
-            {{-- </div>
-        </div> --}}
+
+        <a href="{{ route('jadwals.create') }}" class="btn btn-primary btn-sm px-3 py-1 ">
+            <i class="fas fa-plus-circle me-2"></i>Tambah Jadwal
+        </a>
+
         <br>
 
         @if (isset($jadwals) && count($jadwals) > 0)
@@ -32,20 +31,23 @@
                             <th scope="col" class="text-center"><i class="fas fa-calendar-day me-2"></i>Hari</th>
                             <th scope="col" class="text-center"><i class="fas fa-clock me-2"></i>Mulai</th>
                             <th scope="col" class="text-center"><i class="fas fa-stopwatch me-2"></i>Selesai</th>
+                            <th scope="col" class="text-center"><i class="fas fa-cogs me-2"></i>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($jadwals as $jadwal)
-                            <tr class="clickable-row"
-                                onclick="window.location='{{ route('jadwals.edit', $jadwal) }}';">
+                            <tr>
                                 <td class="text-center fw-medium">{{ $jadwal->hari }}</td>
                                 <td class="text-center">
-                                    <span
-                                        class="badge bg-primary bg-opacity-10 text-primary">{{ $jadwal->waktu_mulai }}</span>
+                                    <span class="badge bg-primary bg-opacity-10 text-primary">{{ $jadwal->waktu_mulai }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <span
-                                        class="badge bg-danger bg-opacity-10 text-danger">{{ $jadwal->waktu_selesai }}</span>
+                                    <span class="badge bg-danger bg-opacity-10 text-danger">{{ $jadwal->waktu_selesai }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ route('jadwals.edit', $jadwal) }}" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-edit me-1"></i>Edit
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -70,12 +72,7 @@
             object-fit: contain;
         }
 
-        .clickable-row {
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .clickable-row:hover {
+        .table-hover tbody tr:hover {
             background-color: #f8f9fa;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
