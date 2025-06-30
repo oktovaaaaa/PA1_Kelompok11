@@ -54,6 +54,8 @@
                             </div>
                         </div>
                     </div>
+
+                    
                 </div>
                     <div class="col-lg-7">
                         <div class="card border-0 shadow-sm">
