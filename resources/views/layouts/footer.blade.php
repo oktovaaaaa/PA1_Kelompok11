@@ -28,7 +28,7 @@
         <div class="footer-contact pt-3">
           <p>Institut Teknologi DEL</p>
           <p> Sitoluama, Kec. Balige, Toba, Sumatera Utara 22381</p>
-          <p class="mt-3"><strong>Phone:</strong> <span>+62 881 0808 11110</span></p>
+          <p class="mt-3"><strong>Phone:</strong> <strong>+62 881 0808 11110</strong></p>
           <p><strong>Email:</strong> <span>delcafe@gmail.com</span></p>
         </div>
       </div>
