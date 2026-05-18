@@ -14,7 +14,7 @@ class MenuController extends Controller
         $query = Menu::query();
 
         if ($search) {
-            $query->where('nama', 'like', '%' . $search . '%')->orWhere('deskripsi', 'like', '%' . $search . '%');
+            $query->where('nama', 'ilike', '%' . $search . '%')->orWhere('deskripsi', 'ilike', '%' . $search . '%');
         }
 
         $menus = $query->paginate(8);

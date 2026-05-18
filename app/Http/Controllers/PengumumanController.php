@@ -14,7 +14,7 @@ class PengumumanController extends Controller
     $query = Pengumuman::query();
 
     if ($search) {
-        $query->where('judul', 'like', '%' . $search . '%')->orWhere('teks', 'like', '%' . $search . '%');
+        $query->where('judul', 'ilike', '%' . $search . '%')->orWhere('teks', 'ilike', '%' . $search . '%');
     }
 
     $pengumumans = $query->paginate(6);

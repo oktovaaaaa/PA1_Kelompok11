@@ -12,7 +12,7 @@ class AdminKontakController extends Controller
             $query = Kontak::query();
 
             if ($search) {
-                $query->where('nama', 'like', '%' . $search . '%')->orWhere('pesan', 'like', '%' . $search . '%');
+                $query->where('nama', 'ilike', '%' . $search . '%')->orWhere('pesan', 'ilike', '%' . $search . '%');
             }
 
         $kontaks = $query->paginate(8);

@@ -13,7 +13,7 @@ class TentangController extends Controller
         $query = Tentang::query();
 
         if ($search) {
-            $query->where('judul', 'like', '%' . $search . '%')->orWhere('deskripsi', 'like', '%' . $search . '%');
+            $query->where('judul', 'ilike', '%' . $search . '%')->orWhere('deskripsi', 'ilike', '%' . $search . '%');
         }
         $tentangs = $query->paginate(6);
 

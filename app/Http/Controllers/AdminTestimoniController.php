@@ -15,8 +15,8 @@ class AdminTestimoniController extends Controller
         $query = Testimoni::query();
 
         if ($search) {
-            $query->where('nama', 'LIKE', '%' . $search . '%')
-                  ->orWhere('deskripsi', 'LIKE', '%' . $search . '%');
+            $query->where('nama', 'ilike', '%' . $search . '%')
+                  ->orWhere('deskripsi', 'ilike', '%' . $search . '%');
         }
 
         $testimonis = $query->get();

@@ -32,14 +32,27 @@ class UserController extends Controller
         $jumlah = $request->input('jumlah');
         $hargaSatuan = str_replace(['Rp', '.'], '', $menu->harga);
         $hargaSatuan = (int)preg_replace('/[^0-9]/', '', $hargaSatuan);
-        $totalHarga = $hargaSatuan * $jumlah;
 
-        Keranjang::create([
-            'user_id' => Auth::id(),
-            'menu_id' => $menuId,
-            'jumlah' => $jumlah,
-            'total_harga' => $totalHarga,
-        ]);
+        // Check if this menu item already exists in the user's cart
+        $existingItem = Keranjang::where('user_id', Auth::id())
+                                 ->where('menu_id', $menuId)
+                                 ->first();
+
+        if ($existingItem) {
+            // Increment the quantity and recalculate the subtotal
+            $existingItem->jumlah += $jumlah;
+            $existingItem->total_harga = $existingItem->jumlah * $hargaSatuan;
+            $existingItem->save();
+        } else {
+            // Create a new cart entry if it doesn't exist
+            $totalHarga = $hargaSatuan * $jumlah;
+            Keranjang::create([
+                'user_id' => Auth::id(),
+                'menu_id' => $menuId,
+                'jumlah' => $jumlah,
+                'total_harga' => $totalHarga,
+            ]);
+        }
 
         return redirect()->route('userr.menu')->with('success', 'Menu berhasil ditambahkan ke keranjang!');
     }
@@ -176,6 +189,38 @@ class UserController extends Controller
         Keranjang::where('user_id', Auth::id())->delete();
 
         return response()->json(['success' => true, 'message' => 'Pesanan berhasil dibuat dan keranjang dikosongkan!']);
+    }
+
+    public function updateKuantitasKeranjang(Request $request, $id)
+    {
+        $request->validate([
+            'jumlah' => 'required|integer|min:1',
+        ]);
+
+        $item = Keranjang::findOrFail($id);
+
+        if ($item->user_id !== Auth::id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tindakan tidak sah.'
+            ], 403);
+        }
+
+        $menu = $item->menu;
+        $hargaSatuan = str_replace(['Rp', '.'], '', $menu->harga);
+        $hargaSatuan = (int)preg_replace('/[^0-9]/', '', $hargaSatuan);
+
+        $item->jumlah = $request->input('jumlah');
+        $item->total_harga = $item->jumlah * $hargaSatuan;
+        $item->save();
+
+        $totalBelanja = Keranjang::where('user_id', Auth::id())->sum('total_harga');
+
+        return response()->json([
+            'success' => true,
+            'subtotal' => 'Rp ' . number_format($item->total_harga, 0, ',', '.'),
+            'totalBelanja' => 'Rp ' . number_format($totalBelanja, 0, ',', '.')
+        ]);
     }
 
 }

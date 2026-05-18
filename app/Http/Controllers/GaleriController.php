@@ -14,7 +14,7 @@ class GaleriController extends Controller
         $query = Galeri::query();
 
         if ($search) {
-            $query->where('nama', 'like', '%' . $search . '%')->orWhere('deskripsi', 'like', '%' . $search . '%');
+            $query->where('nama', 'ilike', '%' . $search . '%')->orWhere('deskripsi', 'ilike', '%' . $search . '%');
         }
 
         $galeris = $query->paginate(6); // Pagination setelah pencarian

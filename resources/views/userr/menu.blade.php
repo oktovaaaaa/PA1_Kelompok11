@@ -7,6 +7,267 @@
 @include('layouts.navbar')
 
 
+<style>
+    /* Custom Styling for Premium Menu Page */
+    .menu-section {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    .menu-card {
+        border: none !important;
+        border-radius: 20px !important;
+        background: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        overflow: hidden !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .menu-card:hover {
+        transform: translateY(-6px) !important;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .menu-card .ratio-1x1 {
+        overflow: hidden !important;
+        border-radius: 20px 20px 0 0 !important;
+        background: #f8f9fa !important;
+    }
+    
+    .menu-card img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    }
+    
+    .menu-card:hover img {
+        transform: scale(1.08) !important;
+    }
+    
+    /* Premium Price Tag */
+    .price-tag {
+        font-weight: 700 !important;
+        color: #0d6efd !important;
+        font-size: 0.95rem !important;
+        background: rgba(13, 110, 253, 0.07) !important;
+        padding: 4px 12px !important;
+        border-radius: 30px !important;
+        display: inline-block !important;
+        margin-top: 5px !important;
+        margin-bottom: 12px !important;
+        width: fit-content !important;
+    }
+    
+    /* Modern Description */
+    .menu-desc {
+        color: #6c757d !important;
+        font-size: 0.8rem !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        height: 2.4em !important;
+        line-height: 1.2em !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* Beautiful Input Groups */
+    .quantity-control {
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        border: 1px solid #dee2e6 !important;
+        background: #f8f9fa !important;
+        padding: 2px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .quantity-control .btn {
+        border: none !important;
+        background: transparent !important;
+        color: #495057 !important;
+        font-weight: 600 !important;
+        width: 32px !important;
+        height: 32px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 8px !important;
+        transition: all 0.2s !important;
+        padding: 0 !important;
+    }
+    
+    .quantity-control .btn:hover {
+        background: #e9ecef !important;
+        color: #0d6efd !important;
+    }
+    
+    .quantity-control input {
+        border: none !important;
+        background: transparent !important;
+        text-align: center !important;
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        color: #212529 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+    
+    .quantity-control input::-webkit-outer-spin-button,
+    .quantity-control input::-webkit-inner-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0 !important;
+    }
+    
+    /* Premium Buttons */
+    .btn-premium-pesan {
+        background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%) !important;
+        color: #fff !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 8px 16px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
+        transition: all 0.3s !important;
+        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.15) !important;
+        font-size: 0.85rem !important;
+        height: 38px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .btn-premium-pesan:hover {
+        box-shadow: 0 6px 20px rgba(13, 110, 253, 0.3) !important;
+        transform: translateY(-1px) !important;
+        color: #fff !important;
+    }
+
+    /* Cart icon button on the card */
+    .btn-premium-keranjang-card {
+        background: rgba(13, 110, 253, 0.08) !important;
+        border: 1.5px solid rgba(13, 110, 253, 0.25) !important;
+        color: #0d6efd !important;
+        border-radius: 12px !important;
+        padding: 8px 0 !important;
+        font-size: 1rem !important;
+        transition: all 0.3s !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 38px !important;
+    }
+    
+    .btn-premium-keranjang-card:hover {
+        background: #0d6efd !important;
+        border-color: #0d6efd !important;
+        color: #ffffff !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 10px rgba(13, 110, 253, 0.15) !important;
+    }
+    
+    /* Search Bar Beautification */
+    .search-container {
+        max-width: 500px !important;
+        margin: 0 auto 30px auto !important;
+    }
+    
+    .search-input-premium {
+        border-radius: 30px 0 0 30px !important;
+        padding: 10px 20px !important;
+        border: 1px solid #dee2e6 !important;
+        border-right: none !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02) !important;
+        font-size: 0.9rem !important;
+        transition: all 0.3s !important;
+    }
+    
+    .search-input-premium:focus {
+        border-color: #0d6efd !important;
+        box-shadow: 0 8px 25px rgba(13, 110, 253, 0.08) !important;
+    }
+    
+    .search-btn-premium {
+        border-radius: 0 30px 30px 0 !important;
+        padding: 10px 25px !important;
+        font-weight: 600 !important;
+        background: #0d6efd !important;
+        color: #fff !important;
+        border: 1px solid #0d6efd !important;
+        box-shadow: 0 8px 20px rgba(13, 110, 253, 0.1) !important;
+        transition: all 0.3s !important;
+    }
+    
+    .search-btn-premium:hover {
+        background: #0056b3 !important;
+        border-color: #0056b3 !important;
+    }
+
+    /* Modal styling */
+    .modal-content {
+        border-radius: 24px !important;
+    }
+    
+    /* Mobile responsive adjustments */
+    @media (max-width: 576px) {
+        .menu-card {
+            border-radius: 16px !important;
+        }
+        
+        .menu-card .ratio-1x1 {
+            border-radius: 16px 16px 0 0 !important;
+        }
+        
+        .menu-card .card-body {
+            padding: 8px !important;
+        }
+        
+        .menu-card .card-title {
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+        }
+        
+        .price-tag {
+            font-size: 0.75rem !important;
+            padding: 2px 8px !important;
+            margin-bottom: 8px !important;
+            margin-top: 2px !important;
+        }
+        
+        .menu-desc {
+            font-size: 0.75rem !important;
+            height: 2.4em !important;
+            margin-bottom: 6px !important;
+        }
+        
+        .quantity-control {
+            border-radius: 8px !important;
+            margin-bottom: 8px !important;
+        }
+        
+        .quantity-control .btn {
+            width: 24px !important;
+            height: 24px !important;
+            font-size: 0.75rem !important;
+        }
+        
+        .quantity-control input {
+            font-size: 0.75rem !important;
+        }
+        
+        .btn-premium-pesan {
+            border-radius: 8px !important;
+            padding: 6px 12px !important;
+            font-size: 0.75rem !important;
+        }
+    }
+</style>
+
 <br>
 <div class="container section-title pt-5 mt-5" data-aos="fade-up">
     <h2>Menu</h2>
@@ -14,16 +275,11 @@
 
 
 @if (isset($menus) && count($menus) > 0)
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-3 mt-4">
-                <form action="" method="GET" class="d-flex">
-                    <input type="text" name="search" class="form-control me-2" placeholder="Cari menu..."
-                        value="">
-                    <button type="submit" class="btn btn-outline-primary">Cari</button>
-                </form>
-            </div>
-        </div>
+    <div class="search-container mt-4">
+        <form action="" method="GET" class="input-group">
+            <input type="text" name="search" class="form-control search-input-premium" placeholder="Cari menu favorit Anda..." value="{{ request('search') }}">
+            <button type="submit" class="btn search-btn-premium">Cari</button>
+        </form>
     </div>
 
     @if (session('success'))
@@ -35,47 +291,47 @@
 
     @auth
         @if (auth()->user()->role == 'user' && auth()->user()->id)
-            <div class="py-3">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+            <div class="container py-3 menu-section">
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
                     @foreach ($menus as $menu)
                         <div class="col" data-menu-id="{{ $menu->id }}">
-                            <div class="card h-100 shadow-sm rounded-4 overflow-hidden"
-                                style="max-width: 250px; margin: auto;">
+                            <div class="card h-100 menu-card">
                                 <div class="ratio ratio-1x1">
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#menuModal{{ $menu->id }}">
                                         <img src="{{ url('storage/images/' . $menu->foto) }}"
-                                            class="card-img-top img-fluid rounded-top-4" alt="{{ $menu->nama }}"
-                                            style="object-fit: cover; height: 220px;">
+                                            class="card-img-top img-fluid" alt="{{ $menu->nama }}">
                                     </a>
                                 </div>
                                 <div class="card-body d-flex flex-column" style="padding: 0.75rem;">
-                                    <h5 class="card-title mb-1" style="font-size: 1rem;">{{ $menu->nama }}</h5>
-                                    <p class="card-text mb-1" style="font-size: 0.8rem;">{{ $menu->deskripsi }}</p>
-                                    <p class="card-text fw-bold text-primary mb-2" style="font-size: 0.9rem;">Rp
-                                        {{ $menu->harga }}</p>
+                                    <h5 class="card-title fw-bold text-dark mb-1" style="font-size: 0.95rem;">{{ $menu->nama }}</h5>
+                                    <p class="card-text menu-desc">{{ $menu->deskripsi }}</p>
+                                    <div class="price-tag">Rp {{ $menu->harga }}</div>
 
-                                    <div class="mb-1">
-                                        <label for="jumlah" class="form-label" style="font-size: 0.8rem;">Jumlah</label>
-                                        <div class="input-group">
-                                            <button class="btn btn-outline-secondary kurangCard" type="button"
-                                                data-menu-id="{{ $menu->id }}"
-                                                style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">-</button>
+                                    <div class="mb-2">
+                                        <div class="input-group quantity-control">
+                                            <button class="btn kurangCard" type="button"
+                                                data-menu-id="{{ $menu->id }}">-</button>
                                             <input type="number" name="jumlah" id="jumlahCard{{ $menu->id }}"
-                                                class="form-control jumlah-input jumlahCard" value="1" min="1"
-                                                style="font-size: 0.8rem; padding: 0.2rem;">
-                                            <button class="btn btn-outline-secondary tambahCard" type="button"
-                                                data-menu-id="{{ $menu->id }}"
-                                                style="font-size: 0.7rem; padding: 0.2rem 0.5rem;">+</button>
+                                                class="form-control jumlah-input jumlahCard" value="1" min="1">
+                                            <button class="btn tambahCard" type="button"
+                                                data-menu-id="{{ $menu->id }}">+</button>
                                         </div>
                                     </div>
 
-                                    <p style="font-size: 0.8rem;">Total Harga: <span id="totalHarga{{ $menu->id }}">Rp
-                                            {{ $menu->harga }}</span></p>
-                                    <!-- Ubah tombol Pesan menjadi tombol yang memicu modal -->
-                                    <button type="button" class="btn btn-primary pesanMenuBtn"
-                                        data-menu-id="{{ $menu->id }}" data-bs-toggle="modal"
-                                        data-bs-target="#confirmOrderModal"
-                                        style="font-size: 0.8rem; padding: 0.3rem 0.6rem;">Pesan</button>
+                                    <p class="text-muted mb-2" style="font-size: 0.75rem; font-weight: 500;">Total: <span class="fw-bold text-dark" id="totalHarga{{ $menu->id }}">Rp {{ $menu->harga }}</span></p>
+                                    <!-- Dual Action: Add to Cart and Direct Order -->
+                                    <div class="d-flex gap-2 mt-auto">
+                                        <form action="{{ route('userr.tambahKeranjang', $menu->id) }}" method="POST" class="m-0" style="flex: 0 0 45px;">
+                                            @csrf
+                                            <input type="hidden" name="jumlah" id="jumlahHidden{{ $menu->id }}" class="jumlahHidden" value="1">
+                                            <button type="submit" class="btn btn-premium-keranjang-card w-100" title="Tambah ke Keranjang">
+                                                <i class="fas fa-cart-plus"></i>
+                                            </button>
+                                        </form>
+                                        <button type="button" class="btn btn-premium-pesan pesanMenuBtn flex-grow-1"
+                                            data-menu-id="{{ $menu->id }}" data-bs-toggle="modal"
+                                            data-bs-target="#confirmOrderModal">Pesan</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -135,22 +391,19 @@
             </div>
         @endauth
     @else
-        <div class="py-3">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+        <div class="container py-3 menu-section">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
                 @foreach ($menus as $menu)
                     <div class="col" data-menu-id="{{ $menu->id }}">
-                        <div class="card h-100 shadow-sm rounded-4 overflow-hidden"
-                            style="max-width: 250px; margin: auto;">
+                        <div class="card h-100 menu-card">
                             <div class="ratio ratio-1x1">
                                 <img src="{{ url('storage/images/' . $menu->foto) }}"
-                                    class="card-img-top img-fluid rounded-top-4" alt="{{ $menu->nama }}"
-                                    style="object-fit: cover; height: 220px; pointer-events: none;">
+                                    class="card-img-top img-fluid" alt="{{ $menu->nama }}" style="pointer-events: none;">
                             </div>
                             <div class="card-body d-flex flex-column" style="padding: 0.75rem;">
-                                <h5 class="card-title mb-1" style="font-size: 1rem;">{{ $menu->nama }}</h5>
-                                <p class="card-text mb-1" style="font-size: 0.8rem;">{{ $menu->deskripsi }}</p>
-                                <p class="card-text fw-bold text-primary mb-2" style="font-size: 0.9rem;">Rp
-                                    {{ $menu->harga }}</p>
+                                <h5 class="card-title fw-bold text-dark mb-1" style="font-size: 0.95rem;">{{ $menu->nama }}</h5>
+                                <p class="card-text menu-desc">{{ $menu->deskripsi }}</p>
+                                <div class="price-tag">Rp {{ $menu->harga }}</div>
                             </div>
                         </div>
                     </div>
@@ -161,22 +414,19 @@
 
     @auth
         @if (auth()->user()->role == 'admin')
-            <div class="py-3">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+            <div class="container py-3 menu-section">
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
                     @foreach ($menus as $menu)
                         <div class="col" data-menu-id="{{ $menu->id }}">
-                            <div class="card h-100 shadow-sm rounded-4 overflow-hidden"
-                                style="max-width: 250px; margin: auto;">
+                            <div class="card h-100 menu-card">
                                 <div class="ratio ratio-1x1">
                                     <img src="{{ url('storage/images/' . $menu->foto) }}"
-                                        class="card-img-top img-fluid rounded-top-4" alt="{{ $menu->nama }}"
-                                        style="object-fit: cover; height: 220px; pointer-events: none;">
+                                        class="card-img-top img-fluid" alt="{{ $menu->nama }}" style="pointer-events: none;">
                                 </div>
                                 <div class="card-body d-flex flex-column" style="padding: 0.75rem;">
-                                    <h5 class="card-title mb-1" style="font-size: 1rem;">{{ $menu->nama }}</h5>
-                                    <p class="card-text mb-1" style="font-size: 0.8rem;">{{ $menu->deskripsi }}</p>
-                                    <p class="card-text fw-bold text-primary mb-2" style="font-size: 0.9rem;">Rp
-                                        {{ $menu->harga }}</p>
+                                    <h5 class="card-title fw-bold text-dark mb-1" style="font-size: 0.95rem;">{{ $menu->nama }}</h5>
+                                    <p class="card-text menu-desc">{{ $menu->deskripsi }}</p>
+                                    <div class="price-tag">Rp {{ $menu->harga }}</div>
                                 </div>
                             </div>
                         </div>
@@ -187,16 +437,11 @@
         </div>
         @endauth
     @else
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-3 mt-4">
-                <form action="" method="GET" class="d-flex">
-                    <input type="text" name="search" class="form-control me-2" placeholder="Cari menu..."
-                        value="">
-                    <button type="submit" class="btn btn-outline-primary">Cari</button>
-                </form>
-            </div>
-        </div>
+    <div class="search-container mt-4">
+        <form action="" method="GET" class="input-group">
+            <input type="text" name="search" class="form-control search-input-premium" placeholder="Cari menu favorit Anda..." value="{{ request('search') }}">
+            <button type="submit" class="btn search-btn-premium">Cari</button>
+        </form>
     </div>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -277,14 +522,22 @@
                 function updateTotalHarga(menuId) {
                     const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
 
-                    const hargaAwal = card.querySelector('.card-text.fw-bold.text-primary').innerText;
+                    const hargaAwal = card.querySelector('.price-tag').innerText;
                     const hargaSatuan = parseFloat(hargaAwal.replace(/[^0-9]/g, ''));
 
                     const jumlahCard = parseInt(card.querySelector(`#jumlahCard${menuId}`).value);
                     const totalHargaCard = hargaSatuan * jumlahCard;
 
-                    card.querySelector(`#totalHarga${menuId}`).innerText = 'Rp ' + totalHargaCard.toLocaleString(
-                        'id-ID');
+                    const totalHargaElem = card.querySelector(`#totalHarga${menuId}`);
+                    if (totalHargaElem) {
+                        totalHargaElem.innerText = 'Rp ' + totalHargaCard.toLocaleString('id-ID');
+                    }
+
+                    // Synchronize the hidden input field for Cart submit!
+                    const hiddenInput = card.querySelector(`#jumlahHidden${menuId}`);
+                    if (hiddenInput) {
+                        hiddenInput.value = jumlahCard;
+                    }
 
                     const modalBody = document.querySelector(`#menuModal${menuId} .modal-body`);
                     const hargaAwalModal = modalBody.dataset.harga;
@@ -367,6 +620,24 @@
                     });
                 });
 
+                // Sync manual keyboard input typing
+                document.querySelectorAll('.jumlahCard').forEach(input => {
+                    input.addEventListener('input', function() {
+                        const menuId = this.id.replace('jumlahCard', '');
+                        let val = parseInt(this.value);
+                        if (isNaN(val) || val < 1) {
+                            val = 1;
+                        }
+                        
+                        const modalInput = document.querySelector(`#menuModal${menuId} .modal-body #jumlahModal${menuId}`);
+                        if (modalInput) {
+                            modalInput.value = val;
+                        }
+                        
+                        updateTotalHarga(menuId);
+                    });
+                });
+
                 // Event listener untuk tombol Pesan
                 document.querySelectorAll('.pesanMenuBtn').forEach(button => {
                     button.addEventListener('click', function() {
@@ -393,7 +664,7 @@
     const jumlahMenu = confirmOrderModal.dataset.jumlahMenu;
     const card = document.querySelector(`.col[data-menu-id="${menuId}"]`);
     const namaMenu = card.querySelector('.card-title').innerText;
-    const hargaMenu = card.querySelector('.card-text.fw-bold.text-primary').innerText;
+    const hargaMenu = card.querySelector('.price-tag').innerText;
     const totalHarga = card.querySelector(`#totalHarga${menuId}`).innerText; // Ambil total harga dari card
     const namaPengguna = "{{ Auth::user()->name }}";
 

@@ -71,7 +71,7 @@
     <p>© <span>Copyright</span> <strong class="px-1 sitename">PA-1</strong> <span>Kelompok 11</span></p>
     <div class="credits">
 
-      Dibuat oleh <a href="https://www.linkedin.com/in/oktova-samosir-2a838334a/">Kelompok 11</a>
+      Dibuat oleh <a href="https://oktovaaaaa.id">Oktovaaaaa</a>
     </div>
   </div>
 

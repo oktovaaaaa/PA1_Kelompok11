@@ -1,48 +1,72 @@
-@extends('layouts.main')
+@extends('layouts.mainadmin')
 
+@section('contents')
+<!-- FontAwesome CDN for premium icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<br>
-<div class="d-flex justify-content-center align-items-center vh-10">
-    <h2 class="fw-semibold fs-4 text-center">Tambah galeri</h2>
-</div>
-<br>
-</div>
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-11 col-xl-10">
+            <!-- Header Section -->
+            <div class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3">
+                <h2 class="history-title mb-0" style="font-size: 1.5rem; font-weight: 700; color: #1e3c72;">
+                    <i class="fas fa-plus-circle text-primary me-2"></i> Tambah Galeri Foto
+                </h2>
+                <a href="{{ route('galeris.tampilan') }}" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1.5" style="font-weight: 600; font-size: 0.8rem;">
+                    <i class="fas fa-arrow-left me-1.5"></i> Kembali
+                </a>
+            </div>
 
+            <!-- Form & Image Preview Column Grid -->
+            <div class="row g-4 align-items-stretch">
+                <!-- Left Form Column -->
+                <div class="col-lg-7">
+                    <div class="card h-100 shadow-sm border-0 p-4" style="border-radius: 20px; background: #ffffff;">
+                        <form enctype="multipart/form-data" method="POST" action="{{ route('galeris.store') }}" class="d-flex flex-column gap-4 h-100">
+                            @csrf
 
-<div class="mt-4" x-data="{imageUrl: '/storage/noimage.png'}">
-<div class="container">
-    <div class="row align-items-center">
+                            <div>
+                                <label for="nama" class="form-label fw-bold text-dark mb-2" style="font-size: 0.85rem;">Nama / Judul Foto</label>
+                                <input id="nama" class="form-control" type="text" name="nama" placeholder="Masukkan nama atau subjek foto..." value="{{ old('nama') }}" required />
+                            </div>
 
-        <div class="col-lg-6 d-flex flex-column gap-3">
-            <form enctype="multipart/form-data" method="POST" action="{{ route('galeris.store') }}" class="p-4 border rounded shadow w-100">
-                @csrf
+                            <div>
+                                <label for="deskripsi" class="form-label fw-bold text-dark mb-2" style="font-size: 0.85rem;">Deskripsi Singkat</label>
+                                <textarea id="deskripsi" class="form-control" name="deskripsi" placeholder="Tulis deskripsi atau suasana dari foto ini..." rows="4">{{ old('deskripsi') }}</textarea>
+                            </div>
 
-                <div class="mb-3">
-                    <label for="nama" class="form-label">Nama</label>
-                    <input id="nama" class="form-control" type="text" name="nama" value="{{ old('nama') }}" required/>
+                            <div>
+                                <label for="foto" class="form-label fw-bold text-dark mb-2" style="font-size: 0.85rem;">Unggah File Foto</label>
+                                <input accept="image/*" id="foto" class="form-control" type="file" name="foto" required
+                                    onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
+                                <span class="text-muted small d-block mt-1.5" style="font-size: 0.75rem;">
+                                    * Format file gambar yang didukung: JPG, JPEG, PNG, WEBP.
+                                </span>
+                            </div>
+
+                            <div class="mt-auto pt-3">
+                                <button type="submit" class="btn btn-primary w-100 py-2.5 rounded-pill" style="font-size: 0.9rem; font-weight: 600;">
+                                    <i class="fas fa-save me-1.5"></i> Simpan Galeri Baru
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea id="deskripsi" class="form-control" name="deskripsi" rows="3">{{ old('deskripsi') }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="foto" class="form-label">Foto</label>
-                    <input accept="image/*" id="foto" class="form-control" type="file" name="foto" required
-                        onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])">
-                </div>
-
-                <button type="submit" class="btn btn-dark w-100">Simpan</button>
-            </form>
-        </div>
-
-        <div class="col-lg-6 d-flex justify-content-center">
-            <div class="card shadow-lg p-3" style="max-width: 80%;">
-                <div class="card-body text-center">
-                    <h5 class="card-title fw-bold">Gambar Product</h5>
-                    <img id="preview" class="rounded-md img-fluid" style="max-width: 100%;" src="{{ url('storage/noimage.png') }}">
+                <!-- Right Image Preview Column -->
+                <div class="col-lg-5">
+                    <div class="card h-100 shadow-sm border-0 p-4 text-center d-flex flex-column align-items-center justify-content-center" style="border-radius: 20px; background: #ffffff; min-height: 320px;">
+                        <h5 class="fw-bold text-dark mb-3" style="font-size: 0.95rem;">Pratinjau Unggahan</h5>
+                        <div class="image-preview-container shadow-sm mb-3 d-flex align-items-center justify-content-center" style="width: 100%; max-width: 280px; aspect-ratio: 1x1; border-radius: 24px; overflow: hidden; border: 2px dashed rgba(13, 110, 253, 0.15); background: #f8fafc; padding: 6px;">
+                            <img id="preview" class="img-fluid rounded-4 h-100 w-100" style="object-fit: cover;" src="{{ url('storage/noimage.png') }}" alt="Pratinjau Foto">
+                        </div>
+                        <p class="text-muted small px-3 mb-0" style="font-size: 0.75rem; max-width: 280px; font-weight: 500;">
+                            Gunakan gambar beresolusi tinggi dengan rasio persegi (1:1) untuk hasil tampilan katalog galeri terindah.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-
+    </div>
+</div>
+@endsection

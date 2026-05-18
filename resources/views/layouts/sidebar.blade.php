@@ -4,99 +4,93 @@
     }
 </style>
 
-<div class="wrapper">
-    <aside id="sidebar">
-        <div class="d-flex">
-            <button class="toggle-btn" type="button">
-                <i class="bi bi-grid"></i>
-            </button>
-            <div class="sidebar-logo">
-                <a href="#">DelCafe</a>
-            </div>
+<aside id="sidebar">
+    <div class="d-flex">
+        <button class="toggle-btn" type="button">
+            <i class="bi bi-grid"></i>
+        </button>
+        <div class="sidebar-logo">
+            <a href="#">DelCafe</a>
         </div>
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a href="{{route('menus.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-menu-up"></i>
-                    <span>Menu Makanan</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{{route('jadwals.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-clock"></i>
-                    <span>Jadwal</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{{route('tentangs.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-info-circle"></i>
-                    <span>Tentang</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{{route('galeris.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-images"></i>
-                    <span>Galeri</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{{route('testimonis.index')}}" class="sidebar-link">
-                    <i class="bi bi-chat-quote"></i>
-                    <span>Testimoni</span>
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="{{route('pengumumans.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-megaphone"></i>
-                    <span>Pengumuman</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="{{route('kontaks.tampilan')}}" class="sidebar-link">
-                    <i class="bi bi-bell"></i>
-                    <span>Pesan masuk</span>
-                </a>
-                <li class="sidebar-item">
-                    <a href="{{route('riwayat.tampilan')}}" class="sidebar-link">
-                        <i class="bi bi-clock-history"></i>
-                        <span>Riwayat Pemesanan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{route('home')}}" class="sidebar-link">
-                        <i class="bi bi-house"></i>
-                        <span>Home User</span>
-                    </a>
-                </li>
-            </li>
-            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Login</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Register</a>
-                </li>
-            </ul>
+    </div>
+    <ul class="sidebar-nav">
+        <li class="sidebar-item {{ Request::is('menus*') ? 'active' : '' }}">
+            <a href="{{route('menus.tampilan')}}" class="sidebar-link">
+                <i class="bi bi-menu-up"></i>
+                <span>Menu Makanan</span>
+            </a>
         </li>
-    </ul>
-    <div class="sidebar-footer">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="sidebar-link" style="border: none; background: none; padding: 0; margin: 0; color: inherit; cursor: pointer;">
-                <a class="sidebar-link">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                </a>
-            </button>
-        </form>
-    </div>
+        <li class="sidebar-item {{ Request::is('jadwals*') ? 'active' : '' }}">
+            <a href="{{route('jadwals.tampilan')}}" class="sidebar-link">
+                <i class="bi bi-clock"></i>
+                <span>Jadwal</span>
+            </a>
+        </li>
+        <li class="sidebar-item {{ Request::is('tentangs*') ? 'active' : '' }}">
+            <a href="{{route('tentangs.tampilan')}}" class="sidebar-link">
+                <i class="bi bi-info-circle"></i>
+                <span>Tentang</span>
+            </a>
+        </li>
+        <li class="sidebar-item {{ Request::is('galeris*') ? 'active' : '' }}">
+            <a href="{{route('galeris.tampilan')}}" class="sidebar-link">
+                <i class="bi bi-images"></i>
+                <span>Galeri</span>
+            </a>
+        </li>
+        <li class="sidebar-item {{ Request::is('testimonis*') ? 'active' : '' }}">
+            <a href="{{route('testimonis.index')}}" class="sidebar-link">
+                <i class="bi bi-chat-quote"></i>
+                <span>Testimoni</span>
+            </a>
+        </li>
+        <li class="sidebar-item {{ Request::is('pengumumans*') ? 'active' : '' }}">
+            <a href="{{route('pengumumans.tampilan')}}" class="sidebar-link">
+                <i class="bi bi-megaphone"></i>
+                <span>Pengumuman</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item {{ Request::is('kontaks*') ? 'active' : '' }}">
+            <a href="{{route('kontaks.tampilan')}}" class="sidebar-link">
+                <i class="bi bi-bell"></i>
+                <span>Pesan masuk</span>
+            </a>
+        </li>
+        <li class="sidebar-item {{ Request::is('riwayat*') ? 'active' : '' }}">
+            <a href="{{route('riwayat.tampilan')}}" class="sidebar-link">
+                <i class="bi bi-clock-history"></i>
+                <span>Riwayat Pemesanan</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{route('home')}}" class="sidebar-link">
+                <i class="bi bi-house"></i>
+                <span>Home User</span>
+            </a>
+        </li>
+        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">Login</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link">Register</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<div class="sidebar-footer">
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="sidebar-link" style="border: none; background: none; padding: 0; margin: 0; color: inherit; cursor: pointer;">
+            <a class="sidebar-link">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </a>
+        </button>
+    </form>
+</div>
 </aside>
-<div class="main p-3">
-    <div class="text-center">
-    </div>
-</div>
-</div>
 
 
 {{-- <li class="sidebar-item">

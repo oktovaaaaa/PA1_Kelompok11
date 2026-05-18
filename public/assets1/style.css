@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+/* Basic Resets & Premium Font Definition */
 ::after,
 ::before {
     box-sizing: border-box;
@@ -9,134 +10,677 @@
 
 a {
     text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 li {
     list-style: none;
 }
 
-h1 {
-    font-weight: 600;
-    font-size: 1.5rem;
-}
-
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: #f8fafc; /* Premium light grey background canvas */
+    color: #334155;
+    margin: 0;
+    padding: 0;
 }
 
+/* Master Layout Framework */
 .wrapper {
     display: flex;
-}
-
-.main {
     min-height: 100vh;
     width: 100%;
-    overflow: hidden;
-    transition: all 0.35s ease-in-out;
-    background-color: #fafbfe;
 }
 
+.admin-main {
+    flex: 1;
+    min-height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #f8fafc; /* Cohesive with overall theme */
+    padding: 40px 30px !important; /* Spacious breathing space for all dashboard pages */
+}
+
+/* ========================================================
+   1. SLEEK SCANDINAVIAN SIDEBAR DESIGN
+   ======================================================== */
 #sidebar {
-    width: 70px;
-    min-width: 70px;
+    width: 80px;
+    min-width: 80px;
     z-index: 1000;
-    transition: all .25s ease-in-out;
-    background-color: #0e2238;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); /* Deep Indigo-Slate Gradient */
     display: flex;
     flex-direction: column;
+    box-shadow: 4px 0 25px rgba(15, 23, 42, 0.15);
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 #sidebar.expand {
-    width: 260px;
-    min-width: 260px;
+    width: 270px;
+    min-width: 270px;
 }
 
+/* Sidebar Toggle & Header Area */
 .toggle-btn {
     background-color: transparent;
     cursor: pointer;
     border: 0;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.625rem;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn:hover i {
+    color: #3b82f6 !important; /* Accent Blue on Hover */
+    transform: rotate(90deg);
 }
 
 .toggle-btn i {
-    font-size: 1.5rem;
-    color: #FFF;
+    font-size: 1.4rem;
+    color: #94a3b8;
+    transition: all 0.3s ease;
 }
 
 .sidebar-logo {
     margin: auto 0;
+    padding-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
 .sidebar-logo a {
-    color: #FFF;
-    font-size: 1.15rem;
-    font-weight: 600;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
+
+/* Failsafe protective sizing for logo images in the sidebar and navbar */
+.sidebar-logo img,
+.logo img,
+.navbar-brand img,
+#header .logo img {
+    max-height: 35px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
 
 #sidebar:not(.expand) .sidebar-logo,
 #sidebar:not(.expand) a.sidebar-link span {
     display: none;
 }
 
+/* Navigation Menu Items */
 .sidebar-nav {
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
 a.sidebar-link {
-    padding: .625rem 1.625rem;
-    color: #FFF;
-    display: block;
+    padding: 0.8rem 1.625rem;
+    color: #94a3b8; /* Soft Slate text for legibility */
+    display: flex;
+    align-items: center;
     font-size: 0.9rem;
+    font-weight: 500;
     white-space: nowrap;
-    border-left: 3px solid transparent;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease;
 }
 
 .sidebar-link i {
-    font-size: 1.1rem;
-    margin-right: .75rem;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    color: #64748b;
+    transition: all 0.2s ease;
 }
 
 a.sidebar-link:hover {
-    background-color: rgba(255, 255, 255, .075);
-    border-left: 3px solid #3b7ddd;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left-color: #3b82f6; /* Glow Line Left */
 }
 
-.sidebar-item {
-    position: relative;
+a.sidebar-link:hover i {
+    color: #3b82f6;
 }
 
-#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
-    position: absolute;
-    top: 0;
-    left: 70px;
-    background-color: #0e2238;
-    padding: 0;
-    min-width: 15rem;
-    display: none;
+/* Active Class Highlight logic */
+.sidebar-item.active a.sidebar-link,
+.sidebar-item a.sidebar-link[href="javascript:void(0)"]:focus {
+    color: #ffffff;
+    background: rgba(59, 130, 246, 0.08);
+    border-left-color: #3b82f6;
+    font-weight: 600;
 }
 
-#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
-    display: block;
-    max-height: 15em;
+.sidebar-item.active a.sidebar-link i {
+    color: #3b82f6;
+}
+
+/* Sidebar Footer & Logout */
+.sidebar-footer {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-footer button {
     width: 100%;
-    opacity: 1;
 }
 
-#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
-    border: solid;
-    border-width: 0 .075rem .075rem 0;
-    content: "";
-    display: inline-block;
-    padding: 2px;
+.sidebar-footer .sidebar-link:hover i {
+    color: #ef4444 !important; /* Red hover for log-out */
+}
+
+/* ========================================================
+   2. AUTOMATIC PREMIUM OVERRIDES FOR MAIN WORKSPACE
+   ======================================================== */
+
+/* Elegant Headers */
+.admin-main h1, .admin-main h2 {
+    font-weight: 800 !important;
+    font-size: 1.75rem !important;
+    color: #0f172a !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 25px !important;
+    text-align: left !important;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.admin-main h1::after, .admin-main h2::after {
+    content: '';
     position: absolute;
-    right: 1.5rem;
-    top: 1.4rem;
-    transform: rotate(-135deg);
-    transition: all .2s ease-out;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    border-radius: 10px;
 }
 
-#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
-    transform: rotate(45deg);
-    transition: all .2s ease-out;
+/* Center Titles fix */
+.admin-main .text-center h1, .admin-main .text-center h2 {
+    text-align: center !important;
+}
+.admin-main .text-center h1::after, .admin-main .text-center h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Spacing and Utilities container */
+.admin-main .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+/* ========================================================
+   3. HIGH-FIDELITY FLOATING CARDS OVERRIDE
+   ======================================================== */
+.admin-main .card {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(241, 245, 249, 0.9) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02) !important; /* Smooth soft shadow */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow: hidden !important;
+    margin-bottom: 20px;
+}
+
+.admin-main .card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05) !important;
+    border-color: rgba(59, 130, 246, 0.12) !important;
+}
+
+.admin-main .card-body {
+    padding: 24px !important;
+}
+
+.admin-main .card-title {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    margin-bottom: 10px !important;
+}
+
+/* ========================================================
+   4. INCREDIBLY BEAUTIFUL LUXURY TABLES SYSTEM
+   ======================================================== */
+.admin-main .table-responsive {
+    background: #ffffff !important;
+    border: 1px solid rgba(241, 245, 249, 0.8) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02) !important;
+    padding: 10px !important;
+    margin-top: 25px !important;
+    margin-bottom: 30px !important;
+    overflow: hidden !important;
+}
+
+.admin-main table {
+    border-collapse: separate !important;
+    border-spacing: 0 8px !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.admin-main table thead {
+    background-color: rgba(59, 130, 246, 0.04) !important; /* Soft Primary Blue background */
+}
+
+.admin-main table th {
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    font-size: 0.82rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.75px !important;
+    border: none !important;
+    padding: 14px 18px !important;
+}
+
+.admin-main table th:first-child {
+    border-top-left-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+}
+
+.admin-main table th:last-child {
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+}
+
+.admin-main table tbody tr {
+    background-color: #ffffff !important;
+    transition: all 0.2s ease !important;
+}
+
+.admin-main table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.015) !important;
+}
+
+.admin-main table td {
+    padding: 16px 18px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    color: #475569 !important;
+    font-weight: 500 !important;
+    font-size: 0.88rem !important;
+    vertical-align: middle !important;
+}
+
+.admin-main table tbody tr td:first-child {
+    border-left: 1px solid #f1f5f9 !important;
+    border-top-left-radius: 12px !important;
+    border-bottom-left-radius: 12px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+}
+
+.admin-main table tbody tr td:last-child {
+    border-right: 1px solid #f1f5f9 !important;
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+}
+
+/* List styled rows nested in table cells */
+.admin-main table td ul {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.admin-main table td ul li {
+    list-style: none !important;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e293b;
+    display: inline-block;
+    width: fit-content;
+}
+
+/* ========================================================
+   5. SOPHISTICATED FORM ELEMENTS & GLOWING HALOS
+   ======================================================== */
+.admin-main input[type="text"],
+.admin-main input[type="number"],
+.admin-main input[type="file"],
+.admin-main input[type="password"],
+.admin-main input[type="email"],
+.admin-main input[type="date"],
+.admin-main select,
+.admin-main textarea {
+    border-radius: 12px !important;
+    border: 1.5px solid #cbd5e1 !important;
+    padding: 10px 16px !important;
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+    background-color: #ffffff !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.admin-main input:focus,
+.admin-main select:focus,
+.admin-main textarea:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12) !important;
+    background-color: #ffffff !important;
+}
+
+.admin-main textarea {
+    min-height: 100px !important;
+    resize: vertical !important;
+}
+
+/* Search input specific rows */
+.admin-main .d-flex.justify-content-center input.form-control {
+    max-width: 350px !important;
+    border-radius: 50px !important;
+    padding-left: 20px !important;
+    border: 1.5px solid #e2e8f0 !important;
+}
+
+.admin-main .d-flex.justify-content-center button[type="submit"] {
+    border-radius: 50px !important;
+    padding: 8px 24px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    margin-left: 8px !important;
+}
+
+/* ========================================================
+   6. PREMIUM BUTTONS WITH SMOOTH TRANSITIONS
+   ======================================================== */
+.admin-main .btn {
+    border-radius: 50px !important; /* Rounded pill default */
+    padding: 8px 20px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.25px !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+.admin-main .btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25) !important;
+}
+
+.admin-main .btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35) !important;
+    opacity: 0.95 !important;
+}
+
+.admin-main .btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25) !important;
+}
+
+.admin-main .btn-success:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35) !important;
+}
+
+.admin-main .btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25) !important;
+}
+
+.admin-main .btn-danger:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35) !important;
+}
+
+.admin-main .btn-outline-primary {
+    border: 1.5px solid #3b82f6 !important;
+    background-color: transparent !important;
+    color: #3b82f6 !important;
+}
+
+.admin-main .btn-outline-primary:hover {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ========================================================
+   7. HIGH-CONTRAST BADGES & STATUS PILLS
+   ======================================================== */
+.admin-main .badge {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    border-radius: 50px !important;
+    text-transform: capitalize !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.admin-main .bg-warning {
+    background-color: rgba(245, 158, 11, 0.12) !important;
+    color: #d97706 !important;
+    border: 1.5px solid rgba(245, 158, 11, 0.25) !important;
+}
+
+.admin-main .bg-success {
+    background-color: rgba(16, 185, 129, 0.12) !important;
+    color: #059669 !important;
+    border: 1.5px solid rgba(16, 185, 129, 0.25) !important;
+}
+
+.admin-main .bg-danger {
+    background-color: rgba(239, 68, 68, 0.12) !important;
+    color: #dc2626 !important;
+    border: 1.5px solid rgba(239, 68, 68, 0.25) !important;
+}
+
+.admin-main .bg-primary {
+    background-color: rgba(59, 130, 246, 0.12) !important;
+    color: #2563eb !important;
+    border: 1.5px solid rgba(59, 130, 246, 0.25) !important;
+}
+
+/* ========================================================
+   8. ELEGANT MODERN MODALS OVERRIDES
+   ======================================================== */
+.modal-content {
+    border: none !important;
+    border-radius: 24px !important;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15) !important;
+    overflow: hidden !important;
+}
+
+.modal-header {
+    background-color: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 20px 24px !important;
+}
+
+.modal-header .modal-title {
+    font-weight: 700 !important;
+    color: #0f172a !important;
+}
+
+.modal-body {
+    padding: 24px !important;
+    color: #475569 !important;
+}
+
+.modal-footer {
+    background-color: #f8fafc !important;
+    border-top: 1px solid #e2e8f0 !important;
+    padding: 16px 24px !important;
+}
+
+/* Modal form adjustments */
+.modal-body label {
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    margin-bottom: 6px !important;
+    font-size: 0.85rem !important;
+}
+
+/* ========================================================
+   9. CARD OVERFLOW CLIP CORRECTIONS (HARDWARE-ACCELERATED HACK)
+   ======================================================== */
+.admin-main .card {
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important; /* Force GPU layer for flawless hardware clipping */
+    -webkit-mask-image: -webkit-radial-gradient(white, black) !important; /* Forces Safari/Chrome to respect clip mask */
+    mask-image: -webkit-radial-gradient(white, black) !important;
+}
+
+.admin-main .card img,
+.admin-main .card .ratio,
+.admin-main .card .card-img-top {
+    border-top-left-radius: 24px !important;
+    border-top-right-radius: 24px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    overflow: hidden !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+}
+
+/* ========================================================
+   10. MOBILE FLOATING TOGGLE BUTTON & OVERLAY SIDEBAR SYSTEM
+   ======================================================== */
+
+/* Floating Toggle Button for Mobile */
+.mobile-toggle-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed !important;
+    top: 20px !important;
+    left: 20px !important;
+    width: 48px;
+    height: 48px;
+    background: #ffffff !important;
+    border: 1.5px solid rgba(226, 232, 240, 0.8) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12) !important;
+    z-index: 1040 !important;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.mobile-toggle-btn:hover {
+    transform: scale(1.05);
+    background-color: #f8fafc !important;
+    border-color: #3b82f6 !important;
+}
+
+.mobile-toggle-btn i {
+    font-size: 1.35rem;
+    color: #0f172a;
+    transition: all 0.2s ease;
+}
+
+.mobile-toggle-btn:hover i {
+    color: #3b82f6;
+}
+
+/* Translucent Backdrop Blur for Mobile Sidebar Overlay */
+.sidebar-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    background-color: rgba(15, 23, 42, 0.4) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    z-index: 1045 !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.sidebar-open .sidebar-backdrop {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Safety Override: Permanently disable backdrop blur on Desktop screens */
+@media (min-width: 992px) {
+    .sidebar-backdrop {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+}
+
+/* Responsive Mobile Rules overrides */
+@media (max-width: 991.98px) {
+    .mobile-toggle-btn {
+        display: flex !important;
+    }
+
+    /* Keep main content layout beautifully non-squeezed */
+    .admin-main {
+        width: 100% !important;
+        padding: 95px 16px 40px 16px !important; /* Top breathing room for floating bar */
+    }
+
+    /* Transform sidebar to a slide-in overlay drawer */
+    #sidebar {
+        position: fixed !important;
+        left: -290px !important; /* Completely hidden off-screen to the left */
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 280px !important;
+        min-width: 280px !important;
+        z-index: 1050 !important;
+        box-shadow: none !important;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    body.sidebar-open #sidebar {
+        left: 0 !important; /* Slides into view overlapping content */
+        box-shadow: 15px 0 45px rgba(15, 23, 42, 0.25) !important;
+    }
+
+    body.sidebar-open {
+        overflow: hidden !important; /* Freeze main page scrolling when side menu drawer is active */
+    }
+
+    /* Ensure text spans are visible when expanded on mobile drawer */
+    #sidebar .sidebar-logo,
+    #sidebar a.sidebar-link span {
+        display: block !important;
+    }
 }

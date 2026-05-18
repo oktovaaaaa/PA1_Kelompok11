@@ -16,9 +16,9 @@ class RiwayatadminController extends Controller
 
         if ($search) {
             $query->whereHas('user', function ($q) use ($search) {
-                $q->where('name', 'LIKE', '%' . $search . '%');
+                $q->where('name', 'ilike', '%' . $search . '%');
             })
-            ->orWhere('daftar_menu', 'LIKE', '%' . $search . '%');
+            ->orWhere('daftar_menu', 'ilike', '%' . $search . '%');
         }
 
         $semuaRiwayatPesanan = $query->with('user')->get();

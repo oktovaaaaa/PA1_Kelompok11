@@ -22,7 +22,7 @@
 
     <!-- Main CSS Files -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets1/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets1/style.css') }}?v={{ time() }}" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -37,9 +37,17 @@
 </head>
 
 <body>
+    <!-- Floating Hamburger Toggle Button for Mobile -->
+    <button class="mobile-toggle-btn" type="button">
+        <i class="bi bi-grid"></i>
+    </button>
+    
+    <!-- Dark Translucent Backdrop Overlay for Mobile -->
+    <div class="sidebar-backdrop"></div>
+
     <div class="wrapper">
         @include('layouts.sidebar')
-        <div class="main">
+        <div class="admin-main">
             @yield('contents')
         </div>
     </div>
@@ -56,7 +64,7 @@
 
     <!-- Main JS Files -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets1/script.js') }}"></script>
+    <script src="{{ asset('assets1/script.js') }}?v={{ time() }}"></script>
 </body>
 
 </html>

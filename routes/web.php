@@ -54,6 +54,7 @@ Route::middleware(['auth', 'user.role'])->group(function () {
     Route::post('/keranjang/{menuId}/tambah', [UserController::class, 'tambahKeKeranjang'])->name('userr.tambahKeranjang');
     Route::get('/keranjang', [UserController::class, 'lihatKeranjang'])->name('userr.keranjang');
     Route::delete('/keranjang/{id}/hapus', [UserController::class, 'hapusDariKeranjang'])->name('userr.hapusKeranjang');
+    Route::post('/keranjang/{id}/update', [UserController::class, 'updateKuantitasKeranjang'])->name('userr.updateKeranjang');
     Route::post('/keranjang/proses-pembayaran', [UserController::class, 'prosesPembayaranKeranjang'])->name('userr.prosesPembayaranKeranjang');
     Route::post('/menu/proses-pembayaran', [UserController::class, 'prosesPembayaran'])->name('userr.prosesPembayaran'); // Route untuk card menu
     Route::get('/riwayat-pesanan', [UserController::class, 'lihatRiwayatPesanan'])->name('userr.riwayatPesanan');
