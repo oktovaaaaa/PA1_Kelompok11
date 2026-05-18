@@ -4,6 +4,8 @@
 
 @extends('layouts.main')
 @section('title', 'DelCafe - Menu')
+
+@section('content')
 @include('layouts.navbar')
 
 
@@ -722,3 +724,4 @@
 
 
 @include('layouts.footer')
+@endsection

@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'DelCafe - Kontak')
 
+@section('content')
 @include('layouts.navbar')
 @if (auth()->check() && (auth()->user()->role === 'admin' || auth()->user()->role === 'user'))
 
@@ -200,3 +201,4 @@
 </section>
 
 @include('layouts.footer')
+@endsection

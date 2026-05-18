@@ -1,6 +1,8 @@
-@include('layouts.navbar')
-@section('title', 'DelCafe - Tentang')
 @extends('layouts.main')
+@section('title', 'DelCafe - Tentang')
+
+@section('content')
+@include('layouts.navbar')
 
 
 <section id="about" class="about section">
@@ -43,3 +45,4 @@
 </section>
 
 @include('layouts.footer')
+@endsection

@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'DelCafe - Beranda')
 
+@section('content')
 @include('layouts.navbar')
 
 <style>
@@ -341,4 +342,4 @@
 
   </main>
   @include('layouts.footer')
-</body>
+@endsection

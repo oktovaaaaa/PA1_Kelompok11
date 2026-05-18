@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'DelCafe - Testimoni')
 
+@section('content')
 @include('layouts.navbar')
 
 <br><br>
@@ -140,3 +141,4 @@
         });
     });
 </script>
+@endsection

@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'DelCafe')</title>
-    <!-- Favicons -->
-    <link href="{{ asset('assets/img/logodel.png') }}" rel="icon">
-    <link href="{{ asset('assets/img/logodel.png') }}" rel="apple-touch-icon">
+    <!-- Favicons with Cache Buster for Instant Chrome Update -->
+    <link rel="shortcut icon" href="{{ asset('assets/img/logodel.png') }}?v=1.0" type="image/png">
+    <link href="{{ asset('assets/img/logodel.png') }}?v=1.0" rel="icon" type="image/png">
+    <link href="{{ asset('assets/img/logodel.png') }}?v=1.0" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">

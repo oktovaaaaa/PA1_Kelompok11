@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'DelCafe - Login')
 
+@section('content')
 <section class="login-section">
     <div class="login-container w-100">
         <div class="card login-card shadow-lg">
@@ -311,3 +312,4 @@
         }
     }
 </style>
+@endsection

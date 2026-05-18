@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title', 'DelCafe - Pengumuman')
 
+@section('content')
 @include('layouts.navbar')
 
 <style>
@@ -290,3 +291,4 @@
 </script>
 
 @include('layouts.footer')
+@endsection

@@ -175,5 +175,191 @@
         .profile-name-text {
             display: none !important; /* Hide name on tablet/mobile dropdown to prevent overlap */
         }
+
+        /* Hide the header auth container on mobile by default to keep top header clean and beautiful */
+        #header .container-fluid > div:last-child {
+            display: none !important;
+        }
+    }
+
+    /* Failsafe to allow mobile navigation sidebar to display correctly without parent container clipping */
+    body.mobile-nav-active #header {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    body.mobile-nav-active #header .container-fluid {
+        align-items: flex-start !important;
+        padding-top: 15px !important;
+    }
+
+    /* --- ULTRA-PREMIUM RIGHT-ALIGNED GLASSMORPHIC DRAWER --- */
+    
+    /* 1. Full-screen transparent backdrop overlay with blur */
+    body.mobile-nav-active .navmenu {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(8, 18, 36, 0.5) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        display: block !important;
+        z-index: 99999 !important;
+        transition: all 0.4s ease !important;
+    }
+
+    /* 2. Style the ul list to be a premium, right-aligned slide-out drawer panel */
+    body.mobile-nav-active .navmenu > ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important; /* Align children (links) to the right! */
+        justify-content: flex-start !important;
+        position: fixed !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        left: auto !important; /* SNAP TO THE RIGHT (cancels left positioning from main.css) */
+        width: 290px !important; /* Beautiful premium sidebar drawer width */
+        height: 100vh !important;
+        background: linear-gradient(180deg, rgba(11, 22, 44, 0.96) 0%, rgba(18, 38, 72, 0.96) 100%) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.4) !important;
+        padding: 90px 25px 120px 25px !important;
+        margin: 0 !important;
+        overflow-y: auto !important;
+        gap: 12px !important; /* Elegant compact spacing */
+        z-index: 100000 !important;
+        animation: drawerSlideIn 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+
+    @keyframes drawerSlideIn {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    /* 3. Style the list items and their link anchors to be right-aligned */
+    body.mobile-nav-active .navmenu > ul li {
+        width: 100% !important;
+        text-align: right !important; /* Aligned to the right! */
+        opacity: 0;
+        animation: mobileNavSlideInRight 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important; /* Thin elegant divider line */
+        padding-bottom: 8px !important;
+        margin-bottom: 4px !important;
+    }
+
+    body.mobile-nav-active .navmenu > ul li:last-child {
+        border-bottom: none !important; /* No divider line for the last item */
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Staggered animation for menu items sliding in from right */
+    body.mobile-nav-active .navmenu > ul li:nth-child(1) { animation-delay: 0.05s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(2) { animation-delay: 0.1s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(3) { animation-delay: 0.15s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(4) { animation-delay: 0.2s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(5) { animation-delay: 0.25s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(6) { animation-delay: 0.3s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(7) { animation-delay: 0.35s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(8) { animation-delay: 0.4s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(9) { animation-delay: 0.45s; }
+    body.mobile-nav-active .navmenu > ul li:nth-child(10) { animation-delay: 0.5s; }
+
+    @keyframes mobileNavSlideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    body.mobile-nav-active .navmenu > ul li a {
+        font-family: 'Poppins', sans-serif !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-size: 1.1rem !important; /* Clean premium sidebar font size */
+        font-weight: 500 !important;
+        letter-spacing: 0.5px !important;
+        padding: 8px 0 !important; /* Perfect clickable spacing */
+        display: block !important;
+        transition: all 0.25s ease !important;
+        text-align: right !important;
+        background: transparent !important; /* Reset any background styles */
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 4. Active & Hover menu link style: NO background, NO borders, just elegant glowing text! */
+    body.mobile-nav-active .navmenu > ul li.active a,
+    body.mobile-nav-active .navmenu > ul li a:hover {
+        color: #3b82f6 !important; /* Clean glowing blue on active/hover */
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        transform: translateX(-4px) !important; /* Subtle premium slide-left indicator */
+    }
+
+    /* 5. Mobile Toggle (X / Close button) positioned at the top-right inside the drawer */
+    body.mobile-nav-active .mobile-nav-toggle {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 22px !important;
+        top: 25px !important;
+        right: 25px !important; /* Placed exactly inside the drawer top-right! */
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+        transition: all 0.3s ease !important;
+        z-index: 100000000 !important; /* Floats above everything */
+        position: fixed !important;
+    }
+
+    body.mobile-nav-active .mobile-nav-toggle:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        transform: rotate(90deg) !important;
+    }
+
+    /* 6. Align auth CTA button perfectly at the bottom of the right drawer (Zero Overlaps!) */
+    body.mobile-nav-active #header .container-fluid > div:last-child {
+        position: fixed !important;
+        bottom: 40px !important;
+        right: 25px !important; /* Constrained inside the 290px drawer */
+        width: 240px !important; /* Fits perfectly with 25px margins */
+        display: flex !important;
+        justify-content: center !important;
+        z-index: 100000000 !important;
+    }
+
+    body.mobile-nav-active #header .container-fluid > div:last-child a {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 10px 0 !important;
+        font-size: 0.9rem !important;
+        box-shadow: 0 8px 24px rgba(13, 110, 253, 0.3) !important;
     }
 </style>

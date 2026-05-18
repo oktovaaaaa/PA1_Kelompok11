@@ -1,7 +1,8 @@
-@include('layouts.navbar')
+@extends('layouts.main')
 @section('title', 'DelCafe - Galeri')
 
-@extends('layouts.main')
+@section('content')
+@include('layouts.navbar')
 <style>
     /* Tambahkan styling dari work process section */
     .work-process .steps-item {
@@ -148,3 +149,4 @@
 @endforeach
 
 @include('layouts.footer')
+@endsection

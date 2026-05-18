@@ -1,5 +1,7 @@
 @extends('layouts.main')
 @section('title', 'DelCafe - Jadwal')
+
+@section('content')
 @include('layouts.navbar')
 
 <style>
@@ -260,3 +262,4 @@
 </div>
 
 @include('layouts.footer')
+@endsection

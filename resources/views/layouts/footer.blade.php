@@ -57,10 +57,7 @@
         <h4>Ikuti kami</h4>
         <p>Kontak dan media sosial</p>
         <div class="social-links d-flex">
-            <a href=""><i class="bi bi-whatsapp"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            {{-- <a href=""><i class="bi bi-twitter-x"></i></a> --}}
+            <a href="https://wa.me/6287844043032" target="_blank"><i class="bi bi-whatsapp"></i></a>
         </div>
       </div>
 
