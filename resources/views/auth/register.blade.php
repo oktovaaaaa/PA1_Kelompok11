@@ -321,4 +321,23 @@
         }
     }
 </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fileInput = document.getElementById('profile_picture');
+        if (fileInput) {
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const fileSize = this.files[0].size; // in bytes
+                    const maxSize = 3 * 1024 * 1024; // 3MB in bytes
+                    
+                    if (fileSize > maxSize) {
+                        alert("Ukuran file foto profil tidak boleh melebihi 3 MB! Silakan pilih file yang lebih kecil.");
+                        this.value = ''; // Reset file input
+                    }
+                }
+            });
+        }
+    });
+</script>
 @endsection

@@ -119,6 +119,34 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // Check Profile Picture Size (Max 3MB) using SweetAlert2
+        const profilePictureInput = document.getElementById('profile_picture');
+        if (profilePictureInput) {
+            profilePictureInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const fileSize = this.files[0].size; // in bytes
+                    const maxSize = 3 * 1024 * 1024; // 3MB in bytes
+                    
+                    if (fileSize > maxSize) {
+                        Swal.fire({
+                            title: 'Ukuran File Terlalu Besar',
+                            text: 'Ukuran file foto profil tidak boleh melebihi 3 MB! Silakan pilih file yang lebih kecil.',
+                            icon: 'error',
+                            confirmButtonColor: '#dc3545',
+                            confirmButtonText: 'Mengerti',
+                            background: '#ffffff',
+                            customClass: {
+                                popup: 'swal2-premium-popup',
+                                title: 'swal2-premium-title',
+                                confirmButton: 'swal2-premium-confirm-btn btn-danger-swal'
+                            }
+                        });
+                        this.value = ''; // Reset file input
+                    }
+                }
+            });
+        }
+
         // Intercept Delete Profile Picture Form
         const deletePictureForm = document.getElementById('delete-picture-form');
         if (deletePictureForm) {

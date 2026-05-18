@@ -41,6 +41,11 @@
                 <li class="{{ request()->is('kontak') ? 'active' : '' }}">
                     <a href="{{ route('kontakuserr') }}">Kontak</a>
                 </li>
+                @auth
+                <li class="mobile-akun-li">
+                    <a href="{{ route('profile.edit') }}">Akun</a>
+                </li>
+                @endauth
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -344,22 +349,47 @@
         transform: rotate(90deg) !important;
     }
 
-    /* 6. Align auth CTA button perfectly at the bottom of the right drawer (Zero Overlaps!) */
+    /* Hide the mobile Akun link in horizontal desktop menu list */
+    .mobile-akun-li {
+        display: none !important;
+    }
+
+    @media (max-width: 1200px) {
+        .mobile-akun-li {
+            display: block !important;
+        }
+    }
+
+    /* 6. Align auth CTA button (Logout) centered at the bottom of the right drawer */
     body.mobile-nav-active #header .container-fluid > div:last-child {
         position: fixed !important;
-        bottom: 40px !important;
+        bottom: 30px !important;
         right: 25px !important; /* Constrained inside the 290px drawer */
         width: 240px !important; /* Fits perfectly with 25px margins */
         display: flex !important;
         justify-content: center !important;
+        align-items: center !important;
         z-index: 100000000 !important;
     }
 
-    body.mobile-nav-active #header .container-fluid > div:last-child a {
+    /* Hide the profile picture link at the bottom of the drawer on mobile (since it's now in the menu list as "Akun") */
+    body.mobile-nav-active #header .container-fluid > div:last-child .profile-link-nav {
+        display: none !important;
+    }
+
+    /* Restore and style the premium blue Logout button at the bottom of the mobile drawer */
+    body.mobile-nav-active #header .container-fluid > div:last-child .btn-getstarted-custom {
+        display: block !important;
         width: 100% !important;
         text-align: center !important;
         padding: 10px 0 !important;
         font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        border-radius: 50px !important;
+        background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%) !important;
+        color: #ffffff !important;
         box-shadow: 0 8px 24px rgba(13, 110, 253, 0.3) !important;
+        transition: all 0.3s !important;
+        text-decoration: none !important;
     }
 </style>
