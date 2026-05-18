@@ -12,18 +12,172 @@
                     <h2 class="cart-title mb-3">Keranjang Belanja</h2>
 
                     @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert" style="border-radius: 12px; font-weight: 500; padding: 10px 15px;">
-                            <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="padding: 12px;"></button>
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="alert alert-success-premium alert-dismissible fade show d-flex align-items-center" role="alert" id="successAlert">
+                                <div class="alert-icon-wrapper me-3">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="alert-message-content text-start">
+                                    <strong class="alert-title">Berhasil!</strong>
+                                    <span class="alert-text">{{ session('success') }}</span>
+                                </div>
+                                <button type="button" class="btn-close-premium" data-bs-dismiss="alert" aria-label="Close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
                         </div>
                     @endif
 
                     @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert" style="border-radius: 12px; font-weight: 500; padding: 10px 15px;">
-                            <i class="fas fa-exclamation-circle me-2"></i> {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="padding: 12px;"></button>
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="alert alert-danger-premium alert-dismissible fade show d-flex align-items-center" role="alert" id="errorAlert">
+                                <div class="alert-icon-wrapper-error me-3">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="alert-message-content text-start">
+                                    <strong class="alert-title-error">Gagal!</strong>
+                                    <span class="alert-text-error">{{ session('error') }}</span>
+                                </div>
+                                <button type="button" class="btn-close-premium-error" data-bs-dismiss="alert" aria-label="Close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
                         </div>
                     @endif
+
+                    <style>
+                        .alert-success-premium {
+                            background: #ecfdf5;
+                            border: 1.5px solid #a7f3d0;
+                            border-radius: 16px;
+                            padding: 14px 20px;
+                            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.06);
+                            width: 100%;
+                            max-width: 500px;
+                            position: relative;
+                            animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                            transition: all 0.3s ease;
+                        }
+
+                        .alert-danger-premium {
+                            background: #fef2f2;
+                            border: 1.5px solid #fecaca;
+                            border-radius: 16px;
+                            padding: 14px 20px;
+                            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.06);
+                            width: 100%;
+                            max-width: 500px;
+                            position: relative;
+                            animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                            transition: all 0.3s ease;
+                        }
+
+                        .alert-icon-wrapper {
+                            font-size: 20px;
+                            color: #10b981;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .alert-icon-wrapper-error {
+                            font-size: 20px;
+                            color: #ef4444;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .alert-message-content {
+                            display: flex;
+                            flex-direction: column;
+                            flex-grow: 1;
+                        }
+
+                        .alert-title {
+                            color: #065f46;
+                            font-weight: 700;
+                            font-size: 0.9rem;
+                            margin-bottom: 1px;
+                        }
+
+                        .alert-title-error {
+                            color: #991b1b;
+                            font-weight: 700;
+                            font-size: 0.9rem;
+                            margin-bottom: 1px;
+                        }
+
+                        .alert-text {
+                            color: #047857;
+                            font-size: 0.85rem;
+                            font-weight: 500;
+                        }
+
+                        .alert-text-error {
+                            color: #b91c1c;
+                            font-size: 0.85rem;
+                            font-weight: 500;
+                        }
+
+                        .btn-close-premium, .btn-close-premium-error {
+                            background: transparent;
+                            border: none;
+                            font-size: 14px;
+                            cursor: pointer;
+                            padding: 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+                            width: 26px;
+                            height: 26px;
+                            transition: all 0.2s ease;
+                            margin-left: 12px;
+                        }
+
+                        .btn-close-premium {
+                            color: #059669;
+                        }
+
+                        .btn-close-premium:hover {
+                            background: rgba(16, 185, 129, 0.1);
+                            color: #047857;
+                        }
+
+                        .btn-close-premium-error {
+                            color: #dc2626;
+                        }
+
+                        .btn-close-premium-error:hover {
+                            background: rgba(239, 68, 68, 0.1);
+                            color: #b91c1c;
+                        }
+
+                        @keyframes slideDownFade {
+                            from {
+                                opacity: 0;
+                                transform: translateY(-10px);
+                            }
+                            to {
+                                opacity: 1;
+                                transform: translateY(0);
+                            }
+                        }
+                    </style>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const successAlert = document.getElementById('successAlert');
+                            if (successAlert) {
+                                setTimeout(() => {
+                                    successAlert.style.opacity = '0';
+                                    successAlert.style.transform = 'translateY(-5px)';
+                                    setTimeout(() => {
+                                        successAlert.remove();
+                                    }, 300);
+                                }, 4000);
+                            }
+                        });
+                    </script>
 
                     @if (count($keranjangItems) > 0)
                         <!-- Cart Items List Container -->

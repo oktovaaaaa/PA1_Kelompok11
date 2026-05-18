@@ -17,10 +17,109 @@
 @endif
 <br>
 @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="container mt-4 d-flex justify-content-center">
+        <div class="alert alert-success-premium alert-dismissible fade show d-flex align-items-center" role="alert" id="successAlert">
+            <div class="alert-icon-wrapper me-3">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="alert-message-content">
+                <strong class="alert-title">Berhasil!</strong>
+                <span class="alert-text">{{ session('success') }}</span>
+            </div>
+            <button type="button" class="btn-close-premium" data-bs-dismiss="alert" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
     </div>
+
+    <style>
+        .alert-success-premium {
+            background: #ecfdf5;
+            border: 1.5px solid #a7f3d0;
+            border-radius: 16px;
+            padding: 16px 24px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.08);
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
+        }
+
+        .alert-icon-wrapper {
+            font-size: 24px;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+        }
+
+        .alert-message-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .alert-title {
+            color: #065f46;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .alert-text {
+            color: #047857;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .btn-close-premium {
+            background: transparent;
+            border: none;
+            color: #059669;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            transition: all 0.2s ease;
+            margin-left: 16px;
+        }
+
+        .btn-close-premium:hover {
+            background: rgba(16, 185, 129, 0.1);
+            color: #047857;
+        }
+
+        @keyframes slideDownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const alertEl = document.getElementById('successAlert');
+            if (alertEl) {
+                setTimeout(() => {
+                    alertEl.style.opacity = '0';
+                    alertEl.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        alertEl.remove();
+                    }, 300);
+                }, 4000);
+            }
+        });
+    </script>
 @endif
 @else
     <div class="alert alert-info text-center pt-5 ">
