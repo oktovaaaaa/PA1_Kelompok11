@@ -68,7 +68,7 @@
     <p>© <span>Copyright</span> <strong class="px-1 sitename">PA-1</strong> <span>Kelompok 11</span></p>
     <div class="credits">
 
-      Dibuat oleh <a href="https://oktovaaaaa.id">Oktovaaaaa</a>
+      Dibuat oleh <a href="https://oktovaaaaa.id">PA 1 Kelompok 1</a>
     </div>
   </div>
 
